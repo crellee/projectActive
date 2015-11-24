@@ -8,5 +8,11 @@ public class Test {
         System.out.println("roig");
         //sds
         // NY ÆNDRING
+        //sakjfdhs
+        //dfsdfgdsfsfdfdsf
+        System.out.println("fgfdfg");
+        ///dfg
+
+        //mit nye
     }
 }
