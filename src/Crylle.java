@@ -6,19 +6,4 @@ public class Crylle {
 
 
 
-
-
-
-
-
-    // hvad
-
-
-
-
-
-
-    // haci
-
-    // chris
 }
