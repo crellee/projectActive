@@ -7,5 +7,6 @@ public class Test {
     {
         System.out.println("roig");
         //sds
+        // NY ÆNDRING
     }
 }
