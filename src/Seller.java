@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by roije on 25/11/2015.
@@ -7,6 +8,7 @@ public class Seller
 {
     private String firstName;
     private String lastName;
+    private Date birthday;
     private int age;
     private String email;
     private String password;
@@ -19,12 +21,12 @@ public class Seller
 
     }
 
-    public Seller(String firstName, String lastName, int age, String email, String password,
+    public Seller(String firstName, String lastName, Date birthday, String email, String password,
                   ArrayList<String> qualifications, String location, double rating)
     {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthday = birthday;
         this.email = email;
         this.password = password;
         this.qualifications = qualifications;
@@ -110,5 +112,15 @@ public class Seller
     public void setRating(double rating)
     {
         this.rating = rating;
+    }
+
+    public Date getBirthday()
+    {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday)
+    {
+        this.birthday = birthday;
     }
 }

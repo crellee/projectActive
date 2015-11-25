@@ -1,3 +1,4 @@
+
 package Database;
 
 import com.mysql.jdbc.Connection;
@@ -8,6 +9,7 @@ import java.sql.DriverManager;
 /**
  * Created by roije on 25/11/2015.
  */
+
 public class SchemaCreator
 {
     //Database URL
@@ -44,3 +46,4 @@ public class SchemaCreator
             }
         }
 }
+
