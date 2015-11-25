@@ -1,6 +1,7 @@
 package GUI;
 
 import Database.SchemaCreator;
+import Database.TableCreator;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -52,6 +53,7 @@ public class GUI extends Application {
     public void start(Stage primaryStage) throws Exception
     {
         SchemaCreator.create();
+        TableCreator.create();
         window = primaryStage;
         Login();
     }
