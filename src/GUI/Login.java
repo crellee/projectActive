@@ -38,7 +38,7 @@ public class Login extends Application {
         SchemaCreator.create();
         TableCreator.create();
         window = primaryStage;
-        Login();
+        CreateSellerWindow.openWindow();
     }
 
 

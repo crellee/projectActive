@@ -1,5 +1,6 @@
 package GUI;
 
+import Database.DBHandlerSeller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,6 +16,7 @@ public class CreateSellerWindow
 {
     public static void openWindow()
     {
+
         BorderPane root = new BorderPane();
         Stage window = new Stage();
         Scene scene = new Scene(root, 600, 600);
@@ -29,26 +31,39 @@ public class CreateSellerWindow
         Label confirmPasswordLabel = new Label("Confirm password:");
         Label qualificationsLabel = new Label("Qualifications:");
         Label locationLabel = new Label("Postal code: ");
+        Label city = new Label("City");
 
         //Input fields
         TextField firstNameText = new TextField();
         TextField lastNameText = new TextField();
-        DatePicker birthdayField = new DatePicker();
+        DatePicker birthdateField = new DatePicker();
         TextField emailText = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
-        ComboBox<String> qualificationsCombo = new ComboBox<>();
+        ComboBox qualificationsCombo = new ComboBox<>();
+        qualificationsCombo.getItems().addAll("Test", "Maler", "Danser");
         qualificationsCombo.setPrefWidth(200);
-        ComboBox<String> locationCombo = new ComboBox<>();
+        ComboBox locationCombo = new ComboBox<>();
+        locationCombo.getItems().addAll("2300", "4545");
+        locationCombo.setPrefWidth(200);
+        TextField cityField = new TextField();
+
+        Button createButton = new Button("Create");
+        createButton.setOnAction(e ->
+        {
+            DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
+                    qualificationsCombo, locationCombo, cityField);
+        });
+
 
         VBox labelVBox = new VBox();
         labelVBox.getChildren().addAll(firstNameLabel,lastNameLabel,birthdateLabel, emailLabel, enterPasswordLabel,
-                confirmPasswordLabel, qualificationsLabel, locationLabel);
+                confirmPasswordLabel, qualificationsLabel, locationLabel, city);
         labelVBox.setSpacing(11);
 
         VBox inputVBox = new VBox();
-        inputVBox.getChildren().addAll(firstNameText, lastNameText, birthdayField, emailText, passwordField,
-                confirmPasswordField, qualificationsCombo, locationCombo);
+        inputVBox.getChildren().addAll(firstNameText, lastNameText, birthdateField, emailText, passwordField,
+                confirmPasswordField, qualificationsCombo, locationCombo, cityField, createButton);
 
         HBox centerHBox = new HBox();
         centerHBox.getChildren().addAll(labelVBox, inputVBox);

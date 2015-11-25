@@ -14,7 +14,8 @@ public class Seller
     private String password;
     private ArrayList<String> qualifications;
     private String location;
-    private double rating;
+    private double rating = 0.0;
+    private String city;
 
     public Seller()
     {
@@ -22,7 +23,7 @@ public class Seller
     }
 
     public Seller(String firstName, String lastName, Date birthday, String email, String password,
-                  ArrayList<String> qualifications, String location, double rating)
+                  ArrayList<String> qualifications, String location, double rating, String city)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,6 +33,7 @@ public class Seller
         this.qualifications = qualifications;
         this.location = location;
         this.rating = rating;
+        this.city = city;
     }
 
     public String getFirstName()
@@ -122,5 +124,15 @@ public class Seller
     public void setBirthday(Date birthday)
     {
         this.birthday = birthday;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
     }
 }
