@@ -16,21 +16,22 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import sun.rmi.runtime.Log;
 
 /**
  * Created by christianhasselstrom on 16/11/2015.
  */
 public class GUI extends Application {
 
-    BorderPane root;
+    BorderPane root, borderRoot;
     GridPane gridRoot;
     Stage window;
     ToggleGroup tGroup;
     ToggleButton myProfileBtn, sellersBtn, buyersBtn, matchesBtn, tasksBtn,  signOutBtn;
-    Button login;
-    Label headLine, passLabel, userLabel;
-    VBox topVBox;
-    HBox buttonBox, loginHBox;
+    Button loginButton, createSellerButton, createBuyerButton;
+    Label headLine, passLabel, userLabel, vicarius, invisibleLabel;
+    VBox topVBox, loginVBox, usersVBox;
+    HBox buttonBox, loginHBox, topHBox, usersHBox;
     TextField loginTextfield;
     PasswordField passwordField;
 
@@ -39,28 +40,6 @@ public class GUI extends Application {
     {
         //BorderPane
 
-
-    }
-    public void Login()
-    {
-        gridRoot = new GridPane();
-        Scene sceneLogin = new Scene(gridRoot, 600, 600);
-        window.setScene(sceneLogin);
-        window.show();
-        gridRoot.setGridLinesVisible(true);
-
-        loginHBox = new HBox();
-
-        login = new Button("Login");
-
-        loginTextfield = new TextField();
-        passwordField = new PasswordField();
-
-        userLabel = new Label("");
-
-        loginHBox.setSpacing(10);
-
-        gridRoot.getChildren().addAll(loginTextfield, passwordField, login);
 
     }
 
@@ -75,6 +54,101 @@ public class GUI extends Application {
         SchemaCreator.create();
         window = primaryStage;
         Login();
+    }
+
+    public void Login()
+    {
+        root = new BorderPane();
+        root.setPadding(new Insets(15));
+        root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
+
+        loginVBox = new VBox();
+        loginVBox.setPrefWidth(300);
+        loginVBox.setSpacing(10);
+        root.setTop(loginVBox);
+
+        topHBox = new HBox();
+        topHBox.setPrefWidth(300);
+        topHBox.setSpacing(30);
+
+        loginHBox = new HBox();
+        loginHBox.setPrefWidth(300);
+        loginHBox.setSpacing(30);
+
+        //Users HBox
+        usersHBox = new HBox();
+        usersHBox.setPrefWidth(1280);
+        usersHBox.setSpacing(10);
+
+        //Users VBox
+        usersVBox = new VBox();
+        usersVBox.setPrefWidth(1280);
+        usersVBox.setSpacing(10);
+        invisibleLabel = new Label();
+        root.setCenter(usersVBox);
+        usersVBox.setPadding(new Insets(150));
+
+
+        window.show();
+        Scene scene = new Scene(root, 550, 600);
+        window.setScene(scene);
+        window.setResizable(false);
+
+        //user Label
+        userLabel = new Label("Login");
+        userLabel.setPrefWidth(200);
+
+        //
+        passLabel = new Label("Password");
+        passLabel.setPrefWidth(200);
+
+        //login textfield
+        loginTextfield = new TextField();
+        loginTextfield.setPrefWidth(200);
+        loginTextfield.setPrefHeight(30);
+
+        //login passwordfield
+        passwordField = new PasswordField();
+        passwordField.setPrefWidth(200);
+        passwordField.setPrefHeight(30);
+
+        //login button
+        loginButton = new Button("Login");
+
+        //Create seller button
+        createSellerButton = new Button("Create Seller");
+        createSellerButton.setPrefWidth(250);
+        createSellerButton.setPrefHeight(65);
+        createSellerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        createSellerButton.setOnAction(e ->
+        {
+            homeScreen();
+        });
+
+        //create buyer button
+        createBuyerButton = new Button("Create Buyer");
+        createBuyerButton.setPrefWidth(250);
+        createBuyerButton.setPrefHeight(65);
+        createBuyerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+
+        //vicarius label
+        vicarius = new Label("Vicarius");
+        Reflection r = new Reflection();
+        r.setFraction(0.7f);
+        vicarius.setEffect(r);
+        vicarius.setTextFill(Color.LIGHTGRAY);
+        vicarius.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
+
+
+
+        //getChildren()
+        loginVBox.getChildren().addAll(vicarius, topHBox, loginHBox);
+        topHBox.getChildren().addAll(userLabel, passLabel);
+        loginHBox.getChildren().addAll(loginTextfield, passwordField, loginButton);
+        //usersHBox.getChildren().addAll(createBuyerButton, createSellerButton);
+        usersVBox.getChildren().addAll(createBuyerButton, createSellerButton);
+
+
     }
 
     public void homeScreen()
@@ -95,6 +169,7 @@ public class GUI extends Application {
         Scene scene = new Scene(root, 1280, 700);
         window.setScene(scene);
         window.setResizable(false);
+
 
 
 

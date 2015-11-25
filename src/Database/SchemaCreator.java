@@ -15,7 +15,7 @@ public class SchemaCreator
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "kaffekaffe";
+    static final String PASS = "admin";
 
     public static void create()
     {
