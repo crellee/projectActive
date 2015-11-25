@@ -99,6 +99,8 @@ public class CreateSellerWindow
             //Call a method which saves information in TextFields etc. in a database table
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                     qualificationsCombo, locationCombo, cityField);
+            window.close();
+            HomeScreen.homeScreen();
         });
 
         //VBox with all information labels.

@@ -37,7 +37,8 @@ public class Login extends Application {
     public void start(Stage primaryStage) throws Exception
     {
         SchemaCreator.create();
-        TableCreator.create();
+        TableCreator.createSeller();
+        TableCreator.createBuyer();
         window = primaryStage;
         Login();
     }
@@ -116,6 +117,11 @@ public class Login extends Application {
         createBuyerButton.setPrefWidth(250);
         createBuyerButton.setPrefHeight(65);
         createBuyerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        createBuyerButton.setOnAction(e ->
+        {
+            window.close();
+            CreateBuyerWindow.openWindow();
+        });
 
         //vicarius label
         Label vicarius = new Label("Vicarius");
