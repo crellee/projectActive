@@ -57,7 +57,6 @@ public class GUI extends Application {
         TableCreator.create();
         window = primaryStage;
 
-        Login.LoginZ();
     }
 
     public void Login()

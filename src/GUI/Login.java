@@ -38,7 +38,6 @@ public class Login extends Application {
         SchemaCreator.create();
         TableCreator.create();
         window = primaryStage;
-
         Login();
     }
 
@@ -75,7 +74,6 @@ public class Login extends Application {
 
 
         Stage window = new Stage();
-        window.show();
         Scene scene = new Scene(root, 550, 600);
         window.setScene(scene);
         window.setResizable(false);
@@ -109,6 +107,7 @@ public class Login extends Application {
         createSellerButton.setOnAction(e ->
         {
             window.close();
+            CreateSellerWindow.openWindow();
 
         });
 
@@ -133,5 +132,7 @@ public class Login extends Application {
         loginHBox.getChildren().addAll(loginTextfield, passwordField, loginButton);
         //usersHBox.getChildren().addAll(createBuyerButton, createSellerButton);
         usersVBox.getChildren().addAll(createBuyerButton, createSellerButton);
+
+        window.show();
     }
 }

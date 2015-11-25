@@ -30,15 +30,6 @@ public class TableCreator
                     "PRIMARY KEY (email))";
             stmt.executeUpdate(sqlString);
 
-            /*
-            sqlString = "CREATE TABLE IF NOT EXISTS Dentists" +
-                    "(dentistNo CHAR(5) NOT NULL, " +
-                    "dentistName VARCHAR(35), " +
-                    "isActive BIT(1) NOT NULL DEFAULT 1," +
-                    "PRIMARY KEY (dentistNo))";
-            stmt.executeUpdate(sqlString);
-            */
-
         }
         catch (Exception e)
         {
