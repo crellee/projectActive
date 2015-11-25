@@ -42,6 +42,7 @@ public class TableCreator
         }
     }
 
+
     public static void createBuyer()
     {
         String sqlString;

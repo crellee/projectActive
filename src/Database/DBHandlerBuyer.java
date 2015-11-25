@@ -30,12 +30,12 @@ public class DBHandlerBuyer
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            String sqlString = ("INSERT INTO Buyers(firstName, lastName, businessName, businessEmail, password," +
+            String sqlStrings = ("INSERT INTO Buyers(firstName, lastName, businessName, businessEmail, password," +
                     "location, city, cvr) " +
-                    "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+businessNameStr+"', '"+businessEmailStr+"'" +
+                    "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+businessNameStr+"', '"+businessEmailStr+"', " +
                     "'"+passwordStr+"', '"+locationStr+"', '"+cityStr+"', '"+cvrStr+"')");
 
-            stmt.executeUpdate(sqlString);
+            stmt.executeUpdate(sqlStrings);
 
         }
         catch (Exception e)
