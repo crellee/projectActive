@@ -83,10 +83,27 @@ public class CreateSellerWindow
         ComboBox qualificationsCombo = new ComboBox<>();
         qualificationsCombo.getItems().addAll("Test", "Maler", "Danser");
         qualificationsCombo.setPrefWidth(200);
+
+
+        ComboBox qualificationsCombo2 = new ComboBox<>();
+        qualificationsCombo2.setVisible(false);
+        qualificationsCombo2.getItems().addAll("Test2", "MalerZZZ", "Danser");
+        qualificationsCombo2.setPrefWidth(200);
+        qualificationsCombo2.setLayoutX(200);
+        qualificationsCombo2.setLayoutY(200);
+
+
+
         ComboBox locationCombo = new ComboBox<>();
-        locationCombo.getItems().addAll("2300", "4545");
         locationCombo.setPrefWidth(200);
         TextField cityField = new TextField();
+
+        Button addMoreQualiButton1 = new Button("Add New");
+
+        VBox addMoreQualiVBox = new VBox();
+        addMoreQualiVBox.getChildren().add(addMoreQualiButton1);
+        addMoreQualiVBox.setPadding(new Insets(257, 10, 0, 0));
+        root.setRight(addMoreQualiVBox);
 
         Button createButton = new Button("Create account");
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -121,8 +138,16 @@ public class CreateSellerWindow
         centerHBox.setSpacing(10);
         centerHBox.setPadding(new Insets(5,0,0,130));
 
+
+        addMoreQualiButton1.setOnAction(e ->
+        {
+
+        });
+
         root.setCenter(centerHBox);
 
         window.show();
+
+
     }
 }
