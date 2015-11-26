@@ -5,9 +5,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -17,12 +14,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 /**
  * Created by roije on 25/11/2015.
  */
-//This is the GUI class for creating a new account as a seller
 public class CreateSellerWindow
 {
     public static void openWindow()
@@ -31,7 +25,7 @@ public class CreateSellerWindow
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
         Stage window = new Stage();
-        Scene scene = new Scene(root, 650, 650);
+        Scene scene = new Scene(root, 600, 600);
         window.setScene(scene);
 
         //Header label
@@ -74,7 +68,6 @@ public class CreateSellerWindow
         Label qualificationsLabel = new Label("Qualifications:");
         qualificationsLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label locationLabel = new Label("Postal code: ");
-        locationLabel.setPadding(new Insets(51,0,0,0));
         locationLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cityLabel = new Label("City:");
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
@@ -87,31 +80,13 @@ public class CreateSellerWindow
         TextField emailText = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
-        CheckBox carpenterCheck = new CheckBox("Carpenter");
-        CheckBox janitorCheck = new CheckBox("Janitor");
-        CheckBox cleanerCheck = new CheckBox("Cleaner");
-        CheckBox waiterCheck = new CheckBox("Waiter");
-        CheckBox chefCheck = new CheckBox("Chef");
-        CheckBox bartenderCheck = new CheckBox("Bartender");
-        CheckBox storeCheck = new CheckBox("Store employee");
-        CheckBox retailCheck = new CheckBox("Retail");
-        CheckBox pedagogueCheck = new CheckBox("Pedagogue");
-
-
-        HBox checkRow1Box = new HBox();
-        checkRow1Box.getChildren().addAll(carpenterCheck, janitorCheck,cleanerCheck);
-
-        HBox checkRow2Box = new HBox();
-        checkRow2Box.getChildren().addAll(waiterCheck,chefCheck,bartenderCheck);
-
-        HBox checkRow3Box = new HBox();
-        checkRow3Box.getChildren().addAll(storeCheck,retailCheck,pedagogueCheck);
-
+        ComboBox qualificationsCombo = new ComboBox<>();
+        qualificationsCombo.getItems().addAll("Test", "Maler", "Danser");
+        qualificationsCombo.setPrefWidth(200);
         ComboBox locationCombo = new ComboBox<>();
-        locationCombo.setPrefWidth(220);
-        locationCombo.getItems().addAll("2300", "3434");
+        locationCombo.getItems().addAll("2300", "4545", "2630");
+        locationCombo.setPrefWidth(200);
         TextField cityField = new TextField();
-        cityField.setPrefWidth(160);
 
         Button createButton = new Button("Create account");
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -119,37 +94,13 @@ public class CreateSellerWindow
         createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
-
         createButton.setOnAction(e ->
         {
-
             //Call a method which saves information in TextFields etc. in a database table
-            int carpenterInt;
-            int janitorInt = 0;
-            int cleanerInt= 0;
-            int waiterInt = 0;
-            int chefInt = 0;
-            int bartenderInt = 0;
-            int storeInt = 0;
-            int retailInt = 0;
-            int pedaInt = 0;
-            boolean selected;
-            selected = carpenterCheck.isSelected();
-            if(selected == true)
-            {
-                carpenterInt = 1;
-            }
-            else
-            {
-                carpenterInt = 0;
-            }
-
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
-                    carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
-                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
-
-            HomeScreen.homeScreen();
+                    qualificationsCombo, locationCombo, cityField);
             window.close();
+            HomeScreen.homeScreen();
         });
 
         //VBox with all information labels.
@@ -161,7 +112,7 @@ public class CreateSellerWindow
         //VBox with all input fields
         VBox inputVBox = new VBox();
         inputVBox.getChildren().addAll(firstNameText, lastNameText, birthdateField, emailText, passwordField,
-                confirmPasswordField, checkRow1Box, checkRow2Box, checkRow3Box, locationCombo, cityField, createButton);
+                confirmPasswordField, qualificationsCombo, locationCombo, cityField, createButton);
         inputVBox.setSpacing(15);
 
         //Label VBox and Input VBOX placed inside a HBox which is set to center of BorderPane
@@ -170,11 +121,8 @@ public class CreateSellerWindow
         centerHBox.setSpacing(10);
         centerHBox.setPadding(new Insets(5,0,0,130));
 
-
         root.setCenter(centerHBox);
 
         window.show();
-
-
     }
 }
