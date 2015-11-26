@@ -96,6 +96,7 @@ public class CreateBuyerWindow
         createButton.setPrefHeight(50);
         createButton.setOnAction(e ->
         {
+            /*
             if(firstNameField.getText().equals("") || lastNameField.getText().equals("") ||
                     businessEmailField.getText().equals("") || enterPasswordField.getText().equals("") ||
                     confirmPasswordField.getText().equals("") || locationCombo.getValue().toString().equals("") ||
@@ -110,11 +111,13 @@ public class CreateBuyerWindow
 
             else
             {
+            */
                 DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
                         enterPasswordField, locationCombo, cityField, cvrNoField);
-                window.close();
                 HomeScreen.homeScreen();
-            }
+                window.close();
+            //}
+
         });
 
         //Tilføjer til HBox VBox & BorderPane
@@ -136,7 +139,6 @@ public class CreateBuyerWindow
 
 
         root.setCenter(centerHBox);
-
 
         window.show();
     }

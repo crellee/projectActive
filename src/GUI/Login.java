@@ -36,7 +36,7 @@ public class Login extends Application {
         TableCreator.createSeller();
         TableCreator.createBuyer();
         window = primaryStage;
-        Login();
+        CreateSellerWindow.openWindow();
     }
 
     public static void Login() {

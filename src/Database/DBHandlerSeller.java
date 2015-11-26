@@ -41,6 +41,7 @@ public class DBHandlerSeller
                     " '"+qualificationStr+"', '"+locationStr+"', '"+rating+"', '"+cityStr+"')");
 
             stmt.executeUpdate(sqlString);
+            System.out.print("Seller saved");
         }
         catch (Exception e)
         {

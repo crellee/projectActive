@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 /**
  * Created by roije on 25/11/2015.
  */
+//This is the GUI class for creating a new account as a seller
 public class CreateSellerWindow
 {
     public static void openWindow()
@@ -68,6 +69,7 @@ public class CreateSellerWindow
         Label qualificationsLabel = new Label("Qualifications:");
         qualificationsLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label locationLabel = new Label("Postal code: ");
+        locationLabel.setPadding(new Insets(51,0,0,0));
         locationLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cityLabel = new Label("City:");
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
@@ -80,30 +82,29 @@ public class CreateSellerWindow
         TextField emailText = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
-        ComboBox qualificationsCombo = new ComboBox<>();
-        qualificationsCombo.getItems().addAll("Test", "Maler", "Danser");
-        qualificationsCombo.setPrefWidth(200);
+        CheckBox carpenterCheck = new CheckBox("Carpenter");
+        CheckBox carpenterCheck1 = new CheckBox("Carpenter");
+        CheckBox carpenterCheck2 = new CheckBox("Carpenter");
+        CheckBox carpenterCheck3 = new CheckBox("Carpenter");
+        CheckBox carpenterCheck4 = new CheckBox("Carpenter");
+        CheckBox carpenterCheck5 = new CheckBox("enter");
+        CheckBox carpenterCheck6 = new CheckBox("Carpenter");
+        CheckBox carpenterCheck7 = new CheckBox("Carpenter");
+        CheckBox carpenterCheck8 = new CheckBox("Carpenter");
 
+        HBox checkRow1Box = new HBox();
+        checkRow1Box.getChildren().addAll(carpenterCheck,carpenterCheck1,carpenterCheck2);
 
-        ComboBox qualificationsCombo2 = new ComboBox<>();
-        qualificationsCombo2.setVisible(false);
-        qualificationsCombo2.getItems().addAll("Test2", "MalerZZZ", "Danser");
-        qualificationsCombo2.setPrefWidth(200);
-        qualificationsCombo2.setLayoutX(200);
-        qualificationsCombo2.setLayoutY(200);
+        HBox checkRow2Box = new HBox();
+        checkRow2Box.getChildren().addAll(carpenterCheck5,carpenterCheck6,carpenterCheck7);
 
-
+        HBox checkRow3Box = new HBox();
+        checkRow3Box.getChildren().addAll(carpenterCheck3,carpenterCheck4,carpenterCheck8);
 
         ComboBox locationCombo = new ComboBox<>();
-        locationCombo.setPrefWidth(200);
+        locationCombo.setPrefWidth(220);
         TextField cityField = new TextField();
-
-        Button addMoreQualiButton1 = new Button("Add New");
-
-        VBox addMoreQualiVBox = new VBox();
-        addMoreQualiVBox.getChildren().add(addMoreQualiButton1);
-        addMoreQualiVBox.setPadding(new Insets(257, 10, 0, 0));
-        root.setRight(addMoreQualiVBox);
+        cityField.setPrefWidth(160);
 
         Button createButton = new Button("Create account");
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -114,10 +115,12 @@ public class CreateSellerWindow
         createButton.setOnAction(e ->
         {
             //Call a method which saves information in TextFields etc. in a database table
+            /*
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                     qualificationsCombo, locationCombo, cityField);
-            window.close();
+                    */
             HomeScreen.homeScreen();
+            window.close();
         });
 
         //VBox with all information labels.
@@ -129,7 +132,7 @@ public class CreateSellerWindow
         //VBox with all input fields
         VBox inputVBox = new VBox();
         inputVBox.getChildren().addAll(firstNameText, lastNameText, birthdateField, emailText, passwordField,
-                confirmPasswordField, qualificationsCombo, locationCombo, cityField, createButton);
+                confirmPasswordField, checkRow1Box, checkRow2Box, checkRow3Box, locationCombo, cityField, createButton);
         inputVBox.setSpacing(15);
 
         //Label VBox and Input VBOX placed inside a HBox which is set to center of BorderPane
@@ -138,11 +141,6 @@ public class CreateSellerWindow
         centerHBox.setSpacing(10);
         centerHBox.setPadding(new Insets(5,0,0,130));
 
-
-        addMoreQualiButton1.setOnAction(e ->
-        {
-
-        });
 
         root.setCenter(centerHBox);
 

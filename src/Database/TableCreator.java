@@ -27,7 +27,11 @@ public class TableCreator
                     "age INT(2) NOT NULL," + //Range 0-99
                     "email VARCHAR(30) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "password VARCHAR(30) NOT NULL," +
-                    "qualification VARCHAR(15) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
+                    "qualCarpenter VARCHAR(15) NOT NULL," +
+                    "qualService VARCHAR(15) NOT NULL," +
+                    "qualification3 VARCHAR(15) NOT NULL," +
+                    "qualification4 VARCHAR(15) NOT NULL," +
+                    "qualification5 VARCHAR(15) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "location VARCHAR(25) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
                     "city VARCHAR(21) NOT NULL," +
