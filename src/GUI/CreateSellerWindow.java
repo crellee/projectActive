@@ -5,6 +5,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -13,6 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 /**
  * Created by roije on 25/11/2015.
@@ -26,7 +31,7 @@ public class CreateSellerWindow
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
         Stage window = new Stage();
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, 650, 650);
         window.setScene(scene);
 
         //Header label
@@ -83,26 +88,28 @@ public class CreateSellerWindow
         PasswordField passwordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
         CheckBox carpenterCheck = new CheckBox("Carpenter");
-        CheckBox carpenterCheck1 = new CheckBox("Carpenter");
-        CheckBox carpenterCheck2 = new CheckBox("Carpenter");
-        CheckBox carpenterCheck3 = new CheckBox("Carpenter");
-        CheckBox carpenterCheck4 = new CheckBox("Carpenter");
-        CheckBox carpenterCheck5 = new CheckBox("enter");
-        CheckBox carpenterCheck6 = new CheckBox("Carpenter");
-        CheckBox carpenterCheck7 = new CheckBox("Carpenter");
-        CheckBox carpenterCheck8 = new CheckBox("Carpenter");
+        CheckBox janitorCheck = new CheckBox("Janitor");
+        CheckBox cleanerCheck = new CheckBox("Cleaner");
+        CheckBox waiterCheck = new CheckBox("Waiter");
+        CheckBox chefCheck = new CheckBox("Chef");
+        CheckBox bartenderCheck = new CheckBox("Bartender");
+        CheckBox storeCheck = new CheckBox("Store employee");
+        CheckBox retailCheck = new CheckBox("Retail");
+        CheckBox pedagogueCheck = new CheckBox("Pedagogue");
+
 
         HBox checkRow1Box = new HBox();
-        checkRow1Box.getChildren().addAll(carpenterCheck,carpenterCheck1,carpenterCheck2);
+        checkRow1Box.getChildren().addAll(carpenterCheck, janitorCheck,cleanerCheck);
 
         HBox checkRow2Box = new HBox();
-        checkRow2Box.getChildren().addAll(carpenterCheck5,carpenterCheck6,carpenterCheck7);
+        checkRow2Box.getChildren().addAll(waiterCheck,chefCheck,bartenderCheck);
 
         HBox checkRow3Box = new HBox();
-        checkRow3Box.getChildren().addAll(carpenterCheck3,carpenterCheck4,carpenterCheck8);
+        checkRow3Box.getChildren().addAll(storeCheck,retailCheck,pedagogueCheck);
 
         ComboBox locationCombo = new ComboBox<>();
         locationCombo.setPrefWidth(220);
+        locationCombo.getItems().addAll("2300", "3434");
         TextField cityField = new TextField();
         cityField.setPrefWidth(160);
 
@@ -112,13 +119,35 @@ public class CreateSellerWindow
         createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
+
         createButton.setOnAction(e ->
         {
+
             //Call a method which saves information in TextFields etc. in a database table
-            /*
+            int carpenterInt;
+            int janitorInt = 0;
+            int cleanerInt= 0;
+            int waiterInt = 0;
+            int chefInt = 0;
+            int bartenderInt = 0;
+            int storeInt = 0;
+            int retailInt = 0;
+            int pedaInt = 0;
+            boolean selected;
+            selected = carpenterCheck.isSelected();
+            if(selected == true)
+            {
+                carpenterInt = 1;
+            }
+            else
+            {
+                carpenterInt = 0;
+            }
+
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
-                    qualificationsCombo, locationCombo, cityField);
-                    */
+                    carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
+                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
+
             HomeScreen.homeScreen();
             window.close();
         });

@@ -20,6 +20,18 @@ public class TableCreator
             Connection conn = DBConnection.getConnection();
             stmt = (Statement) conn.createStatement();
 
+            /*
+             CheckBox carpenterCheck = new CheckBox("Carpenter");
+        CheckBox janitorCheck = new CheckBox("Janitor");
+        CheckBox cleanerCheck = new CheckBox("Cleaner");
+        CheckBox waiterCheck = new CheckBox("Waiter");
+        CheckBox chefCheck = new CheckBox("Chef");
+        CheckBox bartenderCheck = new CheckBox("Bartender");
+        CheckBox storeCheck = new CheckBox("Store employee");
+        CheckBox retailCheck = new CheckBox("Retail");
+        CheckBox pedagogueCheck = new CheckBox("Pedagogue");
+             */
+
             sqlString = "CREATE TABLE IF NOT EXISTS Sellers" +
                     "(firstName VARCHAR(20) NOT NULL, " + //Variable lenght, max lenght 20. Range: 0-20
                     "lastName VARCHAR(30) NOT NULL," +  //Variable lenght, max lenght 30. Range: 0-30
@@ -27,11 +39,15 @@ public class TableCreator
                     "age INT(2) NOT NULL," + //Range 0-99
                     "email VARCHAR(30) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "password VARCHAR(30) NOT NULL," +
-                    "qualCarpenter VARCHAR(15) NOT NULL," +
-                    "qualService VARCHAR(15) NOT NULL," +
-                    "qualification3 VARCHAR(15) NOT NULL," +
-                    "qualification4 VARCHAR(15) NOT NULL," +
-                    "qualification5 VARCHAR(15) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
+                    "qualiCarpenter INT(1) NOT NULL," +
+                    "qualiJanitor INT(1) NOT NULL," +
+                    "qualiCleaner INT(1) NOT NULL," +
+                    "qualiWaiter INT(1) NOT NULL," +
+                    "qualiChef INT(1) NOT NULL," +
+                    "qualiBartender INT(1) NOT NULL," +
+                    "qualiStore INT(1) NOT NULL," +
+                    "qualiRetail INT(1) NOT NULL," +
+                    "qualiPeda INT(1) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "location VARCHAR(25) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
                     "city VARCHAR(21) NOT NULL," +

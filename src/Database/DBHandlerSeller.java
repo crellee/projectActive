@@ -2,10 +2,7 @@ package Database;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -16,14 +13,26 @@ import java.util.GregorianCalendar;
 public class DBHandlerSeller
 {
     public static void saveSeller(TextField firstName, TextField lastName, DatePicker birthdate, TextField email,
-                                  PasswordField password, ComboBox qualifications, ComboBox location, TextField city)
+                                  PasswordField password, int carpenter, int janitor,
+                                  int cleaner, int waiter, int chef,
+                                  int bartender, int store, int retail,
+                                  int peda, ComboBox location, TextField city)
     {
+        System.out.print("Entered function");
         String firstNameStr = firstName.getText();
         String lastNameStr = lastName.getText();
         String birthDateStr = birthdate.getValue().toString();
         String emailStr = email.getText();
         String passwordStr = password.getText();
-        String qualificationStr = qualifications.getValue().toString();
+        int carpenterInt = carpenter;
+        int janitorInt = janitor;
+        int cleanerInt = cleaner;
+        int waiterInt = waiter;
+        int chefInt = chef;
+        int bartenderInt = bartender;
+        int storeInt = store;
+        int retailInt = retail;
+        int pedaInt = peda;
         String locationStr = location.getValue().toString();
         String cityStr = city.getText();
         int age = calcAge(birthDateStr);
@@ -34,11 +43,14 @@ public class DBHandlerSeller
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
+            System.out.print("Statment created");
             String sqlString = ("INSERT INTO Sellers(firstName, lastName, birthday, age, email, password, " +
-                    "qualification, location, rating, city) " +
-                    "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+birthDateStr+"', '"+age+"'," +
-                    " '"+emailStr+"', '"+passwordStr+"'," +
-                    " '"+qualificationStr+"', '"+locationStr+"', '"+rating+"', '"+cityStr+"')");
+                    "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
+                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating, city) " +
+                    "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+birthDateStr+"', '"+age+"', '"+emailStr+"', " +
+                    "'"+passwordStr+"', '"+carpenterInt+"', '"+janitorInt+"', '"+cleanerInt+"', '"+waiterInt+"'," +
+                    "'"+chefInt+"', '"+bartenderInt+"', '"+storeInt+"', '"+retailInt+"', '"+pedaInt+"'," +
+                    "'"+locationStr+"', '"+rating+"', '"+cityStr+"')");
 
             stmt.executeUpdate(sqlString);
             System.out.print("Seller saved");
