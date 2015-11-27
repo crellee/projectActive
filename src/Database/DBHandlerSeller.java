@@ -16,9 +16,9 @@ public class DBHandlerSeller
                                   PasswordField password, int carpenter, int janitor,
                                   int cleaner, int waiter, int chef,
                                   int bartender, int store, int retail,
-                                  int peda, ComboBox location, TextField city)
+                                  int peda, ComboBox location)
     {
-        System.out.print("Entered function");
+        System.out.print("Entered function 1");
         String firstNameStr = firstName.getText();
         String lastNameStr = lastName.getText();
         String birthDateStr = birthdate.getValue().toString();
@@ -34,7 +34,6 @@ public class DBHandlerSeller
         int retailInt = retail;
         int pedaInt = peda;
         String locationStr = location.getValue().toString();
-        String cityStr = city.getText();
         int age = calcAge(birthDateStr);
         double rating = 0.0;
 

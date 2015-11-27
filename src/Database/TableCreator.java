@@ -16,13 +16,13 @@ public class TableCreator
         String sqlString;
         Statement stmt;
 
-
         try
         {
             Connection conn = DBConnection.getConnection();
             stmt = (Statement) conn.createStatement();
 
-            sqlString = "DROP TABLE Cities";
+
+            sqlString = "DROP TABLE IF EXISTS Cities ";
             stmt.executeUpdate(sqlString);
 
             sqlString = "CREATE TABLE IF NOT EXISTS Cities" +

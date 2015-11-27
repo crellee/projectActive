@@ -113,8 +113,7 @@ public class CreateSellerWindow
         HBox checkRow3Box = new HBox();
         checkRow3Box.getChildren().addAll(storeCheck,retailCheck,pedagogueCheck);
 
-
-
+        ComboBox locationCombo = new ComboBox();
         ResultSet rs = DBHandlerLocation.getPostNumbers();
         ObservableList<String> data = FXCollections.observableArrayList();
         try
@@ -130,8 +129,9 @@ public class CreateSellerWindow
         {
 
         }
-        ComboBox locationCombo = new ComboBox(data);
+        locationCombo.getItems().addAll(data);
         locationCombo.setPrefWidth(220);
+
         TextField cityField = new TextField();
         cityField.setPrefWidth(160);
 
@@ -158,7 +158,7 @@ public class CreateSellerWindow
 
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                     carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
-                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
+                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo);
 
             HomeScreen.homeScreen();
             window.close();
