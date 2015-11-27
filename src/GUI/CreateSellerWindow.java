@@ -114,6 +114,7 @@ public class CreateSellerWindow
         checkRow3Box.getChildren().addAll(storeCheck,retailCheck,pedagogueCheck);
 
         ComboBox locationCombo = new ComboBox();
+
         ResultSet rs = DBHandlerLocation.getPostNumbers();
         ObservableList<String> data = FXCollections.observableArrayList();
         try
@@ -134,6 +135,12 @@ public class CreateSellerWindow
 
         TextField cityField = new TextField();
         cityField.setPrefWidth(160);
+        locationCombo.setOnAction(e ->
+        {
+            String no = locationCombo.getValue().toString();
+            cityField.setText(DBHandlerLocation.setCity(no));
+        });
+
 
         Button createButton = new Button("Create account");
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -158,8 +165,7 @@ public class CreateSellerWindow
 
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                     carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
-                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo);
-
+                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
             HomeScreen.homeScreen();
             window.close();
         });

@@ -16,7 +16,7 @@ public class DBHandlerSeller
                                   PasswordField password, int carpenter, int janitor,
                                   int cleaner, int waiter, int chef,
                                   int bartender, int store, int retail,
-                                  int peda, ComboBox location)
+                                  int peda, ComboBox location, TextField city)
     {
         System.out.print("Entered function 1");
         String firstNameStr = firstName.getText();
@@ -34,6 +34,7 @@ public class DBHandlerSeller
         int retailInt = retail;
         int pedaInt = peda;
         String locationStr = location.getValue().toString();
+        String cityStr = city.getText();
         int age = calcAge(birthDateStr);
         double rating = 0.0;
 
@@ -44,11 +45,11 @@ public class DBHandlerSeller
 
             String sqlString = ("INSERT INTO Sellers(firstName, lastName, birthday, age, email, password, " +
                     "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
-                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating) " +
+                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, city, rating) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+birthDateStr+"', '"+age+"', '"+emailStr+"', " +
                     "'"+passwordStr+"', '"+carpenterInt+"', '"+janitorInt+"', '"+cleanerInt+"', '"+waiterInt+"'," +
                     "'"+chefInt+"', '"+bartenderInt+"', '"+storeInt+"', '"+retailInt+"', '"+pedaInt+"'," +
-                    "'"+locationStr+"', '"+rating+"')");
+                    "'"+locationStr+"', '"+cityStr+"', '"+rating+"')");
 
             stmt.executeUpdate(sqlString);
             System.out.print("Seller saved");

@@ -69,6 +69,7 @@ public class TableCreator
                     "qualiRetail TINYINT(1) NOT NULL," +
                     "qualiPeda TINYINT(1) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "location VARCHAR(4) NOT NULL," +
+                    "city VARCHAR(25) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
                     "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                     "PRIMARY KEY (email))";

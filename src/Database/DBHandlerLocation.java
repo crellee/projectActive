@@ -78,4 +78,25 @@ public class DBHandlerLocation
 
         return rs;
     }
+
+    public static String setCity(String postNumber)
+    {
+        String city = null;
+        ResultSet rs1;
+        try
+        {
+            Connection conn1 = DBConnection.getConnection();
+            String sqlString1 = "SELECT city FROM Cities WHERE postNo = '"+postNumber+"'";
+            rs1 = conn1.createStatement().executeQuery(sqlString1);
+            while (rs1.next())
+            {
+                city = rs1.getString("city");
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        return city;
+    }
 }
