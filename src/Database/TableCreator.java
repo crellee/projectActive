@@ -94,6 +94,7 @@ public class TableCreator
             Connection conn = DBConnection.getConnection();
             stmt = (Statement) conn.createStatement();
 
+
             sqlString = "CREATE TABLE IF NOT EXISTS Buyers" +
                         "(firstName VARCHAR(20) NOT NULL, " +
                         "lastName VARCHAR(30) NOT NULL," +
@@ -105,12 +106,45 @@ public class TableCreator
                         "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                         "PRIMARY KEY (businessEmail))";
 
+
             stmt.executeUpdate(sqlString);
         }
         catch (Exception e)
         {
 
         }
+    }
+
+    public static void createTaskTable()
+    {
+        String sqlString;
+        Statement stmt;
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            stmt = (Statement) conn.createStatement();
+
+
+            sqlString = "CREATE TABLE IF NOT EXISTS Tasks" +
+                    "(jobDescription VARCHAR(20) NOT NULL, " +
+                    "location VARCHAR(30) NOT NULL," +
+                    "requiredQuali VARCHAR(30) NOT NULL," +
+                    "salary VARCHAR(30) NOT NULL," +
+                    "fromDate VARCHAR(30) NOT NULL," +
+                    "toDate VARCHAR(4) NOT NULL," +
+                    "numberOfHours VARCHAR(20) NOT NULL," +
+                    "cellNumber VARCHAR(20) NOT NULL," +
+                    "PRIMARY KEY (jobDescription))";
+
+
+            stmt.executeUpdate(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
     }
 
 

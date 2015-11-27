@@ -36,8 +36,9 @@ public class Login extends Application {
         TableCreator.createCitiesTable();
         TableCreator.createSellerTable();
         TableCreator.createBuyerTable();
+        TableCreator.createTaskTable();
         window = primaryStage;
-        CreateSellerWindow.openWindow();
+        HomeScreen.homeScreen();
     }
 
     public static void Login() {

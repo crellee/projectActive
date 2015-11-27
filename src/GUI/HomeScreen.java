@@ -25,6 +25,9 @@ public class HomeScreen {
         VBox topVBox = new VBox();
         topVBox.setPrefWidth(1280);
         topVBox.setSpacing(70);
+        HBox topHBox = new HBox();
+        topHBox.setPrefWidth(1280);
+        topHBox.setSpacing(800);
         root.setTop(topVBox);
         HBox buttonBox = new HBox();
         buttonBox.setPrefWidth(1280);
@@ -46,6 +49,7 @@ public class HomeScreen {
         headLine.setEffect(r);
         headLine.setTextFill(Color.GHOSTWHITE);
         headLine.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
+
 
         //sellersBtn
         ToggleButton sellersBtn = new ToggleButton("Sellers");
@@ -111,8 +115,22 @@ public class HomeScreen {
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
 
+        //CreateTaskButton
+        Button createTaskButton = new Button("Create Task");
+        createTaskButton.setPrefHeight(40);
+        createTaskButton.setPrefWidth(150);
+        createTaskButton.setTextFill(Color.WHITE);
+        createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        createTaskButton.setOnAction(e ->
+        {
+            CreateTaskWindow.openWindow();
+        });
 
-        topVBox.getChildren().addAll(headLine, buttonBox);
+        //tophbox get children
+        topHBox.getChildren().addAll(headLine, createTaskButton);
+
+        //topvbox get children
+        topVBox.getChildren().addAll(topHBox, buttonBox);
     }
 
     public static TableView sellersTable() {
