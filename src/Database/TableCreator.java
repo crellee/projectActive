@@ -39,15 +39,15 @@ public class TableCreator
                     "age INT(2) NOT NULL," + //Range 0-99
                     "email VARCHAR(30) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "password VARCHAR(30) NOT NULL," +
-                    "qualiCarpenter INT(1) NOT NULL," +
-                    "qualiJanitor INT(1) NOT NULL," +
-                    "qualiCleaner INT(1) NOT NULL," +
-                    "qualiWaiter INT(1) NOT NULL," +
-                    "qualiChef INT(1) NOT NULL," +
-                    "qualiBartender INT(1) NOT NULL," +
-                    "qualiStore INT(1) NOT NULL," +
-                    "qualiRetail INT(1) NOT NULL," +
-                    "qualiPeda INT(1) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
+                    "qualiCarpenter TINYINT(1) NOT NULL," +
+                    "qualiJanitor TINYINT(1) NOT NULL," +
+                    "qualiCleaner TINYINT(1) NOT NULL," +
+                    "qualiWaiter TINYINT(1) NOT NULL," +
+                    "qualiChef TINYINT(1) NOT NULL," +
+                    "qualiBartender TINYINT(1) NOT NULL," +
+                    "qualiStore TINYINT(1) NOT NULL," +
+                    "qualiRetail TINYINT(1) NOT NULL," +
+                    "qualiPeda TINYINT(1) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "location VARCHAR(25) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
                     "city VARCHAR(21) NOT NULL," +
