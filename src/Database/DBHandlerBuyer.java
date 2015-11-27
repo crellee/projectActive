@@ -31,9 +31,9 @@ public class DBHandlerBuyer
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Buyers(firstName, lastName, businessName, businessEmail, password," +
-                    "location, city, cvr) " +
+                    "location, cvr) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+businessNameStr+"', '"+businessEmailStr+"', " +
-                    "'"+passwordStr+"', '"+locationStr+"', '"+cityStr+"', '"+cvrStr+"')");
+                    "'"+passwordStr+"', '"+locationStr+"','"+cvrStr+"')");
 
             stmt.executeUpdate(sqlStrings);
 

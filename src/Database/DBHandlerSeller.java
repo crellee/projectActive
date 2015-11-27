@@ -45,11 +45,11 @@ public class DBHandlerSeller
 
             String sqlString = ("INSERT INTO Sellers(firstName, lastName, birthday, age, email, password, " +
                     "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
-                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating, city) " +
+                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+birthDateStr+"', '"+age+"', '"+emailStr+"', " +
                     "'"+passwordStr+"', '"+carpenterInt+"', '"+janitorInt+"', '"+cleanerInt+"', '"+waiterInt+"'," +
                     "'"+chefInt+"', '"+bartenderInt+"', '"+storeInt+"', '"+retailInt+"', '"+pedaInt+"'," +
-                    "'"+locationStr+"', '"+rating+"', '"+cityStr+"')");
+                    "'"+locationStr+"', '"+rating+"')");
 
             stmt.executeUpdate(sqlString);
             System.out.print("Seller saved");

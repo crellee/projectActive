@@ -1,7 +1,11 @@
 package GUI;
 
 import Controller.Checker;
+import Controller.Location;
+import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,6 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.sql.ResultSet;
 
 /**
  * Created by roije on 25/11/2015.
@@ -107,9 +113,25 @@ public class CreateSellerWindow
         HBox checkRow3Box = new HBox();
         checkRow3Box.getChildren().addAll(storeCheck,retailCheck,pedagogueCheck);
 
-        ComboBox locationCombo = new ComboBox<>();
+
+
+        ResultSet rs = DBHandlerLocation.getPostNumbers();
+        ObservableList<String> data = FXCollections.observableArrayList();
+        try
+        {
+            while (rs.next())
+            {
+                Location location = new Location();
+                location.setPostNo(rs.getString("postNo"));
+                data.add(location.getPostNo());
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        ComboBox locationCombo = new ComboBox(data);
         locationCombo.setPrefWidth(220);
-        locationCombo.getItems().addAll("2300", "3434");
         TextField cityField = new TextField();
         cityField.setPrefWidth(160);
 

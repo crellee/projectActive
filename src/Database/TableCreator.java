@@ -10,10 +10,41 @@ import java.sql.SQLException;
  */
 public class TableCreator
 {
+
+    public static void createCitiesTable()
+    {
+        String sqlString;
+        Statement stmt;
+
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            stmt = (Statement) conn.createStatement();
+
+            sqlString = "DROP TABLE Cities";
+            stmt.executeUpdate(sqlString);
+
+            sqlString = "CREATE TABLE IF NOT EXISTS Cities" +
+                    "(postNo VARCHAR(4) NOT NULL," +
+                    "city VARCHAR(20) NOT NULL," +
+                    "PRIMARY KEY (postNo))";
+
+            stmt.executeUpdate(sqlString);
+
+            DBHandlerLocation.fillLocationTable();
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
     public static void createSellerTable()
     {
         String sqlString;
         Statement stmt;
+
 
         try
         {
@@ -37,9 +68,9 @@ public class TableCreator
                     "qualiStore TINYINT(1) NOT NULL," +
                     "qualiRetail TINYINT(1) NOT NULL," +
                     "qualiPeda TINYINT(1) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
-                    "location VARCHAR(25) NOT NULL," +
+                    "location VARCHAR(4) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
-                    "city VARCHAR(21) NOT NULL," +
+                    "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                     "PRIMARY KEY (email))";
 
             stmt.executeUpdate(sqlString);
@@ -68,9 +99,9 @@ public class TableCreator
                         "businessName VARCHAR(30) NOT NULL," +
                         "businessEmail VARCHAR(30) NOT NULL," +
                         "password VARCHAR(30) NOT NULL," +
-                        "location VARCHAR(25) NOT NULL," +
-                        "city VARCHAR(21) NOT NULL," +
+                        "location VARCHAR(4) NOT NULL," +
                         "cvr VARCHAR(20) NOT NULL," +
+                        "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                         "PRIMARY KEY (businessEmail))";
 
             stmt.executeUpdate(sqlString);
@@ -81,9 +112,6 @@ public class TableCreator
         }
     }
 
-    public static void createLocationTable()
-    {
 
-    }
 
 }
