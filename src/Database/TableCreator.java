@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class TableCreator
 {
-    public static void createSeller()
+    public static void createSellerTable()
     {
         String sqlString;
         Statement stmt;
@@ -20,17 +20,6 @@ public class TableCreator
             Connection conn = DBConnection.getConnection();
             stmt = (Statement) conn.createStatement();
 
-            /*
-             CheckBox carpenterCheck = new CheckBox("Carpenter");
-        CheckBox janitorCheck = new CheckBox("Janitor");
-        CheckBox cleanerCheck = new CheckBox("Cleaner");
-        CheckBox waiterCheck = new CheckBox("Waiter");
-        CheckBox chefCheck = new CheckBox("Chef");
-        CheckBox bartenderCheck = new CheckBox("Bartender");
-        CheckBox storeCheck = new CheckBox("Store employee");
-        CheckBox retailCheck = new CheckBox("Retail");
-        CheckBox pedagogueCheck = new CheckBox("Pedagogue");
-             */
 
             sqlString = "CREATE TABLE IF NOT EXISTS Sellers" +
                     "(firstName VARCHAR(20) NOT NULL, " + //Variable lenght, max lenght 20. Range: 0-20
@@ -63,7 +52,7 @@ public class TableCreator
     }
 
 
-    public static void createBuyer()
+    public static void createBuyerTable()
     {
         String sqlString;
         Statement stmt;
@@ -82,7 +71,7 @@ public class TableCreator
                         "location VARCHAR(25) NOT NULL," +
                         "city VARCHAR(21) NOT NULL," +
                         "cvr VARCHAR(20) NOT NULL," +
-                        "PRIMARY KEY (cvr))";
+                        "PRIMARY KEY (businessEmail))";
 
             stmt.executeUpdate(sqlString);
         }
@@ -90,6 +79,11 @@ public class TableCreator
         {
 
         }
+    }
+
+    public static void createLocationTable()
+    {
+
     }
 
 }

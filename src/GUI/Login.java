@@ -33,8 +33,8 @@ public class Login extends Application {
     public void start(Stage primaryStage) throws Exception
     {
         SchemaCreator.create();
-        TableCreator.createSeller();
-        TableCreator.createBuyer();
+        TableCreator.createSellerTable();
+        TableCreator.createBuyerTable();
         window = primaryStage;
         CreateSellerWindow.openWindow();
     }

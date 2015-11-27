@@ -43,7 +43,6 @@ public class DBHandlerSeller
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            System.out.print("Statment created");
             String sqlString = ("INSERT INTO Sellers(firstName, lastName, birthday, age, email, password, " +
                     "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
                     "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating, city) " +

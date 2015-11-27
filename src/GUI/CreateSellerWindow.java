@@ -1,8 +1,8 @@
 package GUI;
 
+import Controller.Checker;
 import Database.DBHandlerSeller;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -16,8 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 /**
  * Created by roije on 25/11/2015.
@@ -126,25 +124,15 @@ public class CreateSellerWindow
         {
 
             //Call a method which saves information in TextFields etc. in a database table
-            int carpenterInt;
-            int janitorInt = 0;
-            int cleanerInt= 0;
-            int waiterInt = 0;
-            int chefInt = 0;
-            int bartenderInt = 0;
-            int storeInt = 0;
-            int retailInt = 0;
-            int pedaInt = 0;
-            boolean selected;
-            selected = carpenterCheck.isSelected();
-            if(selected == true)
-            {
-                carpenterInt = 1;
-            }
-            else
-            {
-                carpenterInt = 0;
-            }
+            int carpenterInt = Checker.checkSelected(carpenterCheck);
+            int janitorInt = Checker.checkSelected(janitorCheck);
+            int cleanerInt= Checker.checkSelected(cleanerCheck);
+            int waiterInt = Checker.checkSelected(waiterCheck);
+            int chefInt = Checker.checkSelected(chefCheck);
+            int bartenderInt = Checker.checkSelected(bartenderCheck);
+            int storeInt = Checker.checkSelected(storeCheck);
+            int retailInt = Checker.checkSelected(retailCheck);
+            int pedaInt = Checker.checkSelected(pedagogueCheck);
 
             DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                     carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
