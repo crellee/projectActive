@@ -129,10 +129,11 @@ public class TableCreator
             sqlString = "CREATE TABLE IF NOT EXISTS Tasks" +
                     "(jobDescription VARCHAR(20) NOT NULL, " +
                     "location VARCHAR(30) NOT NULL," +
-                    "requiredQuali VARCHAR(30) NOT NULL," +
+                    "city VARCHAR(30) NOT NULL," +
+                    "requiredQualification VARCHAR(30) NOT NULL," +
                     "salary VARCHAR(30) NOT NULL," +
                     "fromDate VARCHAR(30) NOT NULL," +
-                    "toDate VARCHAR(4) NOT NULL," +
+                    "toDate VARCHAR(30) NOT NULL," +
                     "numberOfHours VARCHAR(20) NOT NULL," +
                     "cellNumber VARCHAR(20) NOT NULL," +
                     "PRIMARY KEY (jobDescription))";

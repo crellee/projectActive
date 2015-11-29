@@ -54,6 +54,8 @@ public class CreateTaskWindow
         jobDescriptionLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label locationLabel = new Label("Location");
         locationLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        Label cityLabel = new Label("City");
+        cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label requiredQualificationLabel = new Label("Required qualification for the job");
         requiredQualificationLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label salaryLabel = new Label("Salary per hour");
@@ -72,6 +74,7 @@ public class CreateTaskWindow
         TextField jobDescriptionField = new TextField();
         ComboBox locationCombo = new ComboBox<>();
         locationCombo.setPrefWidth(200);
+        TextField cityField = new TextField();
         ComboBox requiredQualificationCombo = new ComboBox<>();
         requiredQualificationCombo.getItems().addAll("hvad", "hvad23");
         requiredQualificationCombo.setPrefWidth(200);
@@ -83,7 +86,7 @@ public class CreateTaskWindow
         TextField numberOfHoursPrDayField = new TextField();
         TextField cellNumberField = new TextField();
 
-        //combobox location databse connector
+        //combobox location & city databse connector
 
         ResultSet rs = DBHandlerLocation.getPostNumbers();
         ObservableList<String> data = FXCollections.observableArrayList();
@@ -100,9 +103,13 @@ public class CreateTaskWindow
         {
 
         }
-
-
         locationCombo.getItems().addAll(data);
+
+        locationCombo.setOnAction(e ->
+        {
+            String no = locationCombo.getValue().toString();
+            cityField.setText(DBHandlerLocation.setCity(no));
+        });
 
         //create button
         Button createButton = new Button("Create task");
@@ -113,7 +120,7 @@ public class CreateTaskWindow
         createButton.setPrefHeight(50);
         createButton.setOnAction(e ->
         {
-            DBHandlerTask.saveTask(jobDescriptionField, locationCombo, requiredQualificationCombo, salaryField, fromDatePicker,
+            DBHandlerTask.saveTask(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField, fromDatePicker,
                     toDatePicker, numberOfHoursPrDayField, cellNumberField);
             window.close();
 
@@ -121,13 +128,13 @@ public class CreateTaskWindow
 
         //VBox m labels
         VBox labelVBox = new VBox();
-        labelVBox.getChildren().addAll(jobDescriptionLabel, locationLabel, requiredQualificationLabel, salaryLabel,
+        labelVBox.getChildren().addAll(jobDescriptionLabel, locationLabel, cityLabel, requiredQualificationLabel, salaryLabel,
                 fromDateLabel, toDateLabel, numberOfHoursPrDayLabel, cellNumberLabel);
         labelVBox.setSpacing(24);
 
         //VBox med input fields
         VBox fieldVBox = new VBox();
-        fieldVBox.getChildren().addAll(jobDescriptionField, locationCombo, requiredQualificationCombo, salaryField,
+        fieldVBox.getChildren().addAll(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField,
                 fromDatePicker, toDatePicker, numberOfHoursPrDayField, cellNumberField, createButton);
         fieldVBox.setSpacing(15);
 

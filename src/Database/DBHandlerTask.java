@@ -11,11 +11,12 @@ import javafx.scene.control.TextField;
  */
 public class DBHandlerTask
 {
-    public static void saveTask(TextField jobDescription, ComboBox location, ComboBox requiredQualification, TextField salary,
+    public static void saveTask(TextField jobDescription, ComboBox location, TextField city, ComboBox requiredQualification, TextField salary,
                                 DatePicker fromDate, DatePicker toDate, TextField numberOfHours, TextField cellNumber)
     {
         String jobDescriptionStr = jobDescription.getText();
         String locationStr = location.getValue().toString();
+        String cityStr = city.getText();
         String requiredQualificationStr = requiredQualification.getValue().toString();
         String salaryStr = salary.getText();
         String fromDateStr = fromDate.getValue().toString();
@@ -28,27 +29,13 @@ public class DBHandlerTask
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, requiredQuali, salary, " +
+            String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, city, requiredQualification, salary, " +
                     "fromDate, toDate, numberOfHours, cellNumber) " +
-                    "VALUES ('"+jobDescriptionStr+"', '"+locationStr+"', '"+requiredQualificationStr+"', '"+salaryStr+"', " +
+                    "VALUES ('"+jobDescriptionStr+"', '"+locationStr+"', '"+cityStr+"', '"+requiredQualificationStr+"', '"+salaryStr+"', " +
                     "'"+fromDateStr+"', '"+toDateStr+"','"+numberOfHoursStr+"' , '"+cellNumberStr+"')");
 
             stmt.executeUpdate(sqlStrings);
 
-            /*
-
-                        sqlString = "CREATE TABLE IF NOT EXISTS Tasks" +
-                    "(jobDescription VARCHAR(20) NOT NULL, " +
-                    "location VARCHAR(30) NOT NULL," +
-                    "requiredQuali VARCHAR(30) NOT NULL," +
-                    "salary VARCHAR(30) NOT NULL," +
-                    "fromDate VARCHAR(30) NOT NULL," +
-                    "toDate VARCHAR(4) NOT NULL," +
-                    "numberOfHours VARCHAR(20) NOT NULL," +
-                    "cellNumber VARCHAR(20) NOT NULL," +
-                    "PRIMARY KEY (jobDescription))";
-
-             */
 
         }
         catch (Exception e)

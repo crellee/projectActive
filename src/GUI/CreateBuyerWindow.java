@@ -1,6 +1,10 @@
 package GUI;
 
+import Controller.Location;
 import Database.DBHandlerBuyer;
+import Database.DBHandlerLocation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.sql.ResultSet;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.
@@ -82,10 +88,34 @@ public class CreateBuyerWindow
         PasswordField enterPasswordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
         ComboBox locationCombo = new ComboBox<>();
-            locationCombo.getItems().addAll("2100", "2200", "2300", "2400", "2450", "2500");
             locationCombo.setPrefWidth(200);
         TextField cityField = new TextField();
         TextField cvrNoField = new TextField();
+
+        //locationCombo & city database connector
+
+        ResultSet rs = DBHandlerLocation.getPostNumbers();
+        ObservableList<String> data = FXCollections.observableArrayList();
+        try
+        {
+            while (rs.next())
+            {
+                Location location = new Location();
+                location.setPostNo(rs.getString("postNo"));
+                data.add(location.getPostNo());
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        locationCombo.getItems().addAll(data);
+
+        locationCombo.setOnAction(e ->
+        {
+            String no = locationCombo.getValue().toString();
+            cityField.setText(DBHandlerLocation.setCity(no));
+        });
 
         //Create Button
         Button createButton = new Button("Create account");
