@@ -104,14 +104,21 @@ public class CreateSellerWindow
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
 
 
-        HBox checkRow1Box = new HBox();
+        VBox checkRow1Box = new VBox();
         checkRow1Box.getChildren().addAll(carpenterCheck, janitorCheck,cleanerCheck);
+        checkRow1Box.setSpacing(5);
 
-        HBox checkRow2Box = new HBox();
-        checkRow2Box.getChildren().addAll(waiterCheck,chefCheck,bartenderCheck);
+        VBox checkRow2Box = new VBox();
+        checkRow2Box.getChildren().addAll(pedagogueCheck,chefCheck,bartenderCheck);
+        checkRow2Box.setSpacing(5);
 
-        HBox checkRow3Box = new HBox();
-        checkRow3Box.getChildren().addAll(storeCheck,retailCheck,pedagogueCheck);
+        VBox checkRow3Box = new VBox();
+        checkRow3Box.getChildren().addAll(storeCheck,retailCheck, waiterCheck);
+        checkRow3Box.setSpacing(5);
+
+        HBox allCheckRows = new HBox();
+        allCheckRows.getChildren().addAll(checkRow1Box,checkRow2Box,checkRow3Box);
+        allCheckRows.setSpacing(5);
 
         ComboBox locationCombo = new ComboBox();
 
@@ -179,7 +186,7 @@ public class CreateSellerWindow
         //VBox with all input fields
         VBox inputVBox = new VBox();
         inputVBox.getChildren().addAll(firstNameText, lastNameText, birthdateField, emailText, passwordField,
-                confirmPasswordField, checkRow1Box, checkRow2Box, checkRow3Box, locationCombo, cityField, createButton);
+                confirmPasswordField, allCheckRows, locationCombo, cityField, createButton);
         inputVBox.setSpacing(15);
 
         //Label VBox and Input VBOX placed inside a HBox which is set to center of BorderPane
