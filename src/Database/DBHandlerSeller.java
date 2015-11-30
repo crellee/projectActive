@@ -7,11 +7,13 @@ import javafx.scene.control.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/**
+/** This class contains methods to handle a Seller and the connection to the Sellers table in the database
  * Created by roije on 25/11/2015.
  */
 public class DBHandlerSeller
 {
+    //This class takes parameters from the GUI in CreateSellerWindow class and inserts values into Sellers table
+    //in the database
     public static void saveSeller(TextField firstName, TextField lastName, DatePicker birthdate, TextField email,
                                   PasswordField password, int carpenter, int janitor,
                                   int cleaner, int waiter, int chef,
@@ -60,9 +62,10 @@ public class DBHandlerSeller
         }
     }
 
-
+    //This method takes the birthdate String and calculates and returns the age
     public static int calcAge(String birthdate)
     {
+        //We need to get the day, month and birthyear from the string and cast them to an int
         int birthday = Integer.parseInt(birthdate.substring(8,10));
         int birthmonth = Integer.parseInt(birthdate.substring(5,7));
         int birthyear = Integer.parseInt(birthdate.substring(0,4));

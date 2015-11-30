@@ -5,11 +5,13 @@ import com.mysql.jdbc.Statement;
 
 import java.sql.ResultSet;
 
-/**
+/* This class has a method which fills up the Locations table in the database
+ * All values are inserted from start of program, because we want it to have some standard locations
  * Created by roije on 27/11/2015.
  */
 public class DBHandlerLocation
 {
+
     public static void fillLocationTable()
     {
         try

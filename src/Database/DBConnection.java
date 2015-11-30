@@ -16,7 +16,7 @@ public class DBConnection
 
     // Username, password, schema name and path to database
     final static String user = "sql497759";
-    final static String pass = "cctwBdpC32"; // husk evt. at slette/redigere koden
+    final static String pass = "cctwBdpC32";
     final static String db = "sql497759";
     final static String url = "jdbc:mysql://sql4.freemysqlhosting.net/";
 

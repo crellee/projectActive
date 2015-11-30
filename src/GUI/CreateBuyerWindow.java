@@ -87,15 +87,18 @@ public class CreateBuyerWindow
         TextField businessEmailField = new TextField();
         PasswordField enterPasswordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
-        ComboBox locationCombo = new ComboBox<>();
-            locationCombo.setPrefWidth(200);
         TextField cityField = new TextField();
         TextField cvrNoField = new TextField();
 
-        //locationCombo & city database connector
-
+        ComboBox locationCombo = new ComboBox();
+        locationCombo.setPrefWidth(200);
+        //ResultSet rs which has the values the getPostNumbers method returns.
+        //Look up DBHandlerLocation class to see getPostNumbers definition.
         ResultSet rs = DBHandlerLocation.getPostNumbers();
+        //Observable list data containing String.
         ObservableList<String> data = FXCollections.observableArrayList();
+        //Loop through ResultSet. Create Location object, call setPostNo (in Location class)
+        //to set postNo to the value in postNo column in ResultSet. Add value to observable list: data.
         try
         {
             while (rs.next())
@@ -109,6 +112,7 @@ public class CreateBuyerWindow
         {
 
         }
+        //Add observable list data to locationsCombo
         locationCombo.getItems().addAll(data);
 
         locationCombo.setOnAction(e ->

@@ -5,7 +5,7 @@ import com.mysql.jdbc.Statement;
 
 import java.sql.SQLException;
 
-/**
+/* This class is for creating all the tables which we have in our schema.
  * Created by roije on 25/11/2015.
  */
 public class TableCreator
@@ -147,6 +147,36 @@ public class TableCreator
         }
 
     }
+
+    public static void createQualificationTable()
+    {
+        String sqlString;
+        Statement stmt;
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            stmt = (Statement) conn.createStatement();
+
+
+            sqlString = "CREATE TABLE IF NOT EXISTS Qualifications" +
+                    "(qualificationId TINYINT(2) NOT NULL," +
+                    "qualificationName VARCHAR(30)," +
+                    "PRIMARY KEY (qualificationId))";
+
+
+            stmt.executeUpdate(sqlString);
+
+            DBHandlerQualification.fillQualificationTable();
+        }
+        catch (Exception e)
+        {
+
+        }
+
+    }
+
+
 
 
 

@@ -6,11 +6,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-/**
+/* This class contains methods which have to do with a Task and the connection to the Tasks table in the database
  * Created by christianhasselstrom on 27/11/2015.
  */
 public class DBHandlerTask
 {
+    //This method takes paramameters from the GUI in the CreateTaskWindow and inserts into Tasks table in the database
     public static void saveTask(TextField jobDescription, ComboBox location, TextField city, ComboBox requiredQualification, TextField salary,
                                 DatePicker fromDate, DatePicker toDate, TextField numberOfHours, TextField cellNumber)
     {

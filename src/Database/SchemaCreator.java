@@ -6,7 +6,7 @@ import com.mysql.jdbc.Statement;
 
 import java.sql.DriverManager;
 
-/**
+/* Class for creating a schema.
  * Created by roije on 25/11/2015.
  */
 
