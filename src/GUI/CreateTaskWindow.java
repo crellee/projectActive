@@ -1,7 +1,9 @@
 package GUI;
 
 import Controller.Location;
+import Controller.Qualification;
 import Database.DBHandlerLocation;
+import Database.DBHandlerQualification;
 import Database.DBHandlerTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,12 +27,11 @@ import java.sql.ResultSet;
  */
 public class CreateTaskWindow
 {
-    public static void openWindow()
-    {
+    public static void openWindow() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
         Stage window = new Stage();
-        Scene scene = new Scene(root, 700 , 600);
+        Scene scene = new Scene(root, 700, 600);
         window.setScene(scene);
 
         //Headline
@@ -70,6 +71,8 @@ public class CreateTaskWindow
         numberOfHoursPrDayLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cellNumberLabel = new Label("Phone number");
         cellNumberLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        Label fillAllFields = new Label("Please fill ALL fields before creating profile");
+        fillAllFields.setTextFill(Color.RED);
 
 
         //input fields
@@ -78,7 +81,6 @@ public class CreateTaskWindow
         locationCombo.setPrefWidth(200);
         TextField cityField = new TextField();
         ComboBox requiredQualificationCombo = new ComboBox<>();
-        requiredQualificationCombo.getItems().addAll("hvad", "hvad23");
         requiredQualificationCombo.setPrefWidth(200);
         TextField salaryField = new TextField();
         DatePicker fromDatePicker = new DatePicker();
@@ -90,24 +92,41 @@ public class CreateTaskWindow
         TextField numberOfHoursPrDayField = new TextField();
         TextField cellNumberField = new TextField();
 
+        //combox required qualifications og database connector
+        ResultSet rs1 = DBHandlerQualification.getQualificationName();
+        ObservableList<String> data1 = FXCollections.observableArrayList();
+        try {
+            while (rs1.next())
+            {
+                Qualification qualification = new Qualification();
+                qualification.setQualificationName(rs1.getString("qualificationName"));
+                data1.add(qualification.getQualificationName());
+
+            }
+        } catch (Exception e)
+        {
+
+        }
+        requiredQualificationCombo.getItems().addAll(data1);
+
         //combobox location & city databse connector
 
-        ResultSet rs = DBHandlerLocation.getPostNumbers();
-        ObservableList<String> data = FXCollections.observableArrayList();
+        ResultSet rs2 = DBHandlerLocation.getPostNumbers();
+        ObservableList<String> data2 = FXCollections.observableArrayList();
         try
         {
-            while (rs.next())
+            while (rs2.next())
             {
                 Location location = new Location();
-                location.setPostNo(rs.getString("postNo"));
-                data.add(location.getPostNo());
+                location.setPostNo(rs2.getString("postNo"));
+                data2.add(location.getPostNo());
             }
         }
         catch (Exception e)
         {
 
         }
-        locationCombo.getItems().addAll(data);
+        locationCombo.getItems().addAll(data2);
 
         locationCombo.setOnAction(e ->
         {
@@ -164,9 +183,16 @@ http://stackoverflow.com/questions/25753727/javafx-using-date-picker
         createButton.setOnAction(e ->
         {
 
-            DBHandlerTask.saveTask(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField, fromDatePicker,
-                    toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField);
-            window.close();
+            try
+            {
+                DBHandlerTask.saveTask(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField, fromDatePicker,
+                        toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField);
+                window.close();
+            }
+            catch(NullPointerException e1)
+            {
+                root.setBottom(fillAllFields);
+            }
 
         });
 

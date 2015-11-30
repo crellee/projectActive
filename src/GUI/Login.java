@@ -40,7 +40,7 @@ public class Login extends Application {
         TableCreator.createBuyerTable();
         TableCreator.createTaskTable();
         window = primaryStage;
-        HomeScreen.homeScreen();
+        Login();
     }
 
     public static void Login() {
@@ -128,7 +128,7 @@ public class Login extends Application {
         Reflection r = new Reflection();
         r.setFraction(0.7f);
         vicarius.setEffect(r);
-        vicarius.setTextFill(Color.LIGHTGRAY);
+        vicarius.setTextFill(Color.GHOSTWHITE);
         vicarius.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
 
 

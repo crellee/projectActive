@@ -79,6 +79,8 @@ public class CreateBuyerWindow
             fillInformationerrorLabel.setTextFill(Color.RED);
         Label passwordNotSame = new Label("Passwords must be the same before creating profile");
             passwordNotSame.setTextFill(Color.RED);
+        Label fillAllFields = new Label("Please fill ALL fields before creating profile");
+            fillAllFields.setTextFill(Color.RED);
 
         //Input fields
         TextField firstNameField = new TextField();
@@ -88,6 +90,7 @@ public class CreateBuyerWindow
         PasswordField enterPasswordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
         TextField cityField = new TextField();
+        cityField.setEditable(false);
         TextField cvrNoField = new TextField();
 
         ComboBox locationCombo = new ComboBox();
@@ -138,19 +141,26 @@ public class CreateBuyerWindow
             {
                 root.setBottom(fillInformationerrorLabel);
             }
-            else if (!enterPasswordField.getText().equals(confirmPasswordField.getText()))
+            */
+            if (!enterPasswordField.getText().equals(confirmPasswordField.getText()))
             {
                 root.setBottom(passwordNotSame);
             }
 
             else
             {
-            */
-                DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
-                        enterPasswordField, locationCombo, cityField, cvrNoField);
-                HomeScreen.homeScreen();
-                window.close();
-            //}
+                try
+                {
+                    DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
+                            enterPasswordField, locationCombo, cityField, cvrNoField);
+                    HomeScreen.homeScreen();
+                    window.close();
+                }
+                catch(NullPointerException e1)
+                {
+                    root.setBottom(fillAllFields);
+                }
+            }
 
         });
 

@@ -84,12 +84,16 @@ public class CreateSellerWindow
         locationLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cityLabel = new Label("City:");
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        Label passwordNotSame = new Label("Passwords must be the same before creating profile");
+        passwordNotSame.setTextFill(Color.RED);
+        Label fillAllFields = new Label("Please fill ALL fields before creating profile");
+        fillAllFields.setTextFill(Color.RED);
 
         //Input fields
         TextField firstNameText = new TextField();
         TextField lastNameText = new TextField();
         DatePicker birthdateField = new DatePicker();
-        birthdateField.setPrefWidth(200);
+        birthdateField.setPrefWidth(312);
         TextField emailText = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
@@ -138,9 +142,10 @@ public class CreateSellerWindow
 
         }
         locationCombo.getItems().addAll(data);
-        locationCombo.setPrefWidth(220);
+        locationCombo.setPrefWidth(312);
 
         TextField cityField = new TextField();
+        cityField.setEditable(false);
         cityField.setPrefWidth(160);
         locationCombo.setOnAction(e ->
         {
@@ -158,23 +163,36 @@ public class CreateSellerWindow
 
         createButton.setOnAction(e ->
         {
+            if (!passwordField.getText().equals(confirmPasswordField.getText()))
+            {
+                root.setBottom(passwordNotSame);
+            }
 
-            //Call a method which saves information in TextFields etc. in a database table
-            int carpenterInt = Checker.checkSelected(carpenterCheck);
-            int janitorInt = Checker.checkSelected(janitorCheck);
-            int cleanerInt= Checker.checkSelected(cleanerCheck);
-            int waiterInt = Checker.checkSelected(waiterCheck);
-            int chefInt = Checker.checkSelected(chefCheck);
-            int bartenderInt = Checker.checkSelected(bartenderCheck);
-            int storeInt = Checker.checkSelected(storeCheck);
-            int retailInt = Checker.checkSelected(retailCheck);
-            int pedaInt = Checker.checkSelected(pedagogueCheck);
+            else
+            {
+                try {
+                    //Call a method which saves information in TextFields etc. in a database table
+                    int carpenterInt = Checker.checkSelected(carpenterCheck);
+                    int janitorInt = Checker.checkSelected(janitorCheck);
+                    int cleanerInt = Checker.checkSelected(cleanerCheck);
+                    int waiterInt = Checker.checkSelected(waiterCheck);
+                    int chefInt = Checker.checkSelected(chefCheck);
+                    int bartenderInt = Checker.checkSelected(bartenderCheck);
+                    int storeInt = Checker.checkSelected(storeCheck);
+                    int retailInt = Checker.checkSelected(retailCheck);
+                    int pedaInt = Checker.checkSelected(pedagogueCheck);
 
-            DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
-                    carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
-                    bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
-            HomeScreen.homeScreen();
-            window.close();
+                    DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
+                            carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
+                            bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
+                    HomeScreen.homeScreen();
+                    window.close();
+                }
+                catch (NullPointerException e1)
+                {
+                    root.setBottom(fillAllFields);
+                }
+            }
         });
 
         //VBox with all information labels.
