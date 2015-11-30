@@ -1,5 +1,7 @@
 package GUI;
 
+import Controller.LoginVerifier;
+import Database.DBHandlerSeller;
 import Database.SchemaCreator;
 import Database.TableCreator;
 import javafx.application.Application;
@@ -99,6 +101,10 @@ public class Login extends Application {
 
         //login button
         Button loginButton = new Button("Login");
+        loginButton.setOnAction(e ->
+        {
+            LoginVerifier.verifierSeller(loginTextfield, passwordField);
+        });
 
         //Create seller button
         Button createSellerButton = new Button("Create Seller");
