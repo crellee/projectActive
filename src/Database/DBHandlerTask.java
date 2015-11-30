@@ -13,7 +13,7 @@ public class DBHandlerTask
 {
     //This method takes paramameters from the GUI in the CreateTaskWindow and inserts into Tasks table in the database
     public static void saveTask(TextField jobDescription, ComboBox location, TextField city, ComboBox requiredQualification, TextField salary,
-                                DatePicker fromDate, DatePicker toDate, TextField numberOfHours, TextField cellNumber)
+                                DatePicker fromDate, DatePicker toDate, TextField numOfDays, TextField numberOfHours, TextField cellNumber)
     {
         String jobDescriptionStr = jobDescription.getText();
         String locationStr = location.getValue().toString();
@@ -24,6 +24,8 @@ public class DBHandlerTask
         String toDateStr = toDate.getValue().toString();
         String numberOfHoursStr = numberOfHours.getText();
         String cellNumberStr = cellNumber.getText();
+        String numOfDaysStr = numOfDays.getText();
+        int numOfDaysInt = Integer.parseInt(numOfDaysStr);
 
         try
         {
@@ -31,9 +33,9 @@ public class DBHandlerTask
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, city, requiredQualification, salary, " +
-                    "fromDate, toDate, numberOfHours, cellNumber) " +
+                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber) " +
                     "VALUES ('"+jobDescriptionStr+"', '"+locationStr+"', '"+cityStr+"', '"+requiredQualificationStr+"', '"+salaryStr+"', " +
-                    "'"+fromDateStr+"', '"+toDateStr+"','"+numberOfHoursStr+"' , '"+cellNumberStr+"')");
+                    "'"+fromDateStr+"', '"+toDateStr+"', '"+numOfDaysInt+"', '"+numberOfHoursStr+"' , '"+cellNumberStr+"')");
 
             stmt.executeUpdate(sqlStrings);
 
@@ -44,5 +46,7 @@ public class DBHandlerTask
 
         }
 
+
     }
+
 }

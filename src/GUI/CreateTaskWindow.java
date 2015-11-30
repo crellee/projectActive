@@ -64,6 +64,8 @@ public class CreateTaskWindow
         fromDateLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label toDateLabel = new Label("Work end date");
         toDateLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        Label numOfDaysLabel = new Label("Number of days");
+        numOfDaysLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label numberOfHoursPrDayLabel = new Label("Number of working hours");
         numberOfHoursPrDayLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cellNumberLabel = new Label("Phone number");
@@ -83,6 +85,8 @@ public class CreateTaskWindow
         fromDatePicker.setPrefWidth(200);
         DatePicker toDatePicker = new DatePicker();
         toDatePicker.setPrefWidth(200);
+        TextField numOfDaysField = new TextField();
+        numOfDaysField.setEditable(false);
         TextField numberOfHoursPrDayField = new TextField();
         TextField cellNumberField = new TextField();
 
@@ -111,6 +115,45 @@ public class CreateTaskWindow
             cityField.setText(DBHandlerLocation.setCity(no));
         });
 
+        //get number of working days
+
+        /*
+http://stackoverflow.com/questions/25753727/javafx-using-date-picker
+         */
+
+        fromDatePicker.setOnAction( e ->
+        {
+            try
+            {
+                long date1 = fromDatePicker.getValue().toEpochDay();
+                long date2 = toDatePicker.getValue().toEpochDay();
+                int daysInt = 1 + (int) Math.abs(date1 - date2);
+                String daysStr = Integer.toString(daysInt);
+                numOfDaysField.setText(daysStr);
+            }
+            catch(NullPointerException e1)
+            {
+            }
+        });
+
+        toDatePicker.setOnAction( e ->
+        {
+            try
+            {
+
+                long date1 = fromDatePicker.getValue().toEpochDay();
+                long date2 = toDatePicker.getValue().toEpochDay();
+                int daysInt = 1 + (int) Math.abs(date1 - date2);
+                String daysStr = Integer.toString(daysInt);
+                numOfDaysField.setText(daysStr);
+            }
+            catch(NullPointerException e1)
+            {
+            }
+        });
+
+
+
         //create button
         Button createButton = new Button("Create task");
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -120,8 +163,9 @@ public class CreateTaskWindow
         createButton.setPrefHeight(50);
         createButton.setOnAction(e ->
         {
+
             DBHandlerTask.saveTask(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField, fromDatePicker,
-                    toDatePicker, numberOfHoursPrDayField, cellNumberField);
+                    toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField);
             window.close();
 
         });
@@ -129,13 +173,13 @@ public class CreateTaskWindow
         //VBox m labels
         VBox labelVBox = new VBox();
         labelVBox.getChildren().addAll(jobDescriptionLabel, locationLabel, cityLabel, requiredQualificationLabel, salaryLabel,
-                fromDateLabel, toDateLabel, numberOfHoursPrDayLabel, cellNumberLabel);
+                fromDateLabel, toDateLabel, numOfDaysLabel, numberOfHoursPrDayLabel, cellNumberLabel);
         labelVBox.setSpacing(24);
 
         //VBox med input fields
         VBox fieldVBox = new VBox();
         fieldVBox.getChildren().addAll(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField,
-                fromDatePicker, toDatePicker, numberOfHoursPrDayField, cellNumberField, createButton);
+                fromDatePicker, toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField, createButton);
         fieldVBox.setSpacing(15);
 
 

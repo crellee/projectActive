@@ -40,7 +40,7 @@ public class Login extends Application {
         TableCreator.createBuyerTable();
         TableCreator.createTaskTable();
         window = primaryStage;
-        CreateBuyerWindow.openWindow();
+        HomeScreen.homeScreen();
     }
 
     public static void Login() {
