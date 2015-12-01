@@ -1,13 +1,15 @@
 package Database;
 
+import Controller.LoginVerifier;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import javafx.scene.control.*;
 
+import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/** This class contains methods to handle a Seller and the connection to the Sellers table in the database
+/** This class contains methods to handle a Controller.Seller and the connection to the Sellers table in the database
  * Created by roije on 25/11/2015.
  */
 public class DBHandlerSeller
@@ -54,7 +56,7 @@ public class DBHandlerSeller
                     "'"+locationStr+"', '"+cityStr+"', '"+rating+"')");
 
             stmt.executeUpdate(sqlString);
-            System.out.print("Seller saved");
+            System.out.print("Controller.Seller saved");
         }
         catch (Exception e)
         {
@@ -76,5 +78,25 @@ public class DBHandlerSeller
         int age = now.get(Calendar.YEAR) - birthinfo.get(Calendar.YEAR);
 
         return age;
+    }
+
+
+
+    public static ResultSet getFirstName()
+    {
+        String email = LoginVerifier.getEmail();
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName FROM Sellers WHERE email = '"+email+"' ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
     }
 }

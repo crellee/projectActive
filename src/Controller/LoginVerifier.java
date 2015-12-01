@@ -1,7 +1,6 @@
 package Controller;
 
 import Database.DBConnection;
-import GUI.HomeScreen;
 import GUI.HomeScreenBuyer;
 import GUI.HomeScreenSeller;
 import com.mysql.jdbc.Connection;
@@ -16,6 +15,8 @@ import java.sql.Statement;
  * Created by christianhasselstrom on 30/11/2015.
  */
 public class LoginVerifier {
+
+    static String email;
 
     public static void verifierSeller (TextField mail, PasswordField pass)
     {
@@ -57,6 +58,17 @@ public class LoginVerifier {
 
         }
 
+    }
+
+    public static void setEmail(TextField emailFromGui)
+    {
+        String emailStr = emailFromGui.getText();
+        email = emailStr;
+    }
+
+    public static String getEmail()
+    {
+        return email;
     }
 
 }

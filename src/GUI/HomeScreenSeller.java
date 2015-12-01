@@ -1,5 +1,7 @@
 package GUI;
 
+import Controller.Seller;
+import Database.DBHandlerSeller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,11 +14,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by christianhasselstrom on 01/12/2015.
  */
-public class HomeScreenSeller
-{
+public class HomeScreenSeller {
 
     public static void homeScreenSeller() {
         BorderPane root = new BorderPane();
@@ -110,12 +114,11 @@ public class HomeScreenSeller
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
-            root.setCenter(null);
+            root.setCenter(myProfileWindow());
         });
 
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
-
 
 
         //tophbox get children
@@ -209,5 +212,33 @@ public class HomeScreenSeller
         tasksTable.getColumns().addAll(jobDescription, buyerDescription, location, qualifications, rating, salary);
 
         return tasksTable;
+    }
+
+    public static VBox myProfileWindow() {
+        TextField name = new TextField();
+        name.setEditable(false);
+        TextField lastName = new TextField();
+        lastName.setEditable(false);
+
+        VBox profilVBox = new VBox();
+        profilVBox.getChildren().addAll(name, lastName);
+
+        ResultSet rs = DBHandlerSeller.getFirstName();
+        try
+        {
+            while (rs.next())
+            {
+                Seller seller = new Seller();
+                seller.setFirstName(rs.getString("firstName"));
+                seller.setLastName(rs.getString("lastName"));
+                name.setText(seller.getFirstName());
+                lastName.setText(seller.getLastName());
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return profilVBox;
     }
 }

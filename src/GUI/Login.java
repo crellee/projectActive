@@ -103,11 +103,12 @@ public class Login extends Application {
         Button loginButton = new Button("Login");
         loginButton.setOnAction(e ->
         {
+            LoginVerifier.setEmail(loginTextfield);
             LoginVerifier.verifierSeller(loginTextfield, passwordField);
         });
 
         //Create seller button
-        Button createSellerButton = new Button("Create Seller");
+        Button createSellerButton = new Button("Create Controller.Seller");
         createSellerButton.setPrefWidth(250);
         createSellerButton.setPrefHeight(65);
         createSellerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
