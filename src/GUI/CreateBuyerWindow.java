@@ -153,7 +153,7 @@ public class CreateBuyerWindow
                 {
                     DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
                             enterPasswordField, locationCombo, cityField, cvrNoField);
-                    HomeScreen.homeScreen();
+                    HomeScreenBuyer.homeScreenBuyer();
                     window.close();
                 }
                 catch(NullPointerException e1)

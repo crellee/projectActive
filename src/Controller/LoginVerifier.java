@@ -2,6 +2,8 @@ package Controller;
 
 import Database.DBConnection;
 import GUI.HomeScreen;
+import GUI.HomeScreenBuyer;
+import GUI.HomeScreenSeller;
 import com.mysql.jdbc.Connection;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -34,7 +36,7 @@ public class LoginVerifier {
 
                 if(rs.next())
                 {
-                    HomeScreen.homeScreen();
+                    HomeScreenSeller.homeScreenSeller();
                 }
                 else if(mail != null && pass != null)
                 {
@@ -43,7 +45,7 @@ public class LoginVerifier {
 
                     if(rs.next())
                     {
-                        HomeScreen.homeScreen();
+                        HomeScreenBuyer.homeScreenBuyer();
                     }
                 }
 

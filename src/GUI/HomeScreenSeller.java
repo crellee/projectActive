@@ -1,4 +1,4 @@
-/*package GUI;
+package GUI;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -13,12 +13,12 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * Created by christianhasselstrom on 25/11/2015.
+ * Created by christianhasselstrom on 01/12/2015.
+ */
+public class HomeScreenSeller
+{
 
-
-public class HomeScreen {
-
-    public static void homeScreen() {
+    public static void homeScreenSeller() {
         BorderPane root = new BorderPane();
         ToggleGroup tGroup = new ToggleGroup();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
@@ -116,19 +116,10 @@ public class HomeScreen {
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
 
-        //CreateTaskButton
-        Button createTaskButton = new Button("Create Task");
-        createTaskButton.setPrefHeight(40);
-        createTaskButton.setPrefWidth(150);
-        createTaskButton.setTextFill(Color.WHITE);
-        createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        createTaskButton.setOnAction(e ->
-        {
-            CreateTaskWindow.openWindow();
-        });
+
 
         //tophbox get children
-        topHBox.getChildren().addAll(headLine, createTaskButton);
+        topHBox.getChildren().add(headLine);
 
         //topvbox get children
         topVBox.getChildren().addAll(topHBox, buttonBox);
@@ -219,6 +210,4 @@ public class HomeScreen {
 
         return tasksTable;
     }
-
 }
-*/

@@ -185,7 +185,7 @@ public class CreateSellerWindow
                     DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                             carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
                             bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
-                    HomeScreen.homeScreen();
+                    HomeScreenSeller.homeScreenSeller();
                     window.close();
                 }
                 catch (NullPointerException e1)

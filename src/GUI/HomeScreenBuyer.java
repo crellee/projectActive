@@ -1,4 +1,4 @@
-/*package GUI;
+package GUI;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -13,12 +13,12 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * Created by christianhasselstrom on 25/11/2015.
+ * Created by christianhasselstrom on 01/12/2015.
+ */
+public class HomeScreenBuyer
+{
 
-
-public class HomeScreen {
-
-    public static void homeScreen() {
+    public static void homeScreenBuyer() {
         BorderPane root = new BorderPane();
         ToggleGroup tGroup = new ToggleGroup();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
@@ -219,6 +219,4 @@ public class HomeScreen {
 
         return tasksTable;
     }
-
 }
-*/
