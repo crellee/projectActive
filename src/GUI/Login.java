@@ -108,7 +108,7 @@ public class Login extends Application {
         });
 
         //Create seller button
-        Button createSellerButton = new Button("Create Controller.Seller");
+        Button createSellerButton = new Button("Create Seller");
         createSellerButton.setPrefWidth(250);
         createSellerButton.setPrefHeight(65);
         createSellerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
