@@ -227,7 +227,7 @@ public class HomeScreenSeller {
         //GUI Seller
 
         BorderPane rootMyProfileSeller = new BorderPane();
-        Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
+        //Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
         rootMyProfileSeller.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
 
 
@@ -237,6 +237,7 @@ public class HomeScreenSeller {
         VBox profilVBox = new VBox(5);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
         VBox vboxFirstname = new VBox();
+        vboxFirstname.setPadding(new Insets(0,20,0,0));
         VBox vboxLastname = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
@@ -269,7 +270,7 @@ public class HomeScreenSeller {
         Label lastName = new Label();
         lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         lastName.setPadding(new Insets(20, 0, 0, 0));
-        Label rating = new Label("7,8");
+        Label rating = new Label("");
         rating.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         rating.setPadding(new Insets(20, 0, 0, 0));
         Label ratingLabel = new Label("              RATING:   ");
@@ -279,6 +280,10 @@ public class HomeScreenSeller {
    /*   Label age = new Label("35");
         age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
         age.setPadding(new Insets(30,0,0,0)); */
+        Label ageLabel = new Label("");
+        Label mailLabel = new Label("");
+        Label cityLabel = new Label("");
+        Label locationLabel = new Label("");
 
 
         //Picture
@@ -299,9 +304,10 @@ public class HomeScreenSeller {
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
 
 
+
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxFirstname.getChildren().addAll(name);
+        vboxFirstname.getChildren().addAll(name, ageLabel, mailLabel, cityLabel, locationLabel);
         vboxLastname.getChildren().addAll(lastName);
         vboxCombobox.getChildren().addAll(carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
@@ -326,8 +332,19 @@ public class HomeScreenSeller {
                 Seller seller = new Seller();
                 seller.setFirstName(rs.getString("firstName"));
                 seller.setLastName(rs.getString("lastName"));
+                seller.setAge(rs.getInt("age"));
+                seller.setEmail(rs.getString("email"));
+                seller.setRating(rs.getDouble("rating"));
+                seller.setCity(rs.getString("city"));
+                seller.setLocation(rs.getString("location"));
                 name.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
+                ageLabel.setText(Integer.toString(seller.getAge()) + "age");
+                mailLabel.setText(seller.getEmail());
+                rating.setText(Double.toString(seller.getRating()));
+                cityLabel.setText(seller.getCity());
+                locationLabel.setText(seller.getLocation());
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

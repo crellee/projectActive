@@ -128,7 +128,7 @@ public class TableCreator
 
             sqlString = "CREATE TABLE IF NOT EXISTS Tasks" +
                     "(jobDescription VARCHAR(20) NOT NULL, " +
-                    "location VARCHAR(30) NOT NULL," +
+                    "location VARCHAR(4) NOT NULL," +
                     "city VARCHAR(30) NOT NULL," +
                     "requiredQualification VARCHAR(30) NOT NULL," +
                     "salary VARCHAR(30) NOT NULL," +
