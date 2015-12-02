@@ -305,7 +305,6 @@ public class HomeScreenSeller {
         vboxButton.getChildren().add(buttonUpdate);
         profilVBox.getChildren().addAll(imageview);
         profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
-
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
 
