@@ -10,7 +10,7 @@ public class Seller
 {
     private String firstName;
     private String lastName;
-    private Date birthday;
+    private String birthday;
     private int age;
     private String email;
     private String password;
@@ -37,7 +37,7 @@ public class Seller
 
     }
 
-    public Seller(String firstName, String lastName, Date birthday, String email, String password,
+    public Seller(String firstName, String lastName, String birthday, String email, String password,
                   ArrayList<String> qualifications, String location, double rating, String city, int qualiCarpenter,
                   int qualiJanitor, int qualiCleaner, int qualiWaiter, int qualiChef, int qualiBartender, int qualiStore,
                   int qualiRetail, int qualiPeda)
@@ -214,12 +214,12 @@ public class Seller
         this.rating = rating;
     }
 
-    public Date getBirthday()
+    public String getBirthday()
     {
         return birthday;
     }
 
-    public void setBirthday(Date birthday)
+    public void setBirthday(String birthday)
     {
         this.birthday = birthday;
     }

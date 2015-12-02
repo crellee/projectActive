@@ -89,7 +89,7 @@ public class DBHandlerSeller
         try
         {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT firstName, lastName, age, email, rating, city, location, " +
+            String sqlString = "SELECT firstName, lastName, age, birthday, email, rating, city, location, " +
                     "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter, qualiChef, " +
                     "qualiBartender, qualiStore, qualiRetail, qualiPeda FROM Sellers WHERE email = '"+email+"' ";
             rs = conn.createStatement().executeQuery(sqlString);
