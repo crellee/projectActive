@@ -122,6 +122,7 @@ public class HomeScreenSeller {
         {
             root.setCenter(myProfileWindow());
         });
+
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
 
@@ -221,24 +222,26 @@ public class HomeScreenSeller {
 
     public static BorderPane myProfileWindow() {
 
+
+
         //GUI Seller
 
         BorderPane rootMyProfileSeller = new BorderPane();
-        Scene scene2 = new Scene(rootMyProfileSeller, 1280,700, Color.LIGHTBLUE);
+        Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
         rootMyProfileSeller.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
 
 
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
-        profilHBox.setPadding(new Insets(20,10,10,20));
+        profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(5);                  //Left BorderPane
-        profilVBox.setPadding(new Insets(50,0,10,30));
+        profilVBox.setPadding(new Insets(50, 0, 10, 30));
         VBox vboxFirstname = new VBox();
         VBox vboxLastname = new VBox();
         VBox vboxButton = new VBox();
-        vboxButton.setPadding(new Insets(400,0,0,0));
+        vboxButton.setPadding(new Insets(400, 0, 0, 0));
         VBox vboxCombobox = new VBox(10);
-        vboxCombobox.setPadding(new Insets(30,30,30,100));
+        vboxCombobox.setPadding(new Insets(30, 30, 30, 100));
 
 
         // Separator
@@ -247,31 +250,31 @@ public class HomeScreenSeller {
         separator.setEffect(innerShadow);
         separator.setOrientation(Orientation.VERTICAL);
         separator.setMaxHeight(550);
-        separator.setPadding(new Insets(20,10,20,10));
+        separator.setPadding(new Insets(20, 10, 20, 10));
 
         //Labels, Buttons
+        /*
         Button buttonUpdate = new Button("Save Profil");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         buttonUpdate.setTextFill(Color.WHITE);
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(150);
         buttonUpdate.setPrefHeight(50);
-        buttonUpdate.setPadding(new Insets(20,20,20,100));
-
-
+        buttonUpdate.setPadding(new Insets(20, 20, 20, 100));
+        */
 
         Label name = new Label();
-        name.setFont(Font.font("Calibri", FontWeight.BOLD,35));
-        name.setPadding(new Insets(20,0,0,0));
+        name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        name.setPadding(new Insets(20, 0, 0, 0));
         Label lastName = new Label();
-        lastName.setFont(Font.font("Calibri", FontWeight.BOLD,35));
-        lastName.setPadding(new Insets(20,0,0,0));
+        lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        lastName.setPadding(new Insets(20, 0, 0, 0));
         Label rating = new Label("7,8");
-        rating.setFont(Font.font("Calibri", FontWeight.BOLD,35));
-        rating.setPadding(new Insets(20,0,0,0));
+        rating.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        rating.setPadding(new Insets(20, 0, 0, 0));
         Label ratingLabel = new Label("              RATING:   ");
-        ratingLabel.setPadding(new Insets(27,0,0,0));
-        ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD,25));
+        ratingLabel.setPadding(new Insets(27, 0, 0, 0));
+        ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 25));
         ratingLabel.setAlignment(Pos.CENTER);
    /*   Label age = new Label("35");
         age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
@@ -304,33 +307,34 @@ public class HomeScreenSeller {
                 storeCheck, retailCheck, pedagogueCheck);
 //        vboxButton.getChildren().add(buttonUpdate);
         profilVBox.getChildren().addAll(imageview);
-        profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname,ratingLabel, rating,vboxCombobox, vboxButton);
+        profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
 
-        rootMyProfileSeller.setBottom(buttonUpdate);
+        //rootMyProfileSeller.setBottom(buttonUpdate);
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
 
+        /*
+        buttonUpdate.setOnAction(e -> {
+
+
+        });
+        */
 
         ResultSet rs = DBHandlerSeller.getFirstName();
-        try
-        {
-            while (rs.next())
-            {
+        try {
+            while (rs.next()) {
                 Seller seller = new Seller();
                 seller.setFirstName(rs.getString("firstName"));
                 seller.setLastName(rs.getString("lastName"));
-
                 name.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return rootMyProfileSeller;
-
-
-
     }
+
+
 }

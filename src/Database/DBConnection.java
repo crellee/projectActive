@@ -15,10 +15,10 @@ public class DBConnection
 {
 
     // Username, password, schema name and path to database
-    final static String user = "sql497759";
-    final static String pass = "cctwBdpC32";
-    final static String db = "sql497759";
-    final static String url = "jdbc:mysql://sql4.freemysqlhosting.net/";
+    final static String user = "vicar";
+    final static String pass = "123kaffe";
+    final static String db = "vicarius";
+    final static String url = "jdbc:mysql://db4free.net/";
 
     // This method connects to the Database using the attributes above.
     public static Connection getConnection()
