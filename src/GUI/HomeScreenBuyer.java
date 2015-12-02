@@ -236,9 +236,9 @@ public class HomeScreenBuyer
 
         //GUI Seller
 
-        BorderPane rootMyProfileSeller = new BorderPane();
+        BorderPane rootMyProfileBuyer = new BorderPane();
 //        Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
-        rootMyProfileSeller.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
+        rootMyProfileBuyer.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
 
 
         //VBox and HBox
@@ -305,8 +305,8 @@ public class HomeScreenBuyer
         profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
 
 
-        rootMyProfileSeller.setCenter(profilHBox);
-        rootMyProfileSeller.setLeft(profilVBox);
+        rootMyProfileBuyer.setCenter(profilHBox);
+        rootMyProfileBuyer.setLeft(profilVBox);
 
         /*
         buttonUpdate.setOnAction(e -> {
@@ -328,6 +328,6 @@ public class HomeScreenBuyer
             e.printStackTrace();
         }
 
-        return rootMyProfileSeller;
+        return rootMyProfileBuyer;
     }
 }
