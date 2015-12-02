@@ -253,15 +253,12 @@ public class HomeScreenSeller {
         separator.setPadding(new Insets(20, 10, 20, 10));
 
         //Labels, Buttons
-        /*
         Button buttonUpdate = new Button("Save Profil");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         buttonUpdate.setTextFill(Color.WHITE);
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(150);
         buttonUpdate.setPrefHeight(50);
-        buttonUpdate.setPadding(new Insets(20, 20, 20, 100));
-        */
 
         Label name = new Label();
         name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
@@ -305,11 +302,10 @@ public class HomeScreenSeller {
         vboxLastname.getChildren().addAll(lastName);
         vboxCombobox.getChildren().addAll(carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
-//        vboxButton.getChildren().add(buttonUpdate);
+        vboxButton.getChildren().add(buttonUpdate);
         profilVBox.getChildren().addAll(imageview);
         profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
 
-        //rootMyProfileSeller.setBottom(buttonUpdate);
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
 
