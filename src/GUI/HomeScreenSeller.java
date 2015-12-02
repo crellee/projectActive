@@ -281,6 +281,7 @@ public class HomeScreenSeller {
         Label mailLabel = new Label("");
         Label cityLabel = new Label("");
         Label locationLabel = new Label("");
+        Label chefLabel = new Label();
 
 
         //Picture
@@ -291,20 +292,38 @@ public class HomeScreenSeller {
 
         //CheckBox
         CheckBox carpenterCheck = new CheckBox("Carpenter");
+        carpenterCheck.setDisable(true);
+        carpenterCheck.setStyle("-fx-opacity: 1");
         CheckBox janitorCheck = new CheckBox("Janitor");
+        janitorCheck.setDisable(true);
+        janitorCheck.setStyle("-fx-opacity: 1");
         CheckBox cleanerCheck = new CheckBox("Cleaner");
+        cleanerCheck.setDisable(true);
+        cleanerCheck.setStyle("-fx-opacity: 1");
         CheckBox waiterCheck = new CheckBox("Waiter");
+        waiterCheck.setDisable(true);
+        waiterCheck.setStyle("-fx-opacity: 1");
         CheckBox chefCheck = new CheckBox("Chef");
+        chefCheck.setDisable(true);
+        chefCheck.setStyle("-fx-opacity: 1");
         CheckBox bartenderCheck = new CheckBox("Bartender");
+        bartenderCheck.setDisable(true);
+        bartenderCheck.setStyle("-fx-opacity: 1");
         CheckBox storeCheck = new CheckBox("Store employee");
+        storeCheck.setDisable(true);
+        storeCheck.setStyle("-fx-opacity: 1");
         CheckBox retailCheck = new CheckBox("Retail");
+        retailCheck.setDisable(true);
+        retailCheck.setStyle("-fx-opacity: 1");
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
+        pedagogueCheck.setDisable(true);
+        pedagogueCheck.setStyle("-fx-opacity: 1");
 
 
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxFirstname.getChildren().addAll(name, ageLabel, mailLabel, cityLabel, locationLabel);
+        vboxFirstname.getChildren().addAll(name, ageLabel, mailLabel, cityLabel, locationLabel, chefLabel);
         vboxLastname.getChildren().addAll(lastName);
         vboxCombobox.getChildren().addAll(carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
@@ -322,6 +341,7 @@ public class HomeScreenSeller {
         });
         */
 
+
         ResultSet rs = DBHandlerSeller.getFirstName();
         try {
             while (rs.next()) {
@@ -333,13 +353,75 @@ public class HomeScreenSeller {
                 seller.setRating(rs.getDouble("rating"));
                 seller.setCity(rs.getString("city"));
                 seller.setLocation(rs.getString("location"));
+                seller.setQualiCarpenter(rs.getInt("qualiCarpenter"));
+                seller.setQualiJanitor(rs.getInt("qualiJanitor"));
+                seller.setQualiCleaner(rs.getInt("qualiCleaner"));
+                seller.setQualiWaiter(rs.getInt("qualiWaiter"));
+                seller.setQualiChef(rs.getInt("qualiChef"));
+                seller.setQualiBartender(rs.getInt("qualiBartender"));
+                seller.setQualiStore(rs.getInt("qualiStore"));
+                seller.setQualiRetail(rs.getInt("qualiRetail"));
+                seller.setQualiPeda(rs.getInt("qualiPeda"));
+
+
                 name.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
-                ageLabel.setText(Integer.toString(seller.getAge()) + "age");
+                ageLabel.setText("age" + Integer.toString(seller.getAge()));
                 mailLabel.setText(seller.getEmail());
                 rating.setText(Double.toString(seller.getRating()));
                 cityLabel.setText(seller.getCity());
                 locationLabel.setText(seller.getLocation());
+
+                //qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
+                //"qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda
+
+
+                if(seller.getQualiCarpenter() == 1)
+                {
+                    carpenterCheck.setSelected(true);
+                }
+
+                if(seller.getQualiJanitor() == 1)
+                {
+                    janitorCheck.setSelected(true);
+                }
+
+                if(seller.getQualiCleaner() == 1)
+                {
+                    cleanerCheck.setSelected(true);
+                }
+
+                if(seller.getQualiWaiter() == 1)
+                {
+                    waiterCheck.setSelected(true);
+                }
+
+                if(seller.getQualiChef() == 1)
+                {
+                    chefCheck.setSelected(true);
+                }
+
+                if(seller.getQualiBartender() == 1)
+                {
+                    bartenderCheck.setSelected(true);
+                }
+
+                if(seller.getQualiStore() == 1)
+                {
+                    storeCheck.setSelected(true);
+                }
+
+                if(seller.getQualiRetail() == 1)
+                {
+                    retailCheck.setSelected(true);
+                }
+
+                if(seller.getQualiPeda() == 1)
+                {
+                    pedagogueCheck.setSelected(true);
+                }
+
+
 
             }
         } catch (SQLException e) {
