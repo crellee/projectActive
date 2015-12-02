@@ -310,11 +310,6 @@ public class HomeScreenSeller {
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
 
-        buttonUpdate.setOnAction(e -> {
-
-
-        });
-
 
         ResultSet rs = DBHandlerSeller.getFirstName();
         try
