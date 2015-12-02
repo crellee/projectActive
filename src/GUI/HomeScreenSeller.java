@@ -234,7 +234,7 @@ public class HomeScreenSeller {
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
-        VBox profilVBox = new VBox(5);                  //Left BorderPane
+        VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
         VBox vboxFirstname = new VBox();
         vboxFirstname.setPadding(new Insets(0,20,0,0));
@@ -254,12 +254,12 @@ public class HomeScreenSeller {
         separator.setPadding(new Insets(20, 10, 20, 10));
 
         //Labels, Buttons
-        Button buttonUpdate = new Button("Save Profil");
+        Button buttonUpdate = new Button("Save / Edit");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         buttonUpdate.setTextFill(Color.WHITE);
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        buttonUpdate.setPrefWidth(150);
-        buttonUpdate.setPrefHeight(50);
+        buttonUpdate.setPrefWidth(125);
+        buttonUpdate.setPrefHeight(25);
 
         Label name = new Label();
         name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
@@ -327,8 +327,8 @@ public class HomeScreenSeller {
         vboxLastname.getChildren().addAll(lastName);
         vboxCombobox.getChildren().addAll(carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
-        vboxButton.getChildren().add(buttonUpdate);
-        profilVBox.getChildren().addAll(imageview);
+//      vboxButton.getChildren().add(buttonUpdate);
+        profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
