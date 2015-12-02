@@ -278,6 +278,7 @@ public class HomeScreenSeller {
         age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
         age.setPadding(new Insets(30,0,0,0)); */
         Label ageLabel = new Label("");
+        Label birthLabel = new Label();
         Label mailLabel = new Label("");
         Label cityLabel = new Label("");
         Label locationLabel = new Label("");
@@ -323,7 +324,7 @@ public class HomeScreenSeller {
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxFirstname.getChildren().addAll(name, ageLabel, mailLabel, cityLabel, locationLabel, chefLabel);
+        vboxFirstname.getChildren().addAll(name, ageLabel, birthLabel, mailLabel, cityLabel, locationLabel, chefLabel);
         vboxLastname.getChildren().addAll(lastName);
         vboxCombobox.getChildren().addAll(carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
@@ -348,6 +349,7 @@ public class HomeScreenSeller {
                 seller.setFirstName(rs.getString("firstName"));
                 seller.setLastName(rs.getString("lastName"));
                 seller.setAge(rs.getInt("age"));
+                seller.setBirthday(rs.getString("birthday"));
                 seller.setEmail(rs.getString("email"));
                 seller.setRating(rs.getDouble("rating"));
                 seller.setCity(rs.getString("city"));
@@ -366,6 +368,7 @@ public class HomeScreenSeller {
                 name.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
                 ageLabel.setText("age" + Integer.toString(seller.getAge()));
+                birthLabel.setText("birthday" + seller.getBirthday());
                 mailLabel.setText(seller.getEmail());
                 rating.setText(Double.toString(seller.getRating()));
                 cityLabel.setText(seller.getCity());
