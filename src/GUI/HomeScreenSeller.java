@@ -237,14 +237,17 @@ public class HomeScreenSeller {
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vBox1 = new VBox();
+        VBox vBox1 = new VBox(30);
         vBox1.setPadding(new Insets(0,20,0,0));
-        VBox vBox2 = new VBox();
+        VBox vBox2 = new VBox(30);
         vBox2.setPrefWidth(300);
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
         VBox vboxCombobox = new VBox(10);
         vboxCombobox.setPadding(new Insets(30, 30, 30, 100));
+        VBox vboxINFofirtname = new VBox(10);
+        VBox vboxINFOlastname = new VBox(10);
+
 
 
         // Separator
@@ -341,10 +344,14 @@ public class HomeScreenSeller {
 
 
 
+
+
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(name, mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel, locationLabelLabel);
-        vBox2.getChildren().addAll(lastName, mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
+        vboxINFofirtname.getChildren().addAll(mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel, locationLabelLabel);
+        vboxINFOlastname.getChildren().addAll(mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
+        vBox1.getChildren().addAll(name, vboxINFofirtname);
+        vBox2.getChildren().addAll(lastName, vboxINFOlastname);
         vboxCombobox.getChildren().addAll(checkBoxLabel ,carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
 //      vboxButton.getChildren().add(buttonUpdate);
