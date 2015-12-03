@@ -11,14 +11,14 @@ import java.sql.SQLException;
 /**
  * Created by christianhasselstrom on 25/11/2015.
  */
-//DBHandlerBuyer contains methods which have to do with Buyer and the connection to the database
+//DBHandlerBuyer contains methods which have to do with Controller.Buyer and the connection to the database
 public class DBHandlerBuyer
 {
 
     //This method takes parameters from the GUI and saves the information in a database.
     //The parameters are saved as Strings before inserted into the Buyers table.
     public static void saveBuyer(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
-                                 PasswordField password, ComboBox location, TextField city, TextField cvr)
+                                 PasswordField password, ComboBox location, TextField cvr)
     {
         String firstNameStr = firstName.getText();
         String lastNameStr = lastName.getText();
@@ -26,7 +26,7 @@ public class DBHandlerBuyer
         String businessEmailStr = businessEmail.getText();
         String passwordStr = password.getText();
         String locationStr = location.getValue().toString();
-        String cvrStr = cvr.getText();
+        int cvrInt = Integer.parseInt(cvr.getText());
 
         try
         {
@@ -36,7 +36,7 @@ public class DBHandlerBuyer
             String sqlStrings = ("INSERT INTO Buyers(firstName, lastName, businessName, businessEmail, password," +
                     "location, cvr) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+businessNameStr+"', '"+businessEmailStr+"', " +
-                    "'"+passwordStr+"', '"+locationStr+"','"+cvrStr+"')");
+                    "'"+passwordStr+"', '"+locationStr+"','"+cvrInt+"')");
 
             stmt.executeUpdate(sqlStrings);
 

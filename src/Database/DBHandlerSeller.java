@@ -81,7 +81,7 @@ public class DBHandlerSeller
 
 
 
-    public static ResultSet getFirstName()
+    public static ResultSet getUserInformations()
     {
         String email = LoginVerifier.getEmail();
         ResultSet rs = null;

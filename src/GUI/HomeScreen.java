@@ -159,7 +159,7 @@ public class HomeScreen {
         TableView buyersTable = new TableView();
 
         buyersTable.setPrefWidth(400);
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualifications");
         TableColumn rating = new TableColumn("Rating");
@@ -179,7 +179,7 @@ public class HomeScreen {
 
         matchesTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualification(s)");
         TableColumn rating = new TableColumn("Rating");
@@ -202,7 +202,7 @@ public class HomeScreen {
 
         tasksTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualification(s)");
         TableColumn rating = new TableColumn("Rating");

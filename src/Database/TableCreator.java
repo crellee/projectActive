@@ -101,7 +101,7 @@ public class TableCreator
                         "businessEmail VARCHAR(30) NOT NULL," +
                         "password VARCHAR(30) NOT NULL," +
                         "location VARCHAR(4) NOT NULL," +
-                        "cvr VARCHAR(20) NOT NULL," +
+                        "cvr INT(8) NOT NULL," +
                         "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                         "PRIMARY KEY (businessEmail))";
 

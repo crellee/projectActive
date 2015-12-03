@@ -81,6 +81,8 @@ public class CreateBuyerWindow
             passwordNotSame.setTextFill(Color.RED);
         Label fillAllFields = new Label("Please fill ALL fields before creating profile");
             fillAllFields.setTextFill(Color.RED);
+        Label cvrMax8 = new Label("Cvr must max be 8 characters and only numbers");
+        cvrMax8.setTextFill(Color.RED);
 
         //Input fields
         TextField firstNameField = new TextField();
@@ -147,12 +149,17 @@ public class CreateBuyerWindow
                 root.setBottom(passwordNotSame);
             }
 
+            else if(cvrNoField.getLength() > 8 && cvrNoField.getLength() < 8)
+            {
+                root.setBottom(cvrMax8);
+
+            }
             else
             {
                 try
                 {
                     DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
-                            enterPasswordField, locationCombo, cityField, cvrNoField);
+                            enterPasswordField, locationCombo, cvrNoField);
                     HomeScreenBuyer.homeScreenBuyer();
                     window.close();
                 }

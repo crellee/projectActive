@@ -129,7 +129,7 @@ public class GUI extends Application {
         });
 
         //create buyer button
-        createBuyerButton = new Button("Create Buyer");
+        createBuyerButton = new Button("Create Controller.Buyer");
         createBuyerButton.setPrefWidth(250);
         createBuyerButton.setPrefHeight(65);
         createBuyerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -279,7 +279,7 @@ public class GUI extends Application {
         TableView buyersTable = new TableView();
 
         buyersTable.setPrefWidth(400);
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualifications");
         TableColumn rating = new TableColumn("Rating");
@@ -300,7 +300,7 @@ public class GUI extends Application {
 
         matchesTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualification(s)");
         TableColumn rating = new TableColumn("Rating");
@@ -323,7 +323,7 @@ public class GUI extends Application {
 
         tasksTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualification(s)");
         TableColumn rating = new TableColumn("Rating");

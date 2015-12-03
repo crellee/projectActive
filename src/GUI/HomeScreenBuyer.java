@@ -169,7 +169,7 @@ public class HomeScreenBuyer
         TableView buyersTable = new TableView();
 
         buyersTable.setPrefWidth(400);
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualifications");
         TableColumn rating = new TableColumn("Rating");
@@ -189,7 +189,7 @@ public class HomeScreenBuyer
 
         matchesTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualification(s)");
         TableColumn rating = new TableColumn("Rating");
@@ -212,7 +212,7 @@ public class HomeScreenBuyer
 
         tasksTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Buyer description");
+        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
         TableColumn location = new TableColumn("Location");
         TableColumn qualifications = new TableColumn("Qualification(s)");
         TableColumn rating = new TableColumn("Rating");
@@ -307,14 +307,8 @@ public class HomeScreenBuyer
         rootMyProfileBuyer.setCenter(profilHBox);
         rootMyProfileBuyer.setLeft(profilVBox);
 
-        /*
-        buttonUpdate.setOnAction(e -> {
 
-
-        });
-        */
-
-        ResultSet rs = DBHandlerSeller.getFirstName();
+        ResultSet rs = DBHandlerSeller.getUserInformations();
         try {
             while (rs.next()) {
                 Seller seller = new Seller();
