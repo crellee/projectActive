@@ -102,6 +102,7 @@ public class TableCreator
                         "password VARCHAR(30) NOT NULL," +
                         "location VARCHAR(4) NOT NULL," +
                         "cvr INT(8) NOT NULL," +
+                        "rating DOUBLE(3,2) DEFAULT NULL," +
                         "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                         "PRIMARY KEY (businessEmail))";
 

@@ -29,6 +29,7 @@ public class DBHandlerBuyer
         String passwordStr = password.getText();
         String locationStr = location.getValue().toString();
         int cvrInt = Integer.parseInt(cvr.getText());
+        double rating = 0.0;
 
         try
         {
@@ -36,9 +37,9 @@ public class DBHandlerBuyer
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Buyers(firstName, lastName, businessName, businessEmail, password," +
-                    "location, cvr) " +
+                    "location, cvr, rating) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+businessNameStr+"', '"+businessEmailStr+"', " +
-                    "'"+passwordStr+"', '"+locationStr+"','"+cvrInt+"')");
+                    "'"+passwordStr+"', '"+locationStr+"','"+cvrInt+"', '"+rating+"' )");
 
             stmt.executeUpdate(sqlStrings);
 
@@ -57,7 +58,8 @@ public class DBHandlerBuyer
         try
         {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT firstName, lastName, businessName, businessEmail FROM Buyers WHERE businessEmail = '"+email+"' ";
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
+                    " FROM Buyers WHERE businessEmail = '"+email+"' ";
             rs = conn.createStatement().executeQuery(sqlString);
         }
         catch (Exception e)

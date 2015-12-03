@@ -13,6 +13,7 @@ public class Buyer
     private String location;
     private String city;
     private int cvr;
+    private double rating;
 
 
     public Buyer()
@@ -21,7 +22,7 @@ public class Buyer
     }
 
     public Buyer(String firstName, String lastName, String businessName, String businessEmail, String password,
-                  String location, String city, int cvr)
+                  String location, String city, int cvr, double rating)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,6 +32,7 @@ public class Buyer
         this.location = location;
         this.city = city;
         this.cvr = cvr;
+        this.rating = rating;
     }
 
     public String getFirstName() {
@@ -95,5 +97,13 @@ public class Buyer
 
     public void setCvr(int cvr) {
         this.cvr = cvr;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

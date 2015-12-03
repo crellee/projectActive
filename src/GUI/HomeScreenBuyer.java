@@ -3,6 +3,7 @@ package GUI;
 import Controller.Buyer;
 import Controller.Seller;
 import Database.DBHandlerBuyer;
+import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -277,7 +278,7 @@ public class HomeScreenBuyer
         Label lastName = new Label();
         lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         lastName.setPadding(new Insets(20, 0, 0, 0));
-        Label rating = new Label("7,8");
+        Label rating = new Label("");
         rating.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         rating.setPadding(new Insets(20, 0, 0, 0));
         Label ratingLabel = new Label("              RATING:   ");
@@ -295,6 +296,18 @@ public class HomeScreenBuyer
         businessEmailLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label businessEmailLabelLabel = new Label("Business Email:");
         businessEmailLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label postNoLabel = new Label();
+        postNoLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label postNoLabelLabel = new Label("Post No:");
+        postNoLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label cityLabel = new Label();
+        cityLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label cityLabelLabel = new Label("City:");
+        cityLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label cvrLabel = new Label();
+        cvrLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label cvrLabelLabel = new Label("CVR No:");
+        cvrLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
 
 
         //Picture
@@ -307,8 +320,9 @@ public class HomeScreenBuyer
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(name, businessNameLabelLabel, businessEmailLabelLabel);
-        vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel);
+        vBox1.getChildren().addAll(name, businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
+                cvrLabelLabel);
+        vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
         //vboxButton.getChildren().add(null);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
@@ -327,11 +341,19 @@ public class HomeScreenBuyer
                 buyer.setLastName(rs.getString("lastName"));
                 buyer.setBusinessName(rs.getString("businessName"));
                 buyer.setBusinessEmail(rs.getString("businessEmail"));
+                buyer.setLocation(rs.getString("location"));
+                buyer.setCvr(rs.getInt("cvr"));
+                buyer.setRating(rs.getDouble("rating"));
+
 
                 name.setText(buyer.getFirstName());
                 lastName.setText(buyer.getLastName());
                 businessNameLabel.setText(buyer.getBusinessName());
                 businessEmailLabel.setText(buyer.getBusinessEmail());
+                postNoLabel.setText(buyer.getLocation());
+                cityLabel.setText(DBHandlerLocation.setCity(postNoLabel.getText()));
+                cvrLabel.setText(Integer.toString(buyer.getCvr()));
+                rating.setText(Double.toString(buyer.getRating()));
             }
         } catch (SQLException e) {
             e.printStackTrace();
