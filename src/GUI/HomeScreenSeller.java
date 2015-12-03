@@ -236,9 +236,10 @@ public class HomeScreenSeller {
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vboxFirstname = new VBox();
-        vboxFirstname.setPadding(new Insets(0,20,0,0));
-        VBox vboxLastname = new VBox();
+        VBox vBox1 = new VBox();
+        vBox1.setPadding(new Insets(0,20,0,0));
+        VBox vBox2 = new VBox();
+        vBox2.setPrefWidth(300);
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
         VBox vboxCombobox = new VBox(10);
@@ -254,7 +255,7 @@ public class HomeScreenSeller {
         separator.setPadding(new Insets(20, 10, 20, 10));
 
         //Labels, Buttons
-        Button buttonUpdate = new Button("Save / Edit");
+        Button buttonUpdate = new Button("Edit profile");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         buttonUpdate.setTextFill(Color.WHITE);
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
@@ -270,19 +271,35 @@ public class HomeScreenSeller {
         Label rating = new Label("");
         rating.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         rating.setPadding(new Insets(20, 0, 0, 0));
-        Label ratingLabel = new Label("              RATING:   ");
+        Label ratingLabel = new Label("RATING:");
         ratingLabel.setPadding(new Insets(27, 0, 0, 0));
         ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 25));
         ratingLabel.setAlignment(Pos.CENTER);
    /*   Label age = new Label("35");
         age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
         age.setPadding(new Insets(30,0,0,0)); */
-        Label ageLabel = new Label("");
+        Label checkBoxLabel = new Label("My qualifications:");
+        checkBoxLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 20));
+        Label ageLabel = new Label();
+        ageLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label ageLabelLabel = new Label("Age:");
+        ageLabelLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 15));
         Label birthLabel = new Label();
-        Label mailLabel = new Label("");
+        birthLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label birthLabelLabel = new Label("Birthday:");
+        birthLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label mailLabel = new Label();
+        mailLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label mailLabelLabel = new Label("Email:");
+        mailLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label cityLabel = new Label("");
-        Label locationLabel = new Label("");
-        Label chefLabel = new Label();
+        cityLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label cityLabelLabel = new Label("City:");
+        cityLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label locationLabel = new Label();
+        locationLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label locationLabelLabel = new Label("Post No:");
+        locationLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
 
 
         //Picture
@@ -324,13 +341,13 @@ public class HomeScreenSeller {
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxFirstname.getChildren().addAll(name, ageLabel, birthLabel, mailLabel, cityLabel, locationLabel, chefLabel);
-        vboxLastname.getChildren().addAll(lastName);
-        vboxCombobox.getChildren().addAll(carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
+        vBox1.getChildren().addAll(name, mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel, locationLabelLabel);
+        vBox2.getChildren().addAll(lastName, mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
+        vboxCombobox.getChildren().addAll(checkBoxLabel ,carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
                 storeCheck, retailCheck, pedagogueCheck);
 //      vboxButton.getChildren().add(buttonUpdate);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
-        profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
+        profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxCombobox, vboxButton);
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
 
@@ -367,8 +384,8 @@ public class HomeScreenSeller {
 
                 name.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
-                ageLabel.setText("age" + Integer.toString(seller.getAge()));
-                birthLabel.setText("birthday" + seller.getBirthday());
+                ageLabel.setText(Integer.toString(seller.getAge()));
+                birthLabel.setText(seller.getBirthday());
                 mailLabel.setText(seller.getEmail());
                 rating.setText(Double.toString(seller.getRating()));
                 cityLabel.setText(seller.getCity());
