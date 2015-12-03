@@ -271,6 +271,10 @@ public class HomeScreenBuyer
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(125);
         buttonUpdate.setPrefHeight(25);
+        buttonUpdate.setOnAction(e ->
+        {
+            EditBuyerProfile.openWindow();
+        });
 
         Label name = new Label();
         name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));

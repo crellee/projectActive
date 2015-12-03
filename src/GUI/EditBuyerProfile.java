@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.Buyer;
 import Controller.Location;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
@@ -18,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by christianhasselstrom on 03/12/2015.
@@ -33,24 +35,17 @@ public class EditBuyerProfile
         window.setScene(scene);
 
         //Header label
-        Label headLine = new Label("Create Account (buyer)");
+        Label headLine = new Label("Edit Account");
         Reflection r = new Reflection();
         r.setFraction(0.7f);
         headLine.setEffect(r);
         headLine.setTextFill(Color.GHOSTWHITE);
         headLine.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
 
-        //Back button to previous window
-        Button backBtn = new Button("Back");
-        backBtn.setOnAction(e ->
-        {
-            window.close();
-            Login.Login();
-        });
 
-        //Add headline and back button to top of window
+        //Add headline
         VBox topVBox = new VBox();
-        topVBox.getChildren().addAll(headLine,backBtn);
+        topVBox.getChildren().addAll(headLine);
         topVBox.setPadding(new Insets(20));
         topVBox.setSpacing(24);
 
@@ -75,11 +70,12 @@ public class EditBuyerProfile
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cvrNoLabel = new Label("Enter CVR-Number");
         cvrNoLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        Label fillInformationerrorLabel = new Label("Fill all text fields before creating profile");
+
+        Label fillInformationerrorLabel = new Label("Fill all text fields before editing profile");
         fillInformationerrorLabel.setTextFill(Color.RED);
-        Label passwordNotSame = new Label("Passwords must be the same before creating profile");
+        Label passwordNotSame = new Label("Passwords must be the same before editing profile");
         passwordNotSame.setTextFill(Color.RED);
-        Label fillAllFields = new Label("Please fill ALL fields before creating profile");
+        Label fillAllFields = new Label("Please fill ALL fields before editing profile");
         fillAllFields.setTextFill(Color.RED);
         Label cvrMax8 = new Label("Cvr must max be 8 characters and only numbers");
         cvrMax8.setTextFill(Color.RED);
@@ -89,6 +85,7 @@ public class EditBuyerProfile
         TextField lastNameField = new TextField();
         TextField businessNameField = new TextField();
         TextField businessEmailField = new TextField();
+        businessEmailField.setEditable(false);
         PasswordField enterPasswordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
         TextField cityField = new TextField();
@@ -127,13 +124,13 @@ public class EditBuyerProfile
         });
 
         //Create Button
-        Button createButton = new Button("Create account");
-        createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
-        createButton.setTextFill(Color.WHITE);
-        createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        createButton.setPrefWidth(150);
-        createButton.setPrefHeight(50);
-        createButton.setOnAction(e ->
+        Button updateButton = new Button("Update account");
+        updateButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        updateButton.setTextFill(Color.WHITE);
+        updateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        updateButton.setPrefWidth(150);
+        updateButton.setPrefHeight(50);
+        updateButton.setOnAction(e ->
         {
             /*
             if(firstNameField.getText().equals("") || lastNameField.getText().equals("") ||
@@ -158,9 +155,8 @@ public class EditBuyerProfile
             {
                 try
                 {
-                    DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
+                    DBHandlerBuyer.updateBuyerProfile(firstNameField, lastNameField, businessNameField, businessEmailField,
                             enterPasswordField, locationCombo, cvrNoField);
-                    HomeScreenBuyer.homeScreenBuyer();
                     window.close();
                 }
                 catch(NullPointerException e1)
@@ -180,7 +176,7 @@ public class EditBuyerProfile
 
         VBox inputVBox = new VBox();
         inputVBox.getChildren().addAll(firstNameField, lastNameField, businessNameField, businessEmailField,
-                enterPasswordField, confirmPasswordField, locationCombo, cityField, cvrNoField, createButton);
+                enterPasswordField, confirmPasswordField, locationCombo, cityField, cvrNoField, updateButton);
         inputVBox.setSpacing(15);
 
         HBox centerHBox = new HBox();
@@ -188,8 +184,36 @@ public class EditBuyerProfile
         centerHBox.setSpacing(10);
         centerHBox.setPadding(new Insets(5,0,0,130));
 
-
         root.setCenter(centerHBox);
+
+        ResultSet rs2 = DBHandlerBuyer.getUserInformationsForEdit();
+        try {
+            while (rs2.next()) {
+                Buyer buyer = new Buyer();
+
+                buyer.setFirstName(rs2.getString("firstName"));
+                buyer.setLastName(rs2.getString("lastName"));
+                buyer.setBusinessName(rs2.getString("businessName"));
+                buyer.setBusinessEmail(rs2.getString("businessEmail"));
+                buyer.setLocation(rs2.getString("location"));
+                buyer.setCvr(rs2.getInt("cvr"));
+                buyer.setPassword(rs2.getString("password"));
+//                buyer.setRating(rs2.getDouble("rating"));
+
+
+                firstNameField.setText(buyer.getFirstName());
+                lastNameField.setText(buyer.getLastName());
+                businessNameField.setText(buyer.getBusinessName());
+                businessEmailField.setText(buyer.getBusinessEmail());
+                locationCombo.setValue(buyer.getLocation());
+                enterPasswordField.setText(buyer.getPassword());
+
+                cityField.setText(DBHandlerLocation.setCity(locationCombo.getValue().toString()));
+                cvrNoField.setText(Integer.toString(buyer.getCvr()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         window.show();
     }

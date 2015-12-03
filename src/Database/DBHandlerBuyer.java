@@ -69,4 +69,57 @@ public class DBHandlerBuyer
 
         return rs;
     }
+    public static ResultSet getUserInformationsForEdit()
+    {
+        String email = LoginVerifier.getEmail();
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, password" +
+                    " FROM Buyers WHERE businessEmail = '"+email+"' ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
+    }
+    public static void updateBuyerProfile(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
+                                          PasswordField password, ComboBox location, TextField cvr)
+    {
+        String firstNameStr = firstName.getText();
+        String lastNameStr = lastName.getText();
+        String businessNameStr = businessName.getText();
+        String businessEmailStr = businessEmail.getText();
+        String passwordStr = password.getText();
+        String locationStr = location.getValue().toString();
+        int cvrInt = Integer.parseInt(cvr.getText());
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            Statement stmt = (Statement) conn.createStatement();
+
+    /*        String sqlStrings = "UPDATE Buyers " +
+                    "SET firstName = '"+firstNameStr+"' " +
+                    "WHERE businessEmail = '"+businessEmailStr+"'";
+            stmt.executeUpdate(sqlStrings);
+*/
+            String sql = "UPDATE Buyers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
+                    "businessName='"+businessNameStr+"', password='"+passwordStr+"', location='"+locationStr+"'," +
+                    "cvr='"+cvrInt+"'  WHERE businessEmail = '"+businessEmailStr+"'";
+
+            stmt.executeUpdate(sql);
+
+
+        }
+        catch(Exception e1)
+        {
+
+        }
+    }
+
 }
