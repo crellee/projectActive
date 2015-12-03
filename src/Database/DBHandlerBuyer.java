@@ -103,16 +103,11 @@ public class DBHandlerBuyer
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-    /*        String sqlStrings = "UPDATE Buyers " +
-                    "SET firstName = '"+firstNameStr+"' " +
-                    "WHERE businessEmail = '"+businessEmailStr+"'";
-            stmt.executeUpdate(sqlStrings);
-*/
-            String sql = "UPDATE Buyers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
+            String sqlString = "UPDATE Buyers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
                     "businessName='"+businessNameStr+"', password='"+passwordStr+"', location='"+locationStr+"'," +
                     "cvr='"+cvrInt+"'  WHERE businessEmail = '"+businessEmailStr+"'";
 
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(sqlString);
 
 
         }
