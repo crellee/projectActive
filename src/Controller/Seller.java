@@ -1,5 +1,7 @@
 package Controller;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +16,8 @@ public class Seller
     private int age;
     private String email;
     private String password;
-    private ArrayList<String> qualifications;
+    //private ArrayList<String> qualifications = new ArrayList<>();
+    private  String qualifications = "";
     private String location;
     private double rating = 0.0;
     private String city;
@@ -38,7 +41,7 @@ public class Seller
     }
 
     public Seller(String firstName, String lastName, String birthday, String email, String password,
-                  ArrayList<String> qualifications, String location, double rating, String city, int qualiCarpenter,
+                  String qualifications, String location, double rating, String city, int qualiCarpenter,
                   int qualiJanitor, int qualiCleaner, int qualiWaiter, int qualiChef, int qualiBartender, int qualiStore,
                   int qualiRetail, int qualiPeda)
     {
@@ -59,7 +62,17 @@ public class Seller
         this.qualiBartender = qualiBartender;
         this.qualiStore = qualiStore;
         this.qualiRetail = qualiRetail;
-        qualiPeda = qualiPeda;
+        this.qualiPeda = qualiPeda;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
     }
 
     public int getQualiCarpenter() {
@@ -134,16 +147,6 @@ public class Seller
         this.qualiChef = qualiChef;
     }
 
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
     public String getLastName()
     {
         return lastName;
@@ -184,14 +187,14 @@ public class Seller
         this.password = password;
     }
 
-    public ArrayList<String> getQualifications()
+    public String getQualifications()
     {
         return qualifications;
     }
 
-    public void setQualifications(ArrayList<String> qualifications)
+    public void setQualifications(String qualifications)
     {
-        this.qualifications = qualifications;
+        this.qualifications = this.qualifications + qualifications;
     }
 
     public String getLocation()
@@ -232,5 +235,10 @@ public class Seller
     public void setCity(String city)
     {
         this.city = city;
+    }
+
+    public void addToArrayList(String qualification)
+    {
+
     }
 }

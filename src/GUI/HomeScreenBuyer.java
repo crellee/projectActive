@@ -47,14 +47,12 @@ public class HomeScreenBuyer
         buttonBox.setPrefWidth(1280);
         buttonBox.setSpacing(5);
 
-
         //Create scene
         Stage window = new Stage();
         Scene scene = new Scene(root, 1280, 700);
         window.setScene(scene);
         window.setResizable(false);
         window.show();
-
 
         //Label
         Label headLine = new Label("Vicarius");
@@ -63,7 +61,6 @@ public class HomeScreenBuyer
         headLine.setEffect(r);
         headLine.setTextFill(Color.GHOSTWHITE);
         headLine.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
-
 
         //sellersBtn
         ToggleButton sellersBtn = new ToggleButton("Sellers");
