@@ -104,7 +104,7 @@ public class Login extends Application {
         loginButton.setOnAction(e ->
         {
             LoginVerifier.setEmail(loginTextfield);
-            LoginVerifier.verifierSeller(loginTextfield, passwordField);
+            LoginVerifier.verifyUser(loginTextfield, passwordField);
         });
 
         //Create seller button

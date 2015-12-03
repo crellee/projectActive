@@ -1,11 +1,13 @@
 package Database;
 
+import Controller.LoginVerifier;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -46,5 +48,23 @@ public class DBHandlerBuyer
 
         }
 
+    }
+
+    public static ResultSet getUserInformations()
+    {
+        String email = LoginVerifier.getEmail();
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail FROM Buyers WHERE businessEmail = '"+email+"' ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
     }
 }

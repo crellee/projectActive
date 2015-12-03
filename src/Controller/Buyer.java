@@ -15,6 +15,10 @@ public class Buyer
     private int cvr;
 
 
+    public Buyer()
+    {
+
+    }
 
     public Buyer(String firstName, String lastName, String businessName, String businessEmail, String password,
                   String location, String city, int cvr)

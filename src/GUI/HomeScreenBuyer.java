@@ -1,6 +1,8 @@
 package GUI;
 
+import Controller.Buyer;
 import Controller.Seller;
+import Database.DBHandlerBuyer;
 import Database.DBHandlerSeller;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -285,6 +287,14 @@ public class HomeScreenBuyer
    /*   Label age = new Label("35");
         age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
         age.setPadding(new Insets(30,0,0,0)); */
+        Label businessNameLabel = new Label();
+        businessNameLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label businessNameLabelLabel = new Label("Business Name:");
+        businessNameLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label businessEmailLabel = new Label();
+        businessEmailLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        Label businessEmailLabelLabel = new Label("Business Email:");
+        businessEmailLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
 
 
         //Picture
@@ -297,8 +307,8 @@ public class HomeScreenBuyer
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(name);
-        vBox2.getChildren().addAll(lastName);
+        vBox1.getChildren().addAll(name, businessNameLabelLabel, businessEmailLabelLabel);
+        vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel);
         //vboxButton.getChildren().add(null);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
@@ -308,14 +318,20 @@ public class HomeScreenBuyer
         rootMyProfileBuyer.setLeft(profilVBox);
 
 
-        ResultSet rs = DBHandlerSeller.getUserInformations();
+        ResultSet rs = DBHandlerBuyer.getUserInformations();
         try {
             while (rs.next()) {
-                Seller seller = new Seller();
-                seller.setFirstName(rs.getString("firstName"));
-                seller.setLastName(rs.getString("lastName"));
-                name.setText(seller.getFirstName());
-                lastName.setText(seller.getLastName());
+                Buyer buyer = new Buyer();
+
+                buyer.setFirstName(rs.getString("firstName"));
+                buyer.setLastName(rs.getString("lastName"));
+                buyer.setBusinessName(rs.getString("businessName"));
+                buyer.setBusinessEmail(rs.getString("businessEmail"));
+
+                name.setText(buyer.getFirstName());
+                lastName.setText(buyer.getLastName());
+                businessNameLabel.setText(buyer.getBusinessName());
+                businessEmailLabel.setText(buyer.getBusinessEmail());
             }
         } catch (SQLException e) {
             e.printStackTrace();
