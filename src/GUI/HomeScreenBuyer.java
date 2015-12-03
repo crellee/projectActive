@@ -120,7 +120,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
-            root.setCenter(null);
+            root.setCenter(myProfileWindow());
         });
 
         //signOutBtn
@@ -244,14 +244,13 @@ public class HomeScreenBuyer
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
-        VBox profilVBox = new VBox(5);                  //Left BorderPane
+        VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vboxFirstname = new VBox();
-        VBox vboxLastname = new VBox();
+        VBox vBox1 = new VBox();
+        VBox vBox2 = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
-        VBox vboxCombobox = new VBox(10);
-        vboxCombobox.setPadding(new Insets(30, 30, 30, 100));
+
 
 
         // Separator
@@ -263,12 +262,12 @@ public class HomeScreenBuyer
         separator.setPadding(new Insets(20, 10, 20, 10));
 
         //Labels, Buttons
-        Button buttonUpdate = new Button("Save Profil");
+        Button buttonUpdate = new Button("Edit profile");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         buttonUpdate.setTextFill(Color.WHITE);
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        buttonUpdate.setPrefWidth(150);
-        buttonUpdate.setPrefHeight(50);
+        buttonUpdate.setPrefWidth(125);
+        buttonUpdate.setPrefHeight(25);
 
         Label name = new Label();
         name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
@@ -298,11 +297,11 @@ public class HomeScreenBuyer
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxFirstname.getChildren().addAll(name);
-        vboxLastname.getChildren().addAll(lastName);
-        vboxButton.getChildren().add(buttonUpdate);
-        profilVBox.getChildren().addAll(imageview);
-        profilHBox.getChildren().addAll(separator, vboxFirstname, vboxLastname, ratingLabel, rating, vboxCombobox, vboxButton);
+        vBox1.getChildren().addAll(name);
+        vBox2.getChildren().addAll(lastName);
+        //vboxButton.getChildren().add(null);
+        profilVBox.getChildren().addAll(imageview, buttonUpdate);
+        profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
 
 
         rootMyProfileBuyer.setCenter(profilHBox);
@@ -327,6 +326,8 @@ public class HomeScreenBuyer
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
 
         return rootMyProfileBuyer;
     }

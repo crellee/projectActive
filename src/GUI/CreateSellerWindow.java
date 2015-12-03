@@ -184,7 +184,7 @@ public class CreateSellerWindow
 
                     DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
                             carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
-                            bartenderInt, storeInt, retailInt, pedaInt, locationCombo, cityField);
+                            bartenderInt, storeInt, retailInt, pedaInt, locationCombo);
                     HomeScreenSeller.homeScreenSeller();
                     window.close();
                 }

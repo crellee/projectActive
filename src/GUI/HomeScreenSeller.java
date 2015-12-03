@@ -1,6 +1,7 @@
 package GUI;
 
 import Controller.Seller;
+import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -292,7 +293,7 @@ public class HomeScreenSeller {
         mailLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label mailLabelLabel = new Label("Email:");
         mailLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
-        Label cityLabel = new Label("");
+        Label cityLabel = new Label();
         cityLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label cityLabelLabel = new Label("City:");
         cityLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
@@ -300,6 +301,7 @@ public class HomeScreenSeller {
         locationLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label locationLabelLabel = new Label("Post No:");
         locationLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+
 
 
         //Picture
@@ -369,7 +371,6 @@ public class HomeScreenSeller {
                 seller.setBirthday(rs.getString("birthday"));
                 seller.setEmail(rs.getString("email"));
                 seller.setRating(rs.getDouble("rating"));
-                seller.setCity(rs.getString("city"));
                 seller.setLocation(rs.getString("location"));
                 seller.setQualiCarpenter(rs.getInt("qualiCarpenter"));
                 seller.setQualiJanitor(rs.getInt("qualiJanitor"));
@@ -390,6 +391,7 @@ public class HomeScreenSeller {
                 rating.setText(Double.toString(seller.getRating()));
                 cityLabel.setText(seller.getCity());
                 locationLabel.setText(seller.getLocation());
+                cityLabel.setText(DBHandlerLocation.setCity(locationLabel.getText()));
 
                 //qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
                 //"qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda
