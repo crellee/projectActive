@@ -499,7 +499,6 @@ public class HomeScreenSeller {
                 seller.setQualiRetail(rs.getInt("qualiRetail"));
                 seller.setQualiPeda(rs.getInt("qualiPeda"));
 
-
                 name.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
                 ageLabel.setText(Integer.toString(seller.getAge()));
@@ -509,10 +508,6 @@ public class HomeScreenSeller {
                 cityLabel.setText(seller.getCity());
                 locationLabel.setText(seller.getLocation());
                 cityLabel.setText(DBHandlerLocation.setCity(locationLabel.getText()));
-
-                //qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
-                //"qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda
-
 
                 if(seller.getQualiCarpenter() == 1)
                 {
