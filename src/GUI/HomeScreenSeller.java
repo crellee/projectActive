@@ -161,7 +161,7 @@ public class HomeScreenSeller {
         locationCol.setPrefWidth(90);
         cityCol.setPrefWidth(150);
         qualificationsCol.setPrefWidth(150);
-        ratingCol.setPrefWidth(80);tablr
+        ratingCol.setPrefWidth(80);
 
         sellersTable.getColumns().addAll(firstNameCol, lastNameCol, emailCol,
                 birthdayCol, ageCol, locationCol, cityCol, qualificationsCol, ratingCol);
