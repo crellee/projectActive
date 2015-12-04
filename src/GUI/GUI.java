@@ -194,7 +194,7 @@ public class GUI extends Application {
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
-            root.setCenter(sellersTable());
+            root.setCenter(getSellersTable());
         });
 
         //buyersBtn
@@ -252,11 +252,11 @@ public class GUI extends Application {
 
         topVBox.getChildren().addAll(headLine, buttonBox);
     }
-    public TableView sellersTable()
+    public TableView getSellersTable()
     {
-        TableView sellersTable = new TableView();
+        TableView getSellersTable = new TableView();
 
-        sellersTable.setPrefWidth(400);
+        getSellersTable.setPrefWidth(400);
         TableColumn name = new TableColumn("Name");
         TableColumn age = new TableColumn("Age");
         TableColumn location = new TableColumn("Location");
@@ -269,9 +269,9 @@ public class GUI extends Application {
         qualifications.setPrefWidth(150);
         rating.setPrefWidth(150);
 
-        sellersTable.getColumns().addAll(name, age, location, qualifications, rating);
+        getSellersTable.getColumns().addAll(name, age, location, qualifications, rating);
 
-        return sellersTable;
+        return getSellersTable;
     }
 
     public TableView buyersTable()

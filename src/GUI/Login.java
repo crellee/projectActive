@@ -99,7 +99,7 @@ public class Login extends Application {
         passwordField.setPrefHeight(30);
 
         //login button
-        Button loginButton = new Button("Login");
+        Button loginButton = new Button("Email");
         loginButton.setDefaultButton(true);
         loginButton.setOnAction(e ->
         {

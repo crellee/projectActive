@@ -100,4 +100,24 @@ public class DBHandlerSeller
 
         return rs;
     }
+
+
+    public static ResultSet getUserInformationForTable()
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, email, birthday, age, location, qualiCarpenter, " +
+                    "qualiJanitor, qualiCleaner, qualiWaiter, qualiChef," +
+                    "qualiBartender, qualiStore, qualiRetail, qualiPeda, rating FROM Sellers";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+        return rs;
+    }
+
 }
