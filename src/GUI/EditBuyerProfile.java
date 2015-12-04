@@ -145,7 +145,6 @@ public class EditBuyerProfile
             {
                 root.setBottom(passwordNotSame);
             }
-            //cvrNoField.getLength() > 8 && cvrNoField.getLength() < 8
             else if(cvrNoField.getLength() != 8)
             {
                 root.setBottom(cvrMax8);
