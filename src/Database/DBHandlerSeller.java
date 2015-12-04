@@ -22,7 +22,6 @@ public class DBHandlerSeller
                                   int bartender, int store, int retail,
                                   int peda, ComboBox location)
     {
-        System.out.print("Entered function 1");
         String firstNameStr = firstName.getText();
         String lastNameStr = lastName.getText();
         String birthDateStr = birthdate.getValue().toString();
@@ -104,6 +103,7 @@ public class DBHandlerSeller
 
     public static ResultSet getUserInformationForTable()
     {
+
         ResultSet rs = null;
         try
         {
@@ -111,6 +111,25 @@ public class DBHandlerSeller
             String sqlString = "SELECT firstName, lastName, email, birthday, age, location, qualiCarpenter, " +
                     "qualiJanitor, qualiCleaner, qualiWaiter, qualiChef," +
                     "qualiBartender, qualiStore, qualiRetail, qualiPeda, rating FROM Sellers";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+        return rs;
+    }
+
+    public static ResultSet getUserInformationForEdit()
+    {
+        String email = LoginVerifier.getEmail();
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, birthday, email, location, password,  " +
+                    "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter, qualiChef, " +
+                    "qualiBartender, qualiStore, qualiRetail, qualiPeda FROM Sellers WHERE email = '"+email+"'";
             rs = conn.createStatement().executeQuery(sqlString);
         }
         catch (Exception e)

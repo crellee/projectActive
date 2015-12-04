@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import sun.rmi.runtime.Log;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.

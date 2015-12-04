@@ -16,7 +16,6 @@ import java.sql.SQLException;
 //DBHandlerBuyer contains methods which have to do with Controller.Buyer and the connection to the database
 public class DBHandlerBuyer
 {
-
     //This method takes parameters from the GUI and saves the information in a database.
     //The parameters are saved as Strings before inserted into the Buyers table.
     public static void saveBuyer(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,

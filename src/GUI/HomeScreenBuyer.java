@@ -232,14 +232,9 @@ public class HomeScreenBuyer
 
     public static BorderPane myProfileWindow() {
 
-
-
         //GUI Seller
-
         BorderPane rootMyProfileBuyer = new BorderPane();
-//        Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
-        rootMyProfileBuyer.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
-
+        rootMyProfileBuyer.setStyle("-fx-background-color: #bfeef4");
 
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
@@ -250,8 +245,6 @@ public class HomeScreenBuyer
         VBox vBox2 = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
-
-
 
         // Separator
         Separator separator = new Separator();
@@ -273,9 +266,9 @@ public class HomeScreenBuyer
             EditBuyerProfile.openWindow();
         });
 
-        Label name = new Label();
-        name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
-        name.setPadding(new Insets(20, 0, 0, 0));
+        Label firstName = new Label();
+        firstName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        firstName.setPadding(new Insets(20, 0, 0, 0));
         Label lastName = new Label();
         lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         lastName.setPadding(new Insets(20, 0, 0, 0));
@@ -286,9 +279,6 @@ public class HomeScreenBuyer
         ratingLabel.setPadding(new Insets(27, 0, 0, 0));
         ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 25));
         ratingLabel.setAlignment(Pos.CENTER);
-   /*   Label age = new Label("35");
-        age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
-        age.setPadding(new Insets(30,0,0,0)); */
         Label businessNameLabel = new Label();
         businessNameLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label businessNameLabelLabel = new Label("Business Name:");
@@ -310,28 +300,23 @@ public class HomeScreenBuyer
         Label cvrLabelLabel = new Label("CVR No:");
         cvrLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
 
-
         //Picture
         Image img = new Image("http://www.fscspatriots.org/wp-content/uploads/2014/12/no_photo_available-male.jpg");
         ImageView imageview = new ImageView(img);
         imageview.setFitHeight(232.6);
         imageview.setFitWidth(172.5);
 
-
-
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(name, businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
+        vBox1.getChildren().addAll(firstName, businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
                 cvrLabelLabel);
         vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
         //vboxButton.getChildren().add(null);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
 
-
         rootMyProfileBuyer.setCenter(profilHBox);
         rootMyProfileBuyer.setLeft(profilVBox);
-
 
         ResultSet rs = DBHandlerBuyer.getUserInformations();
         try {
@@ -346,8 +331,7 @@ public class HomeScreenBuyer
                 buyer.setCvr(rs.getInt("cvr"));
                 buyer.setRating(rs.getDouble("rating"));
 
-
-                name.setText(buyer.getFirstName());
+                firstName.setText(buyer.getFirstName());
                 lastName.setText(buyer.getLastName());
                 businessNameLabel.setText(buyer.getBusinessName());
                 businessEmailLabel.setText(buyer.getBusinessEmail());
@@ -359,8 +343,6 @@ public class HomeScreenBuyer
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
 
         return rootMyProfileBuyer;
     }

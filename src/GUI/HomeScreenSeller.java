@@ -167,7 +167,6 @@ public class HomeScreenSeller {
                 birthdayCol, ageCol, locationCol, cityCol, qualificationsCol, ratingCol);
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("firstName"));
-
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("lastName"));
         birthdayCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("birthday"));
         emailCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("email"));
@@ -331,32 +330,21 @@ public class HomeScreenSeller {
 
     public static BorderPane myProfileWindow() {
 
-
-
         //GUI Seller
-
         BorderPane rootMyProfileSeller = new BorderPane();
-        //Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
-        rootMyProfileSeller.setStyle("-fx-background-color: #bfeef4"  );
-
+        rootMyProfileSeller.setStyle("-fx-background-color: #bfeef4");
 
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vBox1 = new VBox(30);
-        vBox1.setPadding(new Insets(0,20,0,0));
-        VBox vBox2 = new VBox(30);
-        vBox2.setPrefWidth(300);
+        VBox vBox1 = new VBox();
+        VBox vBox2 = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
-        VBox vboxCombobox = new VBox(10);
-        vboxCombobox.setPadding(new Insets(30, 30, 30, 100));
-        VBox vboxINFofirtname = new VBox(10);
-        VBox vboxINFOlastname = new VBox(10);
-
-
+        VBox vBoxCheckBox = new VBox(10);
+        vBoxCheckBox.setPadding(new Insets(30,30,30,100));
 
         // Separator
         Separator separator = new Separator();
@@ -366,13 +354,6 @@ public class HomeScreenSeller {
         separator.setMaxHeight(550);
         separator.setPadding(new Insets(20, 10, 20, 10));
 
-        Separator separator2 = new Separator();
-        InnerShadow innerShadow2 = new InnerShadow();
-        separator2.setEffect(innerShadow2);
-        separator2.setOrientation(Orientation.VERTICAL);
-        separator2.setMaxHeight(550);
-        separator2.setPadding(new Insets(20, 10, 20, 10));
-
         //Labels, Buttons
         Button buttonUpdate = new Button("Edit profile");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -380,23 +361,24 @@ public class HomeScreenSeller {
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(125);
         buttonUpdate.setPrefHeight(25);
+        buttonUpdate.setOnAction(e ->
+        {
+            EditSellerProfile.openWindow();
+        });
 
-        Label name = new Label();
-        name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
-        name.setPadding(new Insets(20, 0, 0, 0));
+        Label firstName = new Label();
+        firstName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        firstName.setPadding(new Insets(20, 0, 0, 0));
         Label lastName = new Label();
         lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         lastName.setPadding(new Insets(20, 0, 0, 0));
         Label rating = new Label("");
         rating.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         rating.setPadding(new Insets(20, 0, 0, 0));
-        Label ratingLabel = new Label("RATING:");
+        Label ratingLabel = new Label("              RATING:   ");
         ratingLabel.setPadding(new Insets(27, 0, 0, 0));
         ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 25));
         ratingLabel.setAlignment(Pos.CENTER);
-   /*   Label age = new Label("35");
-        age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
-        age.setPadding(new Insets(30,0,0,0)); */
         Label checkBoxLabel = new Label("My qualifications:");
         checkBoxLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 20));
         Label ageLabel = new Label();
@@ -455,28 +437,18 @@ public class HomeScreenSeller {
         pedagogueCheck.setDisable(true);
         pedagogueCheck.setStyle("-fx-opacity: 1");
 
-
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxINFofirtname.getChildren().addAll(mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel, locationLabelLabel);
-        vboxINFOlastname.getChildren().addAll(mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
-        vBox1.getChildren().addAll(name, vboxINFofirtname);
-        vBox2.getChildren().addAll(lastName, vboxINFOlastname);
-        vboxCombobox.getChildren().addAll(checkBoxLabel ,carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
-                storeCheck, retailCheck, pedagogueCheck);
-//      vboxButton.getChildren().add(buttonUpdate);
+        vBox1.getChildren().addAll(firstName, mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel,
+                locationLabelLabel);
+        vBox2.getChildren().addAll(lastName, mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
+        vBoxCheckBox.getChildren().addAll(checkBoxLabel,carpenterCheck,janitorCheck, cleanerCheck,waiterCheck,chefCheck,
+                bartenderCheck, storeCheck,retailCheck,pedagogueCheck);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
-        profilHBox.getChildren().addAll(separator, vBox1, vBox2, separator2, ratingLabel, rating, vboxCombobox, vboxButton);
+        profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vBoxCheckBox);
+
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
-
-        /*
-        buttonUpdate.setOnAction(e -> {
-
-
-        });
-        */
-
 
         ResultSet rs = DBHandlerSeller.getUserInformations();
         try {
@@ -499,7 +471,7 @@ public class HomeScreenSeller {
                 seller.setQualiRetail(rs.getInt("qualiRetail"));
                 seller.setQualiPeda(rs.getInt("qualiPeda"));
 
-                name.setText(seller.getFirstName());
+                firstName.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
                 ageLabel.setText(Integer.toString(seller.getAge()));
                 birthLabel.setText(seller.getBirthday());
@@ -553,9 +525,6 @@ public class HomeScreenSeller {
                 {
                     pedagogueCheck.setSelected(true);
                 }
-
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
