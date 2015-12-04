@@ -111,7 +111,7 @@ public class DBHandlerSeller
             Connection conn = DBConnection.getConnection();
             String sqlString = "SELECT firstName, lastName, email, birthday, age, location, qualiCarpenter, " +
                     "qualiJanitor, qualiCleaner, qualiWaiter, qualiChef," +
-                    "qualiBartender, qualiStore, qualiRetail, qualiPeda FROM Sellers";
+                    "qualiBartender, qualiStore, qualiRetail, qualiPeda, rating FROM Sellers";
             rs = conn.createStatement().executeQuery(sqlString);
             System.out.println("executed fuck");
             /*

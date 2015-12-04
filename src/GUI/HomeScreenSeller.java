@@ -145,31 +145,29 @@ public class HomeScreenSeller {
         sellersTable.setPrefWidth(400);
         TableColumn firstNameCol = new TableColumn("First name");
         TableColumn lastNameCol = new TableColumn("Last name");
-
         TableColumn birthdayCol = new TableColumn("Birthday");
         TableColumn emailCol = new TableColumn("Email");
         TableColumn ageCol = new TableColumn("Age");
-
         TableColumn locationCol = new TableColumn("Location");
         TableColumn cityCol = new TableColumn("City");
         TableColumn qualificationsCol = new TableColumn("Qualifications");
-        /*
         TableColumn ratingCol = new TableColumn("Rating");
-        */
 
         firstNameCol.setPrefWidth(150);
         lastNameCol.setPrefWidth(150);
         birthdayCol.setPrefWidth(100);
+        emailCol.setPrefWidth(170);
         ageCol.setPrefWidth(50);
         locationCol.setPrefWidth(90);
+        cityCol.setPrefWidth(150);
         qualificationsCol.setPrefWidth(150);
-        //ratingCol.setPrefWidth(50);
-
+        ratingCol.setPrefWidth(80);tablr
 
         sellersTable.getColumns().addAll(firstNameCol, lastNameCol, emailCol,
-                birthdayCol, ageCol, locationCol, cityCol, qualificationsCol);
+                birthdayCol, ageCol, locationCol, cityCol, qualificationsCol, ratingCol);
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("firstName"));
+
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("lastName"));
         birthdayCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("birthday"));
         emailCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("email"));
@@ -177,9 +175,7 @@ public class HomeScreenSeller {
         locationCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("location"));
         cityCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("city"));
         qualificationsCol.setCellValueFactory(new PropertyValueFactory<Seller, ArrayList<String>>("qualifications"));
-        /*
-        ratingCol.setCellFactory(new PropertyValueFactory<Seller, Double>("rating"));
-        */
+        ratingCol.setCellValueFactory(new PropertyValueFactory<Seller, Double>("rating"));
 
         ObservableList<Seller> data = FXCollections.observableArrayList();
         try
@@ -254,9 +250,9 @@ public class HomeScreenSeller {
                    //qualificationsCellList.add("\nPedagogue");
                     seller.setQualifications("\nPedagogue");
                 }
-                //Call set qualifications in Seller class which takes an Arraylist as parameter.
-                //Pass abovemade ArrayList into method.
-                //seller.setQualifications(qualificationsCellList);
+                seller.setRating(rs.getDouble("rating"));
+
+
                 data.add(seller);
             }
             sellersTable.setItems(data);
@@ -341,7 +337,7 @@ public class HomeScreenSeller {
 
         BorderPane rootMyProfileSeller = new BorderPane();
         //Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
-        rootMyProfileSeller.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
+        rootMyProfileSeller.setStyle("-fx-background-color: #bfeef4"  );
 
 
         //VBox and HBox
@@ -458,9 +454,6 @@ public class HomeScreenSeller {
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
         pedagogueCheck.setDisable(true);
         pedagogueCheck.setStyle("-fx-opacity: 1");
-
-
-
 
 
         //Tilføjelser til HBox, VBox og Borderpane
