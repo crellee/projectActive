@@ -135,8 +135,9 @@ public class TableCreator
                     "fromDate VARCHAR(30) NOT NULL," +
                     "toDate VARCHAR(30) NOT NULL," +
                     "numOfDays INT(4) NOT NULL," +
-                    "numberOfHours VARCHAR(20) NOT NULL," +
-                    "cellNumber VARCHAR(20) NOT NULL," +
+                    "numberOfHours INT(8) NOT NULL," +
+                    "cellNumber INT(8) NOT NULL," +
+                    "businessEmail VARCHAR(30) NOT NULL," +
                     "PRIMARY KEY (jobDescription))";
 
 

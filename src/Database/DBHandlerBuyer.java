@@ -86,6 +86,25 @@ public class DBHandlerBuyer
 
         return rs;
     }
+
+    public static ResultSet getUserInformationsForTable()
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
+                    " FROM Buyers ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
+    }
+
     public static void updateBuyerProfile(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
                                           PasswordField password, ComboBox location, TextField cvr)
     {
