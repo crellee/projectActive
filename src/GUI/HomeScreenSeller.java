@@ -384,7 +384,7 @@ public class HomeScreenSeller {
         Label ageLabel = new Label();
         ageLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label ageLabelLabel = new Label("Age:");
-        ageLabelLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 15));
+        ageLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label birthLabel = new Label();
         birthLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label birthLabelLabel = new Label("Birthday:");
