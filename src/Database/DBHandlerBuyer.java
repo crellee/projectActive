@@ -123,11 +123,9 @@ public class DBHandlerBuyer
 
             String sqlString = "UPDATE Buyers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
                     "businessName='"+businessNameStr+"', password='"+passwordStr+"', location='"+locationStr+"'," +
-                    "cvr='"+cvrInt+"'  WHERE businessEmail = '"+businessEmailStr+"'";
+                    "cvr='"+cvrInt+"' WHERE businessEmail = '"+businessEmailStr+"'";
 
             stmt.executeUpdate(sqlString);
-
-
         }
         catch(Exception e1)
         {

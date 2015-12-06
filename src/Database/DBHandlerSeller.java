@@ -6,6 +6,7 @@ import com.mysql.jdbc.Statement;
 import javafx.scene.control.*;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -57,6 +58,52 @@ public class DBHandlerSeller
             System.out.print("Controller.Seller saved");
         }
         catch (Exception e)
+        {
+
+        }
+    }
+
+    /*
+    DBHandlerSeller.updateSellerProfile(firstNameField, lastNameField, passwordField,
+                            locationCombo, carpenterCheck, janitorCheck, cleanerCheck, waiterCheck,
+                            chefCheck, bartenderCheck, storeCheck, retailCheck, pedagogueCheck);
+     */
+
+    public static void updateSellerProfile(TextField email, TextField firstName, TextField lastName, DatePicker birthdate,
+                                  PasswordField password, ComboBox location,int carpenter, int janitor,
+                                  int cleaner, int waiter, int chef,
+                                  int bartender, int store, int retail,
+                                  int peda)
+    {
+        String emailStr = email.getText();
+        String firstNameStr = firstName.getText();
+        String lastNameStr = lastName.getText();
+        String birthDateStr = birthdate.getValue().toString();
+        String passwordStr = password.getText();
+        String locationStr = location.getValue().toString();
+        System.out.print(locationStr);
+        int age = calcAge(birthDateStr);
+        System.out.print(age);
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            Statement stmt = (Statement) conn.createStatement();
+
+            System.out.print("Trying to update");
+            String sqlString = "UPDATE Sellers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
+                    "birthday='"+birthDateStr+"', age = '"+age+"', password='"+passwordStr+"'," +
+                    "qualiCarpenter='"+carpenter+"', qualiJanitor='"+janitor+"'," +
+                    "qualiCleaner='"+cleaner+"', qualiWaiter='"+waiter+"'," +
+                    "qualifChef='"+chef+"', qualiBartender='"+bartender+"'," +
+                    "qualiStore='"+store+"', qualiRetail='"+retail+"'," +
+                    "qualiPeda='"+peda+"', location = '"+locationStr+"' WHERE email = '"+emailStr+"'";
+
+            System.out.print("About to execute");
+            stmt.executeUpdate(sqlString);
+            System.out.print("executed");
+        }
+        catch(SQLException e)
         {
 
         }

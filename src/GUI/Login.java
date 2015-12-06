@@ -82,7 +82,7 @@ public class Login extends Application {
         window.setResizable(false);
 
         //user Label
-        Label userLabel = new Label("Login");
+        Label userLabel = new Label("Email");
         userLabel.setPrefWidth(200);
 
         //
@@ -100,7 +100,7 @@ public class Login extends Application {
         passwordField.setPrefHeight(30);
 
         //login button
-        Button loginButton = new Button("Email");
+        Button loginButton = new Button("Login");
         loginButton.setDefaultButton(true);
         loginButton.setOnAction(e ->
         {

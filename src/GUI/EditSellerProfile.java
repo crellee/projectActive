@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.Checker;
 import Controller.Location;
 import Controller.Seller;
 import Database.DBHandlerBuyer;
@@ -145,8 +146,6 @@ public class EditSellerProfile
         updateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         updateButton.setPrefWidth(150);
         updateButton.setPrefHeight(50);
-
-        /*
         updateButton.setOnAction(e ->
         {
             /*
@@ -158,7 +157,7 @@ public class EditSellerProfile
                 root.setBottom(fillInformationerrorLabel);
             }
             */
-            /*
+
             if (!passwordField.getText().equals(confirmPasswordField.getText()))
             {
                 root.setBottom(passwordNotSame);
@@ -167,7 +166,19 @@ public class EditSellerProfile
             {
                 try
                 {
-                    DBHandlerSeller.updateSellerProfile(firstNameField, lastNameField, passwordField, locationCombo, );
+                    int carpenterInt = Checker.checkSelected(carpenterCheck);
+                    int janitorInt = Checker.checkSelected(janitorCheck);
+                    int cleanerInt = Checker.checkSelected(cleanerCheck);
+                    int waiterInt = Checker.checkSelected(waiterCheck);
+                    int chefInt = Checker.checkSelected(chefCheck);
+                    int bartenderInt = Checker.checkSelected(bartenderCheck);
+                    int storeInt = Checker.checkSelected(storeCheck);
+                    int retailInt = Checker.checkSelected(retailCheck);
+                    int pedaInt = Checker.checkSelected(pedagogueCheck);
+
+                    DBHandlerSeller.updateSellerProfile(emailField, firstNameField, lastNameField, birthdateField, passwordField,
+                            locationCombo, carpenterInt, janitorInt, cleanerInt,  waiterInt,
+                            chefInt, bartenderInt, storeInt, retailInt, pedaInt);
                     window.close();
                 }
                 catch(NullPointerException e1)
@@ -177,7 +188,7 @@ public class EditSellerProfile
             }
 
         });
-        */
+
 
         VBox checkRow1Box = new VBox();
         checkRow1Box.getChildren().addAll(carpenterCheck, janitorCheck,cleanerCheck);
@@ -220,9 +231,7 @@ public class EditSellerProfile
                 Seller seller = new Seller();
                 seller.setFirstName(rs2.getString("firstName"));
                 seller.setLastName(rs2.getString("lastName"));
-                /*
                 seller.setBirthday(rs2.getString("birthday"));
-                */
                 seller.setEmail(rs2.getString("email"));
                 seller.setPassword(rs2.getString("password"));
                 seller.setQualiCarpenter(rs2.getInt("qualiCarpenter"));
@@ -240,6 +249,7 @@ public class EditSellerProfile
                 lastNameField.setText(seller.getLastName());
                 emailField.setText(seller.getEmail());
                 passwordField.setText(seller.getPassword());
+                birthdateField.setValue(LocalDate.parse(seller.getBirthday()));
                 locationCombo.setValue(seller.getLocation());
                 cityField.setText(DBHandlerLocation.setCity(locationCombo.getValue().toString()));
                 if(seller.getQualiCarpenter() == 1)
