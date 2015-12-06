@@ -27,6 +27,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -383,7 +384,7 @@ public class HomeScreenSeller {
                 fromDate, toDate, numofDays, numberOfHours, cellNumber, rating, salary);
 
         jobDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("jobDescription"));
-        businessEmail.setCellValueFactory(new PropertyValueFactory<Buyer, String>("businessName"));
+        businessEmail.setCellValueFactory(new PropertyValueFactory<Task, String>("businessEmail"));
         location.setCellValueFactory(new PropertyValueFactory<Task, String>("location"));
         city.setCellValueFactory(new PropertyValueFactory<Task, String>("city"));
         requiredQualification.setCellValueFactory(new PropertyValueFactory<Task, String>("requiredQualification"));
@@ -392,15 +393,13 @@ public class HomeScreenSeller {
         numofDays.setCellValueFactory(new PropertyValueFactory<Task, Integer>("numOfDays"));
         numberOfHours.setCellValueFactory(new PropertyValueFactory<Task, Integer>("numberOfHours"));
         cellNumber.setCellValueFactory(new PropertyValueFactory<Task, Integer>("cellNumber"));
-        rating.setCellValueFactory(new PropertyValueFactory<Buyer, Double>("rating"));
+        rating.setCellValueFactory(new PropertyValueFactory<Task, Double>("rating"));
         salary.setCellValueFactory(new PropertyValueFactory<Task, Integer>("salary"));
 
-        ObservableList<Task> data = FXCollections.observableArrayList();
 
+        ObservableList<Task> data2 = FXCollections.observableArrayList();
         try {
-            ResultSet rs = DBHandlerTask.getTaskInformationsForTable();
-
-
+            ResultSet rs = DBHandlerTask.getAllTaskInfoForTable();
             while (rs.next())
             {
 
@@ -416,11 +415,15 @@ public class HomeScreenSeller {
                 task.setNumberOfHours(rs.getInt("numberOfHours"));
                 task.setCellNumber(rs.getInt("cellNumber"));
                 task.setSalary(rs.getString("salary"));
+                task.setBusinessEmail(rs.getString("businessEmail"));
+                task.setRating(rs.getDouble("rating"));
 
-                data.add(task);
+
+                data2.add(task);
+
 
             }
-            tasksTable.setItems(data);
+            tasksTable.setItems(data2);
         }
 
         catch(Exception e)

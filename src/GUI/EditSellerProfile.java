@@ -220,9 +220,7 @@ public class EditSellerProfile
                 Seller seller = new Seller();
                 seller.setFirstName(rs2.getString("firstName"));
                 seller.setLastName(rs2.getString("lastName"));
-                /*
                 seller.setBirthday(rs2.getString("birthday"));
-                */
                 seller.setEmail(rs2.getString("email"));
                 seller.setPassword(rs2.getString("password"));
                 seller.setQualiCarpenter(rs2.getInt("qualiCarpenter"));
@@ -236,6 +234,7 @@ public class EditSellerProfile
                 seller.setQualiPeda(rs2.getInt("qualiPeda"));
                 seller.setLocation(rs2.getString("location"));
 
+                birthdateField.setValue(LocalDate.parse(seller.getBirthday().toString()));
                 firstNameField.setText(seller.getFirstName());
                 lastNameField.setText(seller.getLastName());
                 emailField.setText(seller.getEmail());
