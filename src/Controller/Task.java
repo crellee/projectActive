@@ -16,13 +16,16 @@ public class Task {
     private int numberOfHours;
     private int cellNumber;
     private String businessEmail;
+    private double rating;
+    private String businessName;
 
     public Task()
     {
 
     }
     public Task(String jobDescription, String location, String city, String requiredQualification, String salary,
-                String fromDate, String toDate, int numOfDays, int numberOfHours, int cellNumber, String businessEmail)
+                String fromDate, String toDate, int numOfDays, int numberOfHours, int cellNumber, String businessEmail,
+                double rating, String businessName)
     {
         this.jobDescription = jobDescription;
         this.location = location;
@@ -35,6 +38,24 @@ public class Task {
         this.numberOfHours = numberOfHours;
         this.cellNumber = cellNumber;
         this.businessEmail = businessEmail;
+        this.rating = rating;
+        this.businessName = businessName;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getBusinessEmail() {

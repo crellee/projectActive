@@ -245,6 +245,7 @@ public class EditSellerProfile
                 seller.setQualiPeda(rs2.getInt("qualiPeda"));
                 seller.setLocation(rs2.getString("location"));
 
+                birthdateField.setValue(LocalDate.parse(seller.getBirthday().toString()));
                 firstNameField.setText(seller.getFirstName());
                 lastNameField.setText(seller.getLastName());
                 emailField.setText(seller.getEmail());

@@ -59,7 +59,7 @@ public class DBHandlerTask
         try
         {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT jobDescription, location, city, requiredQualification, salary, fromDate," +
+            String sqlString = "SELECT jobDescription, businessEmail, location, city, requiredQualification, salary, fromDate," +
                     " toDate, numOfDays, numberOfHours, cellNumber FROM Tasks ";
             rs = conn.createStatement().executeQuery(sqlString);
         }
@@ -70,5 +70,23 @@ public class DBHandlerTask
 
         return rs;
     }
+    public static ResultSet getAllTaskInfoForTable()
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers as b1 " +
+                    "ON t1.businessEmail = b1.businessEmail ";
+            rs = conn.createStatement().executeQuery(sqlString);
+
+        }
+        catch (Exception e)
+        {
+
+        }
+        return rs;
+    }
+
 
 }
