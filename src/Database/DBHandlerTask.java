@@ -76,7 +76,7 @@ public class DBHandlerTask
         try
         {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT t1.* , b1.rating FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers as b1 " +
+            String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers as b1 " +
                     "ON t1.businessEmail = b1.businessEmail ";
             rs = conn.createStatement().executeQuery(sqlString);
 

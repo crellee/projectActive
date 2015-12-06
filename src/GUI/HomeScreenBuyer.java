@@ -5,6 +5,9 @@ import Controller.Seller;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
+import Diagrams.BuyersTable;
+import Diagrams.SellersTable;
+import Diagrams.TasksTable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -71,7 +74,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
-            root.setCenter(sellersTable());
+            root.setCenter(SellersTable.getSellersTable());
         });
 
         //buyersBtn
@@ -83,7 +86,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
-            root.setCenter(buyersTable());
+            root.setCenter(BuyersTable.getBuyersTable());
         });
 
         //matchesBtn
@@ -107,7 +110,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
-            root.setCenter(tasksTable());
+            root.setCenter(TasksTable.getTasksTable());
         });
 
         //myProfileBtn
@@ -144,46 +147,6 @@ public class HomeScreenBuyer
         topVBox.getChildren().addAll(topHBox, buttonBox);
     }
 
-    public static TableView sellersTable() {
-        TableView sellersTable = new TableView();
-
-        sellersTable.setPrefWidth(400);
-        TableColumn name = new TableColumn("Name");
-        TableColumn age = new TableColumn("Age");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualifications");
-        TableColumn rating = new TableColumn("Rating");
-
-        name.setPrefWidth(150);
-        age.setPrefWidth(150);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(150);
-
-        sellersTable.getColumns().addAll(name, age, location, qualifications, rating);
-
-        return sellersTable;
-    }
-
-    public static TableView buyersTable() {
-        TableView buyersTable = new TableView();
-
-        buyersTable.setPrefWidth(400);
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualifications");
-        TableColumn rating = new TableColumn("Rating");
-
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-
-        buyersTable.getColumns().addAll(buyerDescription, location, qualifications, rating);
-
-        return buyersTable;
-    }
-
     public static TableView matchesTable() {
         TableView matchesTable = new TableView();
 
@@ -207,28 +170,6 @@ public class HomeScreenBuyer
         return matchesTable;
     }
 
-    public static TableView tasksTable() {
-        TableView tasksTable = new TableView();
-
-        tasksTable.setPrefWidth(400);
-        TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualification(s)");
-        TableColumn rating = new TableColumn("Rating");
-        TableColumn salary = new TableColumn("Salary");
-
-        jobDescription.setPrefWidth(300);
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-        salary.setPrefWidth(80);
-
-        tasksTable.getColumns().addAll(jobDescription, buyerDescription, location, qualifications, rating, salary);
-
-        return tasksTable;
-    }
 
     public static BorderPane myProfileWindow() {
 
