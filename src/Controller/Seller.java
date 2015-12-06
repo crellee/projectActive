@@ -16,8 +16,7 @@ public class Seller
     private int age;
     private String email;
     private String password;
-    //private ArrayList<String> qualifications = new ArrayList<>();
-    private  String qualifications = "";
+    private String qualifications = "";
     private String location;
     private double rating = 0.0;
     private String city;

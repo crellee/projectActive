@@ -5,6 +5,10 @@ import Controller.Seller;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
+import Diagrams.BuyersTable;
+import Diagrams.MatchesTable;
+import Diagrams.SellersTable;
+import Diagrams.TasksTable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -71,7 +75,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
-            root.setCenter(sellersTable());
+            root.setCenter(SellersTable.getSellersTable());
         });
 
         //buyersBtn
@@ -83,7 +87,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
-            root.setCenter(buyersTable());
+            root.setCenter(BuyersTable.getBuyersTable());
         });
 
         //matchesBtn
@@ -95,7 +99,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            root.setCenter(matchesTable());
+            root.setCenter(MatchesTable.matchesTable());
         });
 
         //taskBtn
@@ -107,7 +111,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
-            root.setCenter(tasksTable());
+            root.setCenter(TasksTable.getTasksTable());
         });
 
         //myProfileBtn
@@ -144,46 +148,6 @@ public class HomeScreenBuyer
         topVBox.getChildren().addAll(topHBox, buttonBox);
     }
 
-    public static TableView sellersTable() {
-        TableView sellersTable = new TableView();
-
-        sellersTable.setPrefWidth(400);
-        TableColumn name = new TableColumn("Name");
-        TableColumn age = new TableColumn("Age");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualifications");
-        TableColumn rating = new TableColumn("Rating");
-
-        name.setPrefWidth(150);
-        age.setPrefWidth(150);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(150);
-
-        sellersTable.getColumns().addAll(name, age, location, qualifications, rating);
-
-        return sellersTable;
-    }
-
-    public static TableView buyersTable() {
-        TableView buyersTable = new TableView();
-
-        buyersTable.setPrefWidth(400);
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualifications");
-        TableColumn rating = new TableColumn("Rating");
-
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-
-        buyersTable.getColumns().addAll(buyerDescription, location, qualifications, rating);
-
-        return buyersTable;
-    }
-
     public static TableView matchesTable() {
         TableView matchesTable = new TableView();
 
@@ -207,39 +171,12 @@ public class HomeScreenBuyer
         return matchesTable;
     }
 
-    public static TableView tasksTable() {
-        TableView tasksTable = new TableView();
-
-        tasksTable.setPrefWidth(400);
-        TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualification(s)");
-        TableColumn rating = new TableColumn("Rating");
-        TableColumn salary = new TableColumn("Salary");
-
-        jobDescription.setPrefWidth(300);
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-        salary.setPrefWidth(80);
-
-        tasksTable.getColumns().addAll(jobDescription, buyerDescription, location, qualifications, rating, salary);
-
-        return tasksTable;
-    }
 
     public static BorderPane myProfileWindow() {
 
-
-
         //GUI Seller
-
         BorderPane rootMyProfileBuyer = new BorderPane();
-//        Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
-        rootMyProfileBuyer.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #bfeef4, #bfeef4)");
-
+        rootMyProfileBuyer.setStyle("-fx-background-color: #bfeef4");
 
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
@@ -250,10 +187,6 @@ public class HomeScreenBuyer
         VBox vBox2 = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
-        VBox vboxInfo = new VBox(10);
-        VBox vboxInfo1 = new VBox(10);
-
-
 
         // Separator
         Separator separator = new Separator();
@@ -275,9 +208,9 @@ public class HomeScreenBuyer
             EditBuyerProfile.openWindow();
         });
 
-        Label name = new Label();
-        name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
-        name.setPadding(new Insets(20, 0, 0, 0));
+        Label firstName = new Label();
+        firstName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        firstName.setPadding(new Insets(20, 0, 0, 0));
         Label lastName = new Label();
         lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         lastName.setPadding(new Insets(20, 0, 0, 0));
@@ -288,9 +221,6 @@ public class HomeScreenBuyer
         ratingLabel.setPadding(new Insets(27, 0, 0, 0));
         ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 25));
         ratingLabel.setAlignment(Pos.CENTER);
-   /*   Label age = new Label("35");
-        age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
-        age.setPadding(new Insets(30,0,0,0)); */
         Label businessNameLabel = new Label();
         businessNameLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label businessNameLabelLabel = new Label("Business Name:");
@@ -312,30 +242,23 @@ public class HomeScreenBuyer
         Label cvrLabelLabel = new Label("CVR No:");
         cvrLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
 
-
         //Picture
         Image img = new Image("http://www.fscspatriots.org/wp-content/uploads/2014/12/no_photo_available-male.jpg");
         ImageView imageview = new ImageView(img);
         imageview.setFitHeight(232.6);
         imageview.setFitWidth(172.5);
 
-
-        vboxInfo.getChildren().addAll(businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
-                cvrLabelLabel);
-        vboxInfo1.getChildren().addAll( businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
-
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(name, vboxInfo);
-        vBox2.getChildren().addAll(lastName, vboxInfo1);
+        vBox1.getChildren().addAll(firstName, businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
+                cvrLabelLabel);
+        vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
         //vboxButton.getChildren().add(null);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
 
-
         rootMyProfileBuyer.setCenter(profilHBox);
         rootMyProfileBuyer.setLeft(profilVBox);
-
 
         ResultSet rs = DBHandlerBuyer.getUserInformations();
         try {
@@ -350,8 +273,7 @@ public class HomeScreenBuyer
                 buyer.setCvr(rs.getInt("cvr"));
                 buyer.setRating(rs.getDouble("rating"));
 
-
-                name.setText(buyer.getFirstName());
+                firstName.setText(buyer.getFirstName());
                 lastName.setText(buyer.getLastName());
                 businessNameLabel.setText(buyer.getBusinessName());
                 businessEmailLabel.setText(buyer.getBusinessEmail());
@@ -363,8 +285,6 @@ public class HomeScreenBuyer
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
 
         return rootMyProfileBuyer;
     }

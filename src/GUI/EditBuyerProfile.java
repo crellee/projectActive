@@ -123,7 +123,7 @@ public class EditBuyerProfile
             cityField.setText(DBHandlerLocation.setCity(no));
         });
 
-        //Create Button
+        //Update button
         Button updateButton = new Button("Update account");
         updateButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         updateButton.setTextFill(Color.WHITE);
@@ -189,7 +189,6 @@ public class EditBuyerProfile
         try {
             while (rs2.next()) {
                 Buyer buyer = new Buyer();
-
                 buyer.setFirstName(rs2.getString("firstName"));
                 buyer.setLastName(rs2.getString("lastName"));
                 buyer.setBusinessName(rs2.getString("businessName"));

@@ -16,7 +16,6 @@ import java.sql.SQLException;
 //DBHandlerBuyer contains methods which have to do with Controller.Buyer and the connection to the database
 public class DBHandlerBuyer
 {
-
     //This method takes parameters from the GUI and saves the information in a database.
     //The parameters are saved as Strings before inserted into the Buyers table.
     public static void saveBuyer(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
@@ -87,6 +86,25 @@ public class DBHandlerBuyer
 
         return rs;
     }
+
+    public static ResultSet getUserInformationsForTable()
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
+                    " FROM Buyers ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
+    }
+
     public static void updateBuyerProfile(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
                                           PasswordField password, ComboBox location, TextField cvr)
     {
@@ -105,11 +123,9 @@ public class DBHandlerBuyer
 
             String sqlString = "UPDATE Buyers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
                     "businessName='"+businessNameStr+"', password='"+passwordStr+"', location='"+locationStr+"'," +
-                    "cvr='"+cvrInt+"'  WHERE businessEmail = '"+businessEmailStr+"'";
+                    "cvr='"+cvrInt+"' WHERE businessEmail = '"+businessEmailStr+"'";
 
             stmt.executeUpdate(sqlString);
-
-
         }
         catch(Exception e1)
         {

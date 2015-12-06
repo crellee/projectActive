@@ -1,8 +1,16 @@
 package GUI;
 
+import Controller.Buyer;
 import Controller.Seller;
+import Controller.Task;
+import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
+import Database.DBHandlerTask;
+import Diagrams.BuyersTable;
+import Diagrams.MatchesTable;
+import Diagrams.SellersTable;
+import Diagrams.TasksTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -25,8 +33,6 @@ import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.StringJoiner;
 
 /**
  * Created by christianhasselstrom on 01/12/2015.
@@ -76,7 +82,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
-            root.setCenter(getSellersTable());
+            root.setCenter(SellersTable.getSellersTable());
         });
 
         //buyersBtn
@@ -88,7 +94,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
-            root.setCenter(buyersTable());
+            root.setCenter(BuyersTable.getBuyersTable());
         });
 
         //matchesBtn
@@ -100,7 +106,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            root.setCenter(matchesTable());
+            root.setCenter(MatchesTable.matchesTable());
         });
 
         //taskBtn
@@ -112,7 +118,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
-            root.setCenter(tasksTable());
+            root.setCenter(TasksTable.getTasksTable());
         });
 
         //myProfileBtn
@@ -139,150 +145,6 @@ public class HomeScreenSeller {
         topVBox.getChildren().addAll(topHBox, buttonBox);
     }
 
-    public static TableView getSellersTable()
-    {
-        TableView<Seller> sellersTable = new TableView();
-        sellersTable.setPrefWidth(400);
-        TableColumn firstNameCol = new TableColumn("First name");
-        TableColumn lastNameCol = new TableColumn("Last name");
-        TableColumn birthdayCol = new TableColumn("Birthday");
-        TableColumn emailCol = new TableColumn("Email");
-        TableColumn ageCol = new TableColumn("Age");
-        TableColumn locationCol = new TableColumn("Location");
-        TableColumn cityCol = new TableColumn("City");
-        TableColumn qualificationsCol = new TableColumn("Qualifications");
-        TableColumn ratingCol = new TableColumn("Rating");
-
-        firstNameCol.setPrefWidth(150);
-        lastNameCol.setPrefWidth(150);
-        birthdayCol.setPrefWidth(100);
-        emailCol.setPrefWidth(170);
-        ageCol.setPrefWidth(50);
-        locationCol.setPrefWidth(90);
-        cityCol.setPrefWidth(150);
-        qualificationsCol.setPrefWidth(150);
-        ratingCol.setPrefWidth(80);
-
-        sellersTable.getColumns().addAll(firstNameCol, lastNameCol, emailCol,
-                birthdayCol, ageCol, locationCol, cityCol, qualificationsCol, ratingCol);
-
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("firstName"));
-
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("lastName"));
-        birthdayCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("birthday"));
-        emailCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("email"));
-        ageCol.setCellValueFactory(new PropertyValueFactory<Seller, Integer>("age"));
-        locationCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("location"));
-        cityCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("city"));
-        qualificationsCol.setCellValueFactory(new PropertyValueFactory<Seller, ArrayList<String>>("qualifications"));
-        ratingCol.setCellValueFactory(new PropertyValueFactory<Seller, Double>("rating"));
-
-        ObservableList<Seller> data = FXCollections.observableArrayList();
-        try
-        {
-            ResultSet rs = DBHandlerSeller.getUserInformationForTable();
-
-            while (rs.next())
-            {
-                Seller seller = new Seller();
-                seller.setFirstName(rs.getString("firstName"));
-                seller.setLastName(rs.getString("lastName"));
-                seller.setEmail(rs.getString("email"));
-                seller.setBirthday(rs.getString("birthday"));
-                seller.setAge(rs.getInt("age"));
-                seller.setLocation(rs.getString("location"));
-                seller.setCity(DBHandlerLocation.setCity(rs.getString("location")));
-
-                //Adding qualifications into an arraylist, and displaying list in a cell
-                //ArrayList<String> qualificationsCellList = new ArrayList<>();
-                seller.setQualiCarpenter(rs.getInt("qualiCarpenter"));
-                if(seller.getQualiCarpenter() == 1)
-                {
-                    //qualificationsCellList.add("\nCarpenter");
-                    seller.setQualifications("Carpenter");
-                }
-                seller.setQualiJanitor(rs.getInt("qualiJanitor"));
-                if(seller.getQualiJanitor() == 1)
-                {
-                    //qualificationsCellList.add("\nJanitor");
-                    seller.setQualifications("\nJanitor");
-                }
-                seller.setQualiCleaner(rs.getInt("qualiCleaner"));
-                if(seller.getQualiCleaner() == 1)
-                {
-                    //qualificationsCellList.add("\nCleaner");
-                    seller.setQualifications("\nCleaner");
-                }
-                seller.setQualiWaiter(rs.getInt("qualiWaiter"));
-                if(seller.getQualiWaiter() == 1)
-                {
-                    //qualificationsCellList.add("\nWaiter");
-                    seller.setQualifications("\nWaiter");
-                }
-                seller.setQualiChef(rs.getInt("qualiChef"));
-                if(seller.getQualiChef() == 1)
-                {
-                    //qualificationsCellList.add("\nChef");
-                    seller.setQualifications("\nChef");
-                }
-                seller.setQualiBartender(rs.getInt("qualiBartender"));
-                if(seller.getQualiBartender() == 1)
-                {
-                    //qualificationsCellList.add("\nBartender");
-                    seller.setQualifications("\nBartender");
-                }
-
-                seller.setQualiStore(rs.getInt("qualiStore"));
-                if(seller.getQualiStore() == 1)
-                {
-                    //qualificationsCellList.add("\nStore employee");
-                    seller.setQualifications("\nStore employee");
-                }
-                seller.setQualiRetail(rs.getInt("qualiRetail"));
-                if(seller.getQualiRetail() == 1)
-                {
-                    //qualificationsCellList.add("\nRetail");
-                    seller.setQualifications("\nRetail");
-                }
-                seller.setQualiPeda(rs.getInt("qualiPeda"));
-                if(seller.getQualiPeda() == 1)
-                {
-                   //qualificationsCellList.add("\nPedagogue");
-                    seller.setQualifications("\nPedagogue");
-                }
-                seller.setRating(rs.getDouble("rating"));
-
-
-                data.add(seller);
-            }
-            sellersTable.setItems(data);
-        }
-        catch (Exception e)
-        {
-
-        }
-        return sellersTable;
-    }
-
-    public static TableView buyersTable() {
-        TableView buyersTable = new TableView();
-
-        buyersTable.setPrefWidth(400);
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualifications");
-        TableColumn rating = new TableColumn("Rating");
-
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-
-        buyersTable.getColumns().addAll(buyerDescription, location, qualifications, rating);
-
-        return buyersTable;
-    }
-
     public static TableView matchesTable() {
         TableView matchesTable = new TableView();
 
@@ -306,57 +168,23 @@ public class HomeScreenSeller {
         return matchesTable;
     }
 
-    public static TableView tasksTable() {
-        TableView tasksTable = new TableView();
-
-        tasksTable.setPrefWidth(400);
-        TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualification(s)");
-        TableColumn rating = new TableColumn("Rating");
-        TableColumn salary = new TableColumn("Salary");
-
-        jobDescription.setPrefWidth(300);
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-        salary.setPrefWidth(80);
-
-        tasksTable.getColumns().addAll(jobDescription, buyerDescription, location, qualifications, rating, salary);
-
-        return tasksTable;
-    }
-
     public static BorderPane myProfileWindow() {
 
-
-
         //GUI Seller
-
         BorderPane rootMyProfileSeller = new BorderPane();
-        //Scene scene2 = new Scene(rootMyProfileSeller, 1280, 700, Color.LIGHTBLUE);
-        rootMyProfileSeller.setStyle("-fx-background-color: #bfeef4"  );
-
+        rootMyProfileSeller.setStyle("-fx-background-color: #bfeef4");
 
         //VBox and HBox
         HBox profilHBox = new HBox(10);                 // Center BorderPane
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vBox1 = new VBox(30);
-        vBox1.setPadding(new Insets(0,20,0,0));
-        VBox vBox2 = new VBox(30);
-        vBox2.setPrefWidth(300);
+        VBox vBox1 = new VBox();
+        VBox vBox2 = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
-        VBox vboxCombobox = new VBox(10);
-        vboxCombobox.setPadding(new Insets(30, 30, 30, 100));
-        VBox vboxINFofirtname = new VBox(10);
-        VBox vboxINFOlastname = new VBox(10);
-
-
+        VBox vBoxCheckBox = new VBox(10);
+        vBoxCheckBox.setPadding(new Insets(30,30,30,100));
 
         // Separator
         Separator separator = new Separator();
@@ -366,13 +194,6 @@ public class HomeScreenSeller {
         separator.setMaxHeight(550);
         separator.setPadding(new Insets(20, 10, 20, 10));
 
-        Separator separator2 = new Separator();
-        InnerShadow innerShadow2 = new InnerShadow();
-        separator2.setEffect(innerShadow2);
-        separator2.setOrientation(Orientation.VERTICAL);
-        separator2.setMaxHeight(550);
-        separator2.setPadding(new Insets(20, 10, 20, 10));
-
         //Labels, Buttons
         Button buttonUpdate = new Button("Edit profile");
         buttonUpdate.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
@@ -380,23 +201,24 @@ public class HomeScreenSeller {
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(125);
         buttonUpdate.setPrefHeight(25);
+        buttonUpdate.setOnAction(e ->
+        {
+            EditSellerProfile.openWindow();
+        });
 
-        Label name = new Label();
-        name.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
-        name.setPadding(new Insets(20, 0, 0, 0));
+        Label firstName = new Label();
+        firstName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
+        firstName.setPadding(new Insets(20, 0, 0, 0));
         Label lastName = new Label();
         lastName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         lastName.setPadding(new Insets(20, 0, 0, 0));
         Label rating = new Label("");
         rating.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         rating.setPadding(new Insets(20, 0, 0, 0));
-        Label ratingLabel = new Label("RATING:");
+        Label ratingLabel = new Label("              RATING:   ");
         ratingLabel.setPadding(new Insets(27, 0, 0, 0));
         ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 25));
         ratingLabel.setAlignment(Pos.CENTER);
-   /*   Label age = new Label("35");
-        age.setFont(Font.font("Calibri", FontWeight.b   bb  bBOLD,35));
-        age.setPadding(new Insets(30,0,0,0)); */
         Label checkBoxLabel = new Label("My qualifications:");
         checkBoxLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 20));
         Label ageLabel = new Label();
@@ -455,28 +277,18 @@ public class HomeScreenSeller {
         pedagogueCheck.setDisable(true);
         pedagogueCheck.setStyle("-fx-opacity: 1");
 
-
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vboxINFofirtname.getChildren().addAll(mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel, locationLabelLabel);
-        vboxINFOlastname.getChildren().addAll(mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
-        vBox1.getChildren().addAll(name, vboxINFofirtname);
-        vBox2.getChildren().addAll(lastName, vboxINFOlastname);
-        vboxCombobox.getChildren().addAll(checkBoxLabel ,carpenterCheck, janitorCheck, cleanerCheck, waiterCheck, chefCheck, bartenderCheck,
-                storeCheck, retailCheck, pedagogueCheck);
-//      vboxButton.getChildren().add(buttonUpdate);
+        vBox1.getChildren().addAll(firstName, mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel,
+                locationLabelLabel);
+        vBox2.getChildren().addAll(lastName, mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);
+        vBoxCheckBox.getChildren().addAll(checkBoxLabel,carpenterCheck,janitorCheck, cleanerCheck,waiterCheck,chefCheck,
+                bartenderCheck, storeCheck,retailCheck,pedagogueCheck);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
-        profilHBox.getChildren().addAll(separator, vBox1, vBox2, separator2, ratingLabel, rating, vboxCombobox, vboxButton);
+        profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vBoxCheckBox);
+
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
-
-        /*
-        buttonUpdate.setOnAction(e -> {
-
-
-        });
-        */
-
 
         ResultSet rs = DBHandlerSeller.getUserInformations();
         try {
@@ -499,7 +311,7 @@ public class HomeScreenSeller {
                 seller.setQualiRetail(rs.getInt("qualiRetail"));
                 seller.setQualiPeda(rs.getInt("qualiPeda"));
 
-                name.setText(seller.getFirstName());
+                firstName.setText(seller.getFirstName());
                 lastName.setText(seller.getLastName());
                 ageLabel.setText(Integer.toString(seller.getAge()));
                 birthLabel.setText(seller.getBirthday());
@@ -553,9 +365,6 @@ public class HomeScreenSeller {
                 {
                     pedagogueCheck.setSelected(true);
                 }
-
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

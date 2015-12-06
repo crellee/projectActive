@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import sun.rmi.runtime.Log;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.
@@ -81,7 +82,7 @@ public class Login extends Application {
         window.setResizable(false);
 
         //user Label
-        Label userLabel = new Label("Login");
+        Label userLabel = new Label("Email");
         userLabel.setPrefWidth(200);
 
         //
@@ -99,7 +100,7 @@ public class Login extends Application {
         passwordField.setPrefHeight(30);
 
         //login button
-        Button loginButton = new Button("Email");
+        Button loginButton = new Button("Login");
         loginButton.setDefaultButton(true);
         loginButton.setOnAction(e ->
         {
