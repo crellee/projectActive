@@ -91,13 +91,13 @@ public class DBHandlerSeller
             Statement stmt = (Statement) conn.createStatement();
 
             System.out.print("Trying to update");
-            String sqlString = "UPDATE Sellers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
-                    "birthday='"+birthDateStr+"', age = '"+age+"', password='"+passwordStr+"'," +
-                    "qualiCarpenter='"+carpenter+"', qualiJanitor='"+janitor+"'," +
-                    "qualiCleaner='"+cleaner+"', qualiWaiter='"+waiter+"'," +
-                    "qualifChef='"+chef+"', qualiBartender='"+bartender+"'," +
-                    "qualiStore='"+store+"', qualiRetail='"+retail+"'," +
-                    "qualiPeda='"+peda+"', location = '"+locationStr+"' WHERE email = '"+emailStr+"'";
+            String sqlString = "UPDATE Sellers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"', " +
+                    "birthday='"+birthDateStr+"', age = '"+age+"', password='"+passwordStr+"', " +
+                    "qualiCarpenter='"+carpenter+"', qualiJanitor='"+janitor+"', " +
+                    "qualiCleaner='"+cleaner+"', qualiWaiter='"+waiter+"', " +
+                    "qualiChef='"+chef+"', qualiBartender='"+bartender+"', " +
+                    "qualiStore='"+store+"', qualiRetail='"+retail+"', " +
+                    "qualiPeda='"+peda+"', location = '"+locationStr+"' WHERE email = '"+emailStr+"' ";
 
             System.out.print("About to execute");
             stmt.executeUpdate(sqlString);
