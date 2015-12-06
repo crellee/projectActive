@@ -250,6 +250,8 @@ public class HomeScreenBuyer
         VBox vBox2 = new VBox();
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
+        VBox vboxInfo = new VBox(10);
+        VBox vboxInfo1 = new VBox(10);
 
 
 
@@ -318,12 +320,14 @@ public class HomeScreenBuyer
         imageview.setFitWidth(172.5);
 
 
+        vboxInfo.getChildren().addAll(businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
+                cvrLabelLabel);
+        vboxInfo1.getChildren().addAll( businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(name, businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
-                cvrLabelLabel);
-        vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
+        vBox1.getChildren().addAll(name, vboxInfo);
+        vBox2.getChildren().addAll(lastName, vboxInfo1);
         //vboxButton.getChildren().add(null);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
