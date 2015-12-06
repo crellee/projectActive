@@ -94,12 +94,18 @@ public class DBHandlerTask
         try
         {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT t1.* , b1.rating  FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Sellers as s1 INNER JOIN vicarius.Buyers as b1 " +
-                    "ON s1.email = '"+email+"' " +
+            String sqlString = "SELECT t1.* , b1.rating, b1.businessName  FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Sellers as s1 INNER JOIN vicarius.Buyers as b1 " +
+                    "ON s1.email = '"+email+"' AND t1.businessEmail = b1.businessEmail " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
                     "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 " +
-                    "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 ";
+                    "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 " +
+                    "OR t1.requiredQualification = 'Store employee' AND s1.qualiStore = 1 " +
+                    "OR t1.requiredQualification = 'Pedagogue' AND s1.qualiPeda = 1 " +
+                    "OR t1.requiredQualification = 'Retail' AND s1.qualiRetail = 1 " +
+                    "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 " +
+                    "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 " +
+                    "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 ";
             rs = conn.createStatement().executeQuery(sqlString);
 
         }

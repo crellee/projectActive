@@ -1,12 +1,10 @@
 package GUI;
 
 import Controller.Buyer;
-import Controller.Seller;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
 import Diagrams.BuyersTable;
-import Diagrams.MatchesTable;
+import Diagrams.MatchesTableSeller;
 import Diagrams.SellersTable;
 import Diagrams.TasksTable;
 import javafx.geometry.Insets;
@@ -99,7 +97,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            root.setCenter(MatchesTable.matchesTable());
+            root.setCenter(MatchesTableSeller.matchesTable());
         });
 
         //taskBtn

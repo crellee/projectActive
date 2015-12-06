@@ -1,24 +1,17 @@
 package GUI;
 
-import Controller.Buyer;
 import Controller.Seller;
-import Controller.Task;
-import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
-import Database.DBHandlerTask;
 import Diagrams.BuyersTable;
-import Diagrams.MatchesTable;
+import Diagrams.MatchesTableSeller;
 import Diagrams.SellersTable;
 import Diagrams.TasksTable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
@@ -106,7 +99,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            root.setCenter(MatchesTable.matchesTable());
+            root.setCenter(MatchesTableSeller.matchesTable());
         });
 
         //taskBtn
