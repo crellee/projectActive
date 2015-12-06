@@ -6,6 +6,7 @@ import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import Diagrams.BuyersTable;
+import Diagrams.MatchesTable;
 import Diagrams.SellersTable;
 import Diagrams.TasksTable;
 import javafx.geometry.Insets;
@@ -98,7 +99,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            root.setCenter(matchesTable());
+            root.setCenter(MatchesTable.matchesTable());
         });
 
         //taskBtn
