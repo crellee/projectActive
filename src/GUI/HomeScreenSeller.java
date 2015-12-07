@@ -1,6 +1,7 @@
 package GUI;
 
 import Controller.Seller;
+import Controller.Task;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import Diagrams.*;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 /**
  * Created by christianhasselstrom on 01/12/2015.
@@ -153,7 +155,7 @@ public class HomeScreenSeller {
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             myProfileBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
-            root.setCenter(MyProfileBuyer.myProfileWindow());
+            root.setCenter(MyProfileSeller.myProfileWindow());
         });
         myProfileBtn.fire();
 
@@ -164,6 +166,10 @@ public class HomeScreenSeller {
         requestTaskBtn.setFont(Font.font("Verdana"));
         requestTaskBtn.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         requestTaskBtn.setVisible(false);
+        requestTaskBtn.setOnAction(e ->
+                {
+                       MatchesTableSeller.test();
+                });
         VBox accBox = new VBox();
         accBox.setPadding(new Insets(0,0,0,580));
         accBox.getChildren().add(requestTaskBtn);
@@ -178,5 +184,27 @@ public class HomeScreenSeller {
 
         //topvbox get children
         topVBox.getChildren().addAll(topHBox, buttonBox);
+    }
+
+    public static void alertWindow()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog with Custom Actions");
+        alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+        alert.setContentText("Choose your option.");
+
+        ButtonType buttonTypeOk = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOk)
+        {
+            System.out.print("Pressed OK");
+        } else
+        {
+
+        }
     }
 }
