@@ -29,6 +29,8 @@ public class Seller
     private int qualiStore;
     private int qualiRetail;
     private int qualiPeda;
+    private String jobDescription;
+    private String businessName;
 
 
     //qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
@@ -42,7 +44,7 @@ public class Seller
     public Seller(String firstName, String lastName, String birthday, String email, String password,
                   String qualifications, String location, double rating, String city, int qualiCarpenter,
                   int qualiJanitor, int qualiCleaner, int qualiWaiter, int qualiChef, int qualiBartender, int qualiStore,
-                  int qualiRetail, int qualiPeda)
+                  int qualiRetail, int qualiPeda, String jobDescription, String businessName)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,6 +64,24 @@ public class Seller
         this.qualiStore = qualiStore;
         this.qualiRetail = qualiRetail;
         this.qualiPeda = qualiPeda;
+        this.jobDescription = jobDescription;
+        this.businessName = businessName;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
     }
 
     public String getFirstName()
