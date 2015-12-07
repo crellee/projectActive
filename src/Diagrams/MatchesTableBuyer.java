@@ -2,7 +2,9 @@ package Diagrams;
 
 import Controller.Seller;
 import Controller.Task;
+import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
+import Database.DBHandlerTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -22,7 +24,7 @@ public class MatchesTableBuyer {
         TableColumn jobDescription = new TableColumn("Job Description");
         TableColumn firstName = new TableColumn("First Name");
         TableColumn lastName = new TableColumn("Last Name");
-        TableColumn businessName = new TableColumn("Business Name");
+        //TableColumn businessName = new TableColumn("Business Name");
         TableColumn emailCol = new TableColumn("Email");
         TableColumn ageCol = new TableColumn("Age");
         TableColumn locationCol = new TableColumn("Location");
@@ -33,7 +35,7 @@ public class MatchesTableBuyer {
         jobDescription.setPrefWidth(150);
         firstName.setPrefWidth(120);
         lastName.setPrefWidth(120);
-        businessName.setPrefWidth(150);
+        //businessName.setPrefWidth(150);
         emailCol.setPrefWidth(150);
         ageCol.setPrefWidth(50);
         locationCol.setPrefWidth(70);
@@ -41,11 +43,11 @@ public class MatchesTableBuyer {
         qualificationsCol.setPrefWidth(150);
         ratingCol.setPrefWidth(50);
 
-        matchesTable.getColumns().addAll(jobDescription, businessName, firstName, lastName, emailCol, ageCol,
+        matchesTable.getColumns().addAll(jobDescription, firstName, lastName, emailCol, ageCol,
                 locationCol, cityCol, qualificationsCol, ratingCol);
 
-        jobDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("jobDescription"));
-        businessName.setCellValueFactory(new PropertyValueFactory<Task, String>("businessName"));
+        jobDescription.setCellValueFactory(new PropertyValueFactory<Seller, String>("jobDescription"));
+        //businessName.setCellValueFactory(new PropertyValueFactory<Seller, String>("businessName"));
         firstName.setCellValueFactory(new PropertyValueFactory<Seller, String>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<Seller, String>("lastName"));
         emailCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("email"));
@@ -56,16 +58,29 @@ public class MatchesTableBuyer {
         ratingCol.setCellValueFactory(new PropertyValueFactory<Seller, Double>("rating"));
 
         ObservableList<Seller> data = FXCollections.observableArrayList();
+
         try {
-            ResultSet rs = DBHandlerSeller.getUserInformationForTable();
+            ResultSet rs = DBHandlerTask.getMatchesInfoForBuyer();
 
             while (rs.next()) {
                 Seller seller = new Seller();
                 Task task = new Task();
 
-                task.setJobDescription(rs.getString("jobDescription"));
-                //task.setBusinessName(rs.getString("businessName"));
+                seller.setJobDescription(rs.getString("jobDescription"));
+                //seller.setBusinessName(rs.getString("businessName"));
+                seller.setFirstName(rs.getString("firstName"));
+                seller.setAge(rs.getInt("age"));
+                seller.setLastName(rs.getString("lastName"));
+                seller.setEmail(rs.getString("email"));
+                seller.setLocation(rs.getString("location"));
+                seller.setCity(DBHandlerLocation.setCity(rs.getString("location")));
+                seller.setQualifications(rs.getString("requiredQualification"));
+                seller.setRating(rs.getDouble("rating"));
+
+
+                data.add(seller);
             }
+            matchesTable.setItems(data);
 
 
         } catch (Exception e) {
