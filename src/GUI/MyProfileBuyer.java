@@ -33,7 +33,7 @@ public class MyProfileBuyer
         BorderPane rootMyProfileBuyer = new BorderPane();
         rootMyProfileBuyer.setStyle("-fx-background-color: #bfeef4");
 
-        //VBox and HBox
+        //VBox and HBoxv
         HBox profilHBox = new HBox(10);                 // Center BorderPane
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
