@@ -3,6 +3,7 @@ package Diagrams;
 import Controller.Seller;
 import Controller.Task;
 import Database.DBHandlerSeller;
+import Database.DBHandlerTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -57,7 +58,7 @@ public class MatchesTableBuyer {
 
         ObservableList<Seller> data = FXCollections.observableArrayList();
         try {
-            ResultSet rs = DBHandlerSeller.getUserInformationForTable();
+            ResultSet rs = DBHandlerTask.getMatchesInfoForBuyer();
 
             while (rs.next()) {
                 Seller seller = new Seller();

@@ -63,6 +63,11 @@ public class HomeScreenBuyer
 
         //sellersBtn
         ToggleButton sellersBtn = new ToggleButton("Sellers");
+        ToggleButton buyersBtn = new ToggleButton("Buyers");
+        ToggleButton matchesBtn = new ToggleButton("Matches");
+        ToggleButton tasksBtn = new ToggleButton("Tasks");
+        ToggleButton myProfileBtn = new ToggleButton("My Profile");
+
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
         sellersBtn.setFont(Font.font("Verdana"));
@@ -70,11 +75,15 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
+            buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            sellersBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
             root.setCenter(SellersTable.getSellersTable());
         });
 
         //buyersBtn
-        ToggleButton buyersBtn = new ToggleButton("Buyers");
         buyersBtn.setPrefHeight(20);
         buyersBtn.setPrefWidth(100);
         buyersBtn.setFont(Font.font("Verdana"));
@@ -82,11 +91,15 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
+            sellersBtn.setStyle(("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
+            matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            buyersBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
             root.setCenter(BuyersTable.getBuyersTable());
         });
 
         //matchesBtn
-        ToggleButton matchesBtn = new ToggleButton("Matches");
         matchesBtn.setPrefHeight(20);
         matchesBtn.setPrefWidth(100);
         matchesBtn.setFont(Font.font("Verdana"));
@@ -94,11 +107,16 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
+            sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            matchesBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
+            root.setCenter(MatchesTableSeller.matchesTable());
             root.setCenter(MatchesTableBuyer.matchesTable());
         });
 
         //taskBtn
-        ToggleButton tasksBtn = new ToggleButton("Tasks");
         tasksBtn.setPrefHeight(20);
         tasksBtn.setPrefWidth(100);
         tasksBtn.setFont(Font.font("Verdana"));
@@ -106,11 +124,15 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
+            sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            tasksBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
             root.setCenter(TasksTable.getTasksTable());
         });
 
         //myProfileBtn
-        ToggleButton myProfileBtn = new ToggleButton("My Profile");
         myProfileBtn.setPrefHeight(20);
         myProfileBtn.setPrefWidth(100);
         myProfileBtn.setFont(Font.font("Verdana"));
@@ -119,8 +141,14 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
+            sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            myProfileBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
             root.setCenter(myProfileWindow());
         });
+        myProfileBtn.fire();
 
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");

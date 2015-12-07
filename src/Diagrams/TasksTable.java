@@ -84,10 +84,7 @@ public class TasksTable {
                 task.setBusinessName(rs.getString("businessName"));
                 task.setRating(rs.getDouble("rating"));
 
-
                 data2.add(task);
-
-
             }
             tasksTable.setItems(data2);
         }
