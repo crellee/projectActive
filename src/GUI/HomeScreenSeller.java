@@ -3,10 +3,7 @@ package GUI;
 import Controller.Seller;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
-import Diagrams.BuyersTable;
-import Diagrams.MatchesTableSeller;
-import Diagrams.SellersTable;
-import Diagrams.TasksTable;
+import Diagrams.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -72,6 +69,7 @@ public class HomeScreenSeller {
         ToggleButton matchesBtn = new ToggleButton("Matches");
         ToggleButton tasksBtn = new ToggleButton("Tasks");
         ToggleButton myProfileBtn = new ToggleButton("My Profile");
+        Button requestTaskBtn = new Button("Request task");
 
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
@@ -80,6 +78,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
+            requestTaskBtn.setVisible(false);
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -96,6 +95,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
+            requestTaskBtn.setVisible(false);
             sellersBtn.setStyle(("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -112,6 +112,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
+            requestTaskBtn.setVisible(true);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -128,6 +129,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
+            requestTaskBtn.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -145,14 +147,27 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
+            requestTaskBtn.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             myProfileBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
-            root.setCenter(MyProfileSeller.myProfileWindow());
+            root.setCenter(MyProfileBuyer.myProfileWindow());
         });
         myProfileBtn.fire();
+
+        //accceptBtn attributes
+        requestTaskBtn.setPrefHeight(20);
+        requestTaskBtn.setPrefWidth(150);
+        requestTaskBtn.setTextFill(Color.WHITE);
+        requestTaskBtn.setFont(Font.font("Verdana"));
+        requestTaskBtn.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        requestTaskBtn.setVisible(false);
+        VBox accBox = new VBox();
+        accBox.setPadding(new Insets(0,0,0,580));
+        accBox.getChildren().add(requestTaskBtn);
+        buttonBox.getChildren().add(accBox);
 
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");

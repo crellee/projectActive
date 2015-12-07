@@ -67,6 +67,7 @@ public class HomeScreenBuyer
         ToggleButton matchesBtn = new ToggleButton("Matches");
         ToggleButton tasksBtn = new ToggleButton("Tasks");
         ToggleButton myProfileBtn = new ToggleButton("My Profile");
+        Button acceptSellerBtn = new Button("Accept seller");
 
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
@@ -75,6 +76,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
+            acceptSellerBtn.setVisible(false);
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -91,6 +93,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
+            acceptSellerBtn.setVisible(false);
             sellersBtn.setStyle(("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -107,12 +110,12 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
+            acceptSellerBtn.setVisible(true);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
-            root.setCenter(MatchesTableSeller.matchesTable());
             root.setCenter(MatchesTableBuyer.matchesTable());
         });
 
@@ -124,6 +127,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
+            acceptSellerBtn.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -141,6 +145,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
+            acceptSellerBtn.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -149,6 +154,18 @@ public class HomeScreenBuyer
             root.setCenter(MyProfileBuyer.myProfileWindow());
         });
         myProfileBtn.fire();
+
+        //accceptBtn attributes
+        acceptSellerBtn.setPrefHeight(20);
+        acceptSellerBtn.setPrefWidth(150);
+        acceptSellerBtn.setTextFill(Color.WHITE);
+        acceptSellerBtn.setFont(Font.font("Verdana"));
+        acceptSellerBtn.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        acceptSellerBtn.setVisible(false);
+        VBox accBox = new VBox();
+        accBox.setPadding(new Insets(0,0,0,580));
+        accBox.getChildren().add(acceptSellerBtn);
+        buttonBox.getChildren().add(accBox);
 
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
@@ -169,28 +186,5 @@ public class HomeScreenBuyer
 
         //topvbox get children
         topVBox.getChildren().addAll(topHBox, buttonBox);
-    }
-
-    public static TableView matchesTable() {
-        TableView matchesTable = new TableView();
-
-        matchesTable.setPrefWidth(400);
-        TableColumn jobDescription = new TableColumn("Job description");
-        TableColumn buyerDescription = new TableColumn("Controller.Buyer description");
-        TableColumn location = new TableColumn("Location");
-        TableColumn qualifications = new TableColumn("Qualification(s)");
-        TableColumn rating = new TableColumn("Rating");
-        TableColumn salary = new TableColumn("Salary");
-
-        jobDescription.setPrefWidth(300);
-        buyerDescription.setPrefWidth(200);
-        location.setPrefWidth(150);
-        qualifications.setPrefWidth(150);
-        rating.setPrefWidth(50);
-        salary.setPrefWidth(80);
-
-        matchesTable.getColumns().addAll(jobDescription, buyerDescription, location, qualifications, rating, salary);
-
-        return matchesTable;
     }
 }
