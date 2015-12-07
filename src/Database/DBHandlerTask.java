@@ -30,15 +30,17 @@ public class DBHandlerTask {
         String numOfDaysStr = numOfDays.getText();
         int numOfDaysInt = Integer.parseInt(numOfDaysStr);
         String email = LoginVerifier.getEmail();
+        int sellerRequestInt = 0;
+        int buyerAcceptInt = 0;
 
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, city, requiredQualification, salary, " +
-                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail) " +
-                    "VALUES ('" + jobDescriptionStr + "', '" + locationStr + "', '" + cityStr + "', '" + requiredQualificationStr + "', '" + salaryStr + "', " +
-                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' , '" + cellNumberInt + "', '" + email + "')");
+            String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, requiredQualification, salary, " +
+                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept) " +
+                    "VALUES ('" + jobDescriptionStr + "', '" + locationStr + "', '" + requiredQualificationStr + "', '" + salaryStr + "', " +
+                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' , '" + cellNumberInt + "', '" + email + "', '"+sellerRequestInt+"', '"+buyerAcceptInt+"'  )");
 
             stmt.executeUpdate(sqlStrings);
 
