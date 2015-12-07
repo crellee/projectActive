@@ -22,9 +22,8 @@ import java.sql.ResultSet;
  */
 public class MatchesTableSeller {
 
-    static TableView<Task>  matchesTable = new TableView<>();
-
-    public static TableView<Task> matchesTable() {
+    public static TableView matchesTable() {
+        TableView matchesTable = new TableView();
 
         matchesTable.setPrefWidth(400);
         TableColumn jobDescription = new TableColumn("Job Description");
@@ -123,11 +122,5 @@ public class MatchesTableSeller {
         }
 
         return matchesTable;
-    }
-
-    public static void test()
-    {
-
-
     }
 }

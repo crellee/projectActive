@@ -4,12 +4,15 @@ import Controller.Seller;
 import Controller.Task;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
+import Database.DBHandlerTask;
 import Diagrams.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
@@ -168,12 +171,19 @@ public class HomeScreenSeller {
         requestTaskBtn.setVisible(false);
         requestTaskBtn.setOnAction(e ->
                 {
-                       MatchesTableSeller.test();
+
                 });
         VBox accBox = new VBox();
         accBox.setPadding(new Insets(0,0,0,580));
         accBox.getChildren().add(requestTaskBtn);
         buttonBox.getChildren().add(accBox);
+
+        //Task task = MatchesTableSeller.matchesTable().getSelectionModel().getSelectedItem();
+
+        requestTaskBtn.setOnAction(e ->
+        {
+
+        });
 
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
@@ -201,6 +211,7 @@ public class HomeScreenSeller {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOk)
         {
+            DBHandlerTask.updateSetRequest();
             System.out.print("Pressed OK");
         } else
         {

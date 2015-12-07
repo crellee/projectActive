@@ -1,5 +1,6 @@
 package Diagrams;
 
+import Controller.LoginVerifier;
 import Controller.Seller;
 import Controller.Task;
 import Database.DBHandlerLocation;
@@ -31,6 +32,7 @@ public class MatchesTableBuyer {
         TableColumn cityCol = new TableColumn("City");
         TableColumn qualificationsCol = new TableColumn("Qualifications");
         TableColumn ratingCol = new TableColumn("Rating");
+        TableColumn isRequested = new TableColumn("Requested");
 
         jobDescription.setPrefWidth(150);
         firstName.setPrefWidth(120);
@@ -42,9 +44,10 @@ public class MatchesTableBuyer {
         cityCol.setPrefWidth(80);
         qualificationsCol.setPrefWidth(150);
         ratingCol.setPrefWidth(50);
+        isRequested.setPrefWidth(80);
 
         matchesTable.getColumns().addAll(jobDescription, firstName, lastName, emailCol, ageCol,
-                locationCol, cityCol, qualificationsCol, ratingCol);
+                locationCol, cityCol, qualificationsCol, ratingCol, isRequested);
 
         jobDescription.setCellValueFactory(new PropertyValueFactory<Seller, String>("jobDescription"));
         //businessName.setCellValueFactory(new PropertyValueFactory<Seller, String>("businessName"));
@@ -56,6 +59,7 @@ public class MatchesTableBuyer {
         cityCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("city"));
         qualificationsCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("qualifications"));
         ratingCol.setCellValueFactory(new PropertyValueFactory<Seller, Double>("rating"));
+        isRequested.setCellValueFactory(new PropertyValueFactory<Seller, String>("sellerRequestStr"));
 
         ObservableList<Seller> data = FXCollections.observableArrayList();
 
@@ -76,6 +80,16 @@ public class MatchesTableBuyer {
                 seller.setCity(DBHandlerLocation.setCity(rs.getString("location")));
                 seller.setQualifications(rs.getString("requiredQualification"));
                 seller.setRating(rs.getDouble("rating"));
+
+                task.setGetSellerRequest(rs.getString("sellerRequest"));
+                if(task.getGetSellerRequest().equals(seller.getEmail()))
+                {
+                    seller.setSellerRequestStr("YES");
+                }
+                else
+                {
+                    seller.setSellerRequestStr("No");
+                }
 
 
                 data.add(seller);
