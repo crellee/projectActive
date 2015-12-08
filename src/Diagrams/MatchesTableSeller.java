@@ -7,9 +7,11 @@ import Controller.Task;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import Database.DBHandlerTask;
+import GUI.HomeScreenSeller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -37,6 +39,23 @@ public class MatchesTableSeller {
         TableColumn rating = new TableColumn("Rating");
         TableColumn salary = new TableColumn("Salary");
 
+        matchesTable.setRowFactory(tv -> {
+            TableRow<Task> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Task rowData = row.getItem();
+                    try
+                    {
+                        HomeScreenSeller.alertWindow();
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+            });
+            return row;
+        });
 
         jobDescription.setPrefWidth(150);
         businessName.setPrefWidth(150);
@@ -101,6 +120,7 @@ public class MatchesTableSeller {
         {
 
         }
+
         return matchesTable;
     }
 }

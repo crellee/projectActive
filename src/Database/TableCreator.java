@@ -137,8 +137,8 @@ public class TableCreator
                     "numberOfHours INT(8) NOT NULL," +
                     "cellNumber INT(8) NOT NULL," +
                     "businessEmail VARCHAR(30) NOT NULL," +
-                    "sellerRequest TINYINT(1) NOT NULL," +
-                    "buyerAccept TINYINT(1) NOT NULL," +
+                    "sellerRequest VARCHAR(30) NOT NULL," +
+                    "buyerAccept VARCHAR(30) NOT NULL," +
                     "PRIMARY KEY (jobDescription))";
 
 

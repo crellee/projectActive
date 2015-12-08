@@ -30,8 +30,8 @@ public class DBHandlerTask {
         String numOfDaysStr = numOfDays.getText();
         int numOfDaysInt = Integer.parseInt(numOfDaysStr);
         String email = LoginVerifier.getEmail();
-        int sellerRequestInt = 0;
-        int buyerAcceptInt = 0;
+        String sellerRequestStr = " ";
+        String buyerAcceptStr = " ";
 
         try {
             Connection conn = DBConnection.getConnection();
@@ -40,7 +40,7 @@ public class DBHandlerTask {
             String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, requiredQualification, salary, " +
                     "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept) " +
                     "VALUES ('" + jobDescriptionStr + "', '" + locationStr + "', '" + requiredQualificationStr + "', '" + salaryStr + "', " +
-                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' , '" + cellNumberInt + "', '" + email + "', '"+sellerRequestInt+"', '"+buyerAcceptInt+"'  )");
+                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' , '" + cellNumberInt + "', '" + email + "', '" + sellerRequestStr + "', '" + buyerAcceptStr + "'  )");
 
             stmt.executeUpdate(sqlStrings);
 
@@ -108,8 +108,8 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
-                    "ON b1.businessEmail = '"+email+"' " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
+                    "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
                     "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 " +
@@ -127,5 +127,20 @@ public class DBHandlerTask {
         }
 
         return rs;
+    }
+
+    public static void updateSetRequest() {
+        ResultSet rs = null;
+        String email = LoginVerifier.getEmail();
+        try {
+            Connection conn = DBConnection.getConnection();
+            Statement stmt = (Statement) conn.createStatement();
+            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Sellers s1 SET sellerRequest = '"+email+"' ";
+            stmt.executeUpdate(sqlString);
+
+        } catch (Exception e) {
+
+        }
+
     }
 }
