@@ -196,7 +196,7 @@ public class HomeScreenSeller {
         topVBox.getChildren().addAll(topHBox, buttonBox);
     }
 
-    public static void alertWindow()
+    public static void alertWindow(String description)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog with Custom Actions");
@@ -211,7 +211,7 @@ public class HomeScreenSeller {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOk)
         {
-            DBHandlerTask.updateSetRequest();
+            DBHandlerTask.updateTest(description);
             System.out.print("Pressed OK");
         } else
         {
