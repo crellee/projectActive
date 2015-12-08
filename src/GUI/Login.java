@@ -41,6 +41,7 @@ public class Login extends Application {
         TableCreator.createSellerTable();
         TableCreator.createBuyerTable();
         TableCreator.createTaskTable();
+        TableCreator.createRequestAcceptTable();
         window = primaryStage;
         Login();
     }

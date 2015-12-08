@@ -39,6 +39,8 @@ public class MatchesTableSeller {
         TableColumn rating = new TableColumn("Rating");
         TableColumn salary = new TableColumn("Salary");
 
+
+
         matchesTable.setRowFactory(tv -> {
             TableRow<Task> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -46,7 +48,8 @@ public class MatchesTableSeller {
                     Task rowData = row.getItem();
                     try
                     {
-                        HomeScreenSeller.alertWindow();
+                        HomeScreenSeller.alertWindow(rowData.getJobDescription());
+
                     }
                     catch (Exception e)
                     {

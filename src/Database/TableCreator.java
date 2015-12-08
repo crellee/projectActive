@@ -180,6 +180,33 @@ public class TableCreator
     }
 
 
+    public static void createRequestAcceptTable()
+    {
+        String sqlString;
+        Statement stmt;
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            stmt = (Statement) conn.createStatement();
+
+            sqlString = "CREATE TABLE IF NOT EXISTS Requests " +
+                    "(description VARCHAR(30) NOT NULL, " +
+                    "sellerEmail VARCHAR(30) NOT NULL, " +
+                    "buyerEmail VARCHAR(30),  " +
+                    "PRIMARY KEY(description, sellerEmail)) ";
+
+
+            stmt.executeUpdate(sqlString);
+
+            DBHandlerQualification.fillQualificationTable();
+        }
+        catch (Exception e)
+        {
+
+        }
+
+    }
 
 
 

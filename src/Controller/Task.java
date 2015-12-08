@@ -19,6 +19,8 @@ public class Task {
     private double rating;
     private String businessName;
     private String getSellerRequest;
+    private String sellerEmailReq;
+    private String descriptionReq;
 
     public Task()
     {
@@ -26,7 +28,7 @@ public class Task {
     }
     public Task(String jobDescription, String location, String city, String requiredQualification, String salary,
                 String fromDate, String toDate, int numOfDays, int numberOfHours, int cellNumber, String businessEmail,
-                double rating, String businessName, String getSellerRequest)
+                double rating, String businessName, String getSellerRequest, String sellerEmailReq, String descriptionReq)
     {
         this.jobDescription = jobDescription;
         this.location = location;
@@ -42,6 +44,24 @@ public class Task {
         this.rating = rating;
         this.businessName = businessName;
         this.getSellerRequest = getSellerRequest;
+        this.sellerEmailReq = sellerEmailReq;
+        this.descriptionReq = descriptionReq;
+    }
+
+    public String getDescriptionReq() {
+        return descriptionReq;
+    }
+
+    public void setDescriptionReq(String descriptionReq) {
+        this.descriptionReq = descriptionReq;
+    }
+
+    public String getSellerEmailReq() {
+        return sellerEmailReq;
+    }
+
+    public void setSellerEmailReq(String sellerEmailReq) {
+        this.sellerEmailReq = sellerEmailReq;
     }
 
     public String getGetSellerRequest() {

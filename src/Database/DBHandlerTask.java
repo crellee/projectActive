@@ -1,6 +1,9 @@
 package Database;
 
 import Controller.LoginVerifier;
+import Controller.Task;
+import Diagrams.MatchesTableSeller;
+import GUI.Login;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import javafx.scene.control.ComboBox;
@@ -108,7 +111,7 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, r1.sellerEmail, r1.description FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 INNER JOIN vicarius.Requests AS r1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
@@ -142,5 +145,39 @@ public class DBHandlerTask {
 
         }
 
+    }
+    public static ResultSet updateTest(String jobDescription)
+    {
+        ResultSet rs = null;
+        String email = LoginVerifier.getEmail();
+
+        try {
+            Connection conn = DBConnection.getConnection();
+            Statement stmt = (Statement) conn.createStatement();
+            String sqlString = "INSERT INTO Requests(description, sellerEmail) SELECT '"+jobDescription+"', '"+email+"' ";
+            stmt.executeUpdate(sqlString);
+
+        } catch (Exception e)
+        {
+
+        }
+        return rs;
+    }
+    public static ResultSet updateTest2()
+    {
+        ResultSet rs = null;
+        String email = LoginVerifier.getEmail();
+
+        try {
+            Connection conn = DBConnection.getConnection();
+            Statement stmt = (Statement) conn.createStatement();
+            String sqlString = "SELECT sellerEmail FROM Requests ";
+            stmt.executeUpdate(sqlString);
+
+        } catch (Exception e)
+        {
+
+        }
+        return rs;
     }
 }
