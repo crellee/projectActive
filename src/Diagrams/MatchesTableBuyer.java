@@ -83,20 +83,15 @@ public class MatchesTableBuyer {
                 seller.setQualifications(rs.getString("requiredQualification"));
                 seller.setRating(rs.getDouble("rating"));
 
-                while (rs2.next())
+
+                task.setGetSellerRequest(rs.getString("sellerRequest"));
+                if(task.getGetSellerRequest().equals(seller.getEmail()))
                 {
-
-
-                    task.setSellerEmailReq(rs2.getString("sellerEmail"));
-                    task.setSellerJobDescription(rs2.getString("description"));
-                    if(task.getSellerEmailReq().equals(seller.getEmail()))
-                    {
-                        seller.setSellerRequestStr("YES");
-                    }
-                    else
-                    {
-                        seller.setSellerRequestStr("No");
-                    }
+                    seller.setSellerRequestStr("Yes");
+                }
+                else
+                {
+                    seller.setSellerRequestStr("No");
                 }
 
 

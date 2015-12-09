@@ -211,7 +211,7 @@ public class HomeScreenSeller {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOk)
         {
-            DBHandlerTask.updateTest(description);
+            DBHandlerTask.updateSetRequest(description);
             System.out.print("Pressed OK");
         } else
         {

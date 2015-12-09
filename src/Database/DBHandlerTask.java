@@ -132,13 +132,14 @@ public class DBHandlerTask {
         return rs;
     }
 
-    public static void updateSetRequest() {
+    public static void updateSetRequest(String description) {
         ResultSet rs = null;
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Sellers s1 SET sellerRequest = '"+email+"' ";
+            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Sellers s1 SET sellerRequest = '"+email+"' " +
+                    "WHERE t1.jobDescription = '"+description+"' ";
             stmt.executeUpdate(sqlString);
 
         } catch (Exception e) {
@@ -169,7 +170,7 @@ public class DBHandlerTask {
 
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT sellerEmail, description FROM Requests ";
+            String sqlString = "SELECT * FROM Requests ";
             rs = conn.createStatement().executeQuery(sqlString);
 
         } catch (Exception e)
