@@ -47,10 +47,17 @@ public class MatchesTableSeller {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Task rowData = row.getItem();
+
                     try
                     {
-                        HomeScreenSeller.alertWindow(rowData.getJobDescription());
-
+                        if(rowData.getBuyerAcceptStr().equals("Yes"))
+                        {
+                            HomeScreenSeller.ratingWindow(rowData.getBusinessName());
+                        }
+                        else
+                        {
+                            HomeScreenSeller.alertWindow(rowData.getJobDescription());
+                        }
                     }
                     catch (Exception e)
                     {

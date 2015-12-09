@@ -211,4 +211,36 @@ public class HomeScreenSeller {
 
         }
     }
+
+    public static void ratingWindow(String businesssName)
+    {
+        BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
+
+        Stage window = new Stage();
+        Scene scene = new Scene(root, 400, 250);
+        window.setScene(scene);
+        window.setResizable(false);
+        Label topLabel = new Label("Rate " + businesssName);
+        Reflection r = new Reflection();
+        r.setFraction(0.7f);
+        topLabel.setEffect(r);
+        topLabel.setTextFill(Color.GHOSTWHITE);
+        topLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+
+        Button rateButton = new Button("RATE!!");
+        rateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        rateButton.setOnMouseEntered(e -> rateButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        rateButton.setOnMouseExited(event -> rateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
+
+        ComboBox ratingCombo = new ComboBox();
+        ratingCombo.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
+        ratingCombo.setPrefWidth(100);
+        root.setCenter(ratingCombo);
+        root.setTop(topLabel);
+        root.setBottom(rateButton);
+        rateButton.setAlignment(Pos.BOTTOM_CENTER);
+
+        window.show();
+    }
 }
