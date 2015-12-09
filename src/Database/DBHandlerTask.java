@@ -162,11 +162,12 @@ public class DBHandlerTask {
 
     }
 
-    public static void setNewBuyerRating(String businessName, double newRating) {
+    public static void setNewBuyerRating(String businessName, ComboBox newRating) {
+        double newRatingDouble = Double.parseDouble(newRating.getValue().toString());
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Buyers b1 SET numberOfRating + 1 AND b1.rating = b1.rating + '" + newRating + "' / numberOfRating " +
+            String sqlString = "UPDATE vicarius.Buyers b1 SET numberOfRating + 1 AND b1.rating = b1.rating + '" + newRatingDouble + "' / numberOfRating " +
                     "WHERE b1.businessName = '" + businessName + "' ";
             stmt.executeUpdate(sqlString);
         } catch (Exception e) {
