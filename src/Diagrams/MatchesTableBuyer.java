@@ -65,6 +65,8 @@ public class MatchesTableBuyer {
 
         try {
             ResultSet rs = DBHandlerTask.getMatchesInfoForBuyer();
+            ResultSet rs2 = DBHandlerTask.updateTest2();
+
 
             while (rs.next()) {
                 Seller seller = new Seller();
@@ -81,29 +83,32 @@ public class MatchesTableBuyer {
                 seller.setQualifications(rs.getString("requiredQualification"));
                 seller.setRating(rs.getDouble("rating"));
 
-                task.setSellerEmailReq(rs.getString("sellerEmail"));
-                task.setDescriptionReq(rs.getString("description"));
-                if(task.getSellerEmailReq().equals(seller.getEmail()) & task.getDescriptionReq().equals(seller.getJobDescription()))
+                while (rs2.next())
                 {
-                    seller.setSellerRequestStr("YES");
-                }
-                else
-                {
-                    seller.setSellerRequestStr("No");
+
+
+                    task.setSellerEmailReq(rs2.getString("sellerEmail"));
+                    task.setSellerJobDescription(rs2.getString("description"));
+                    if(task.getSellerEmailReq().equals(seller.getEmail()))
+                    {
+                        seller.setSellerRequestStr("YES");
+                    }
+                    else
+                    {
+                        seller.setSellerRequestStr("No");
+                    }
                 }
 
 
                 data.add(seller);
             }
+
             matchesTable.setItems(data);
 
 
         } catch (Exception e) {
 
         }
-
-
-
         return matchesTable;
 
     }
