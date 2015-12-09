@@ -11,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 
 /* This class contains methods which have to do with a Task and the connection to the Tasks table in the database
  * Created by christianhasselstrom on 27/11/2015.
@@ -162,14 +163,19 @@ public class DBHandlerTask {
 
     }
 
-    public static void setNewBuyerRating(String businessName, ComboBox newRating) {
+    public static void setNewBuyerRating(String businessName, ComboBox newRating)
+    {
         double newRatingDouble = Double.parseDouble(newRating.getValue().toString());
-        try {
+
+        try
+        {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Buyers SET rating = (rating + '"+newRatingDouble+"') / numberOfRating, numberOfRating = numberOfRating + 1 " +
-                    "WHERE b1.businessName = '" + businessName + "' ";
+            String sqlString = "UPDATE Buyers SET rating = (rating + '"+newRatingDouble+"') / numberOfRating, numberOfRating = numberOfRating + 1 " +
+                    "WHERE businessName = '" + businessName + "' ";
+            System.out.print("About to ex");
             stmt.executeUpdate(sqlString);
+            System.out.print("Executed");
         } catch (Exception e) {
 
         }
