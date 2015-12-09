@@ -128,6 +128,8 @@ public class EditBuyerProfile
         updateButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         updateButton.setTextFill(Color.WHITE);
         updateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        updateButton.setOnMouseEntered(e -> updateButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        updateButton.setOnMouseExited(event -> updateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         updateButton.setPrefWidth(150);
         updateButton.setPrefHeight(50);
         updateButton.setOnAction(e ->

@@ -42,6 +42,9 @@ public class CreateBuyerWindow
 
         //Back button to previous window
         Button backBtn = new Button("Back");
+        backBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        backBtn.setOnMouseExited(e -> backBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
+        backBtn.setOnMouseEntered(e ->backBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)"));
         backBtn.setOnAction(e ->
         {
             window.close();
@@ -131,6 +134,8 @@ public class CreateBuyerWindow
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         createButton.setTextFill(Color.WHITE);
         createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        createButton.setOnMouseExited(event -> createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
         createButton.setOnAction(e ->

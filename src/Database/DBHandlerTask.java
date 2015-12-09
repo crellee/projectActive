@@ -11,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 
 /* This class contains methods which have to do with a Task and the connection to the Tasks table in the database
  * Created by christianhasselstrom on 27/11/2015.
@@ -35,15 +36,19 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         String sellerRequestStr = " ";
         String buyerAcceptStr = " ";
+        int sellerRated = 0;
+        int buyerRated = 0;
 
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, requiredQualification, salary, " +
-                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept) " +
+                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept, sellerRated, buyerRated) " +
                     "VALUES ('" + jobDescriptionStr + "', '" + locationStr + "', '" + requiredQualificationStr + "', '" + salaryStr + "', " +
-                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' , '" + cellNumberInt + "', '" + email + "', '" + sellerRequestStr + "', '" + buyerAcceptStr + "'  )");
+                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' ," +
+                    " '" + cellNumberInt + "', '" + email + "', '" + sellerRequestStr + "', '" + buyerAcceptStr + "', " +
+                    " '"+sellerRated+"', '"+buyerRated+"' )");
 
             stmt.executeUpdate(sqlStrings);
 
@@ -111,7 +116,7 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, r1.sellerEmail, r1.description FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 INNER JOIN vicarius.Requests AS r1 " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
@@ -132,13 +137,13 @@ public class DBHandlerTask {
         return rs;
     }
 
-    public static void updateSetRequest() {
-        ResultSet rs = null;
+    public static void updateSetRequest(String description) {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Sellers s1 SET sellerRequest = '"+email+"' ";
+            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Sellers s1 SET sellerRequest = '"+email+"' " +
+                    "WHERE t1.jobDescription = '"+description+"' ";
             stmt.executeUpdate(sqlString);
 
         } catch (Exception e) {
@@ -146,38 +151,49 @@ public class DBHandlerTask {
         }
 
     }
-    public static ResultSet updateTest(String jobDescription)
-    {
-        ResultSet rs = null;
-        String email = LoginVerifier.getEmail();
 
+    public static void updateSetAccept(String description) {
+        String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "INSERT INTO Requests(description, sellerEmail) SELECT '"+jobDescription+"', '"+email+"' ";
+            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Buyers b1 SET buyerAccept = '"+email+"' " +
+                    "WHERE t1.jobDescription = '"+description+"' ";
             stmt.executeUpdate(sqlString);
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
-        return rs;
-    }
-    public static ResultSet updateTest2()
-    {
-        ResultSet rs = null;
-        String email = LoginVerifier.getEmail();
 
-        try {
+    }
+
+    public static void setNewBuyerRating(String businessName, ComboBox newRating, String jobDescription)
+    {
+        double newRatingDouble = Double.parseDouble(newRating.getValue().toString());
+
+        try
+        {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "SELECT sellerEmail FROM Requests ";
-            stmt.executeUpdate(sqlString);
 
-        } catch (Exception e)
-        {
+            String sqlString2 = "UPDATE vicarius.Buyers AS b1 JOIN vicarius.Tasks AS t1 " +
+                    "SET totalRating = totalRating + '"+newRatingDouble+"' " +
+                    "WHERE t1.businessEmail = b1.businessEmail " +
+                    "AND b1.businessName = '" + businessName + "' ";
+            stmt.executeUpdate(sqlString2);
+
+            String sqlString = "UPDATE vicarius.Buyers AS b1 JOIN vicarius.Tasks AS t1 " +
+                    "SET b1.numberOfRating = b1.numberOfRating + 1 , t1.sellerRated = 1, b1.rating = b1.totalRating / b1.numberOfRating, b1.rating = b1.totalRating / numberOfRating " +
+                    "WHERE t1.businessEmail = b1.businessEmail " +
+                    "AND t1.jobDescription = '"+jobDescription+"' " +
+                    "AND b1.businessName = '" + businessName + "' ";
+            System.out.print("About to ex");
+            stmt.executeUpdate(sqlString);
+            System.out.print("Executed");
+        } catch (Exception e) {
 
         }
-        return rs;
     }
+
+
 }

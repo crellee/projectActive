@@ -20,7 +20,11 @@ public class Task {
     private String businessName;
     private String getSellerRequest;
     private String sellerEmailReq;
-    private String descriptionReq;
+    private String sellerJobDescription;
+    private String buyerAccept;
+    private String buyerAcceptStr;
+    private int sellerRated;
+    private int buyerRated;
 
     public Task()
     {
@@ -28,7 +32,8 @@ public class Task {
     }
     public Task(String jobDescription, String location, String city, String requiredQualification, String salary,
                 String fromDate, String toDate, int numOfDays, int numberOfHours, int cellNumber, String businessEmail,
-                double rating, String businessName, String getSellerRequest, String sellerEmailReq, String descriptionReq)
+                double rating, String businessName, String getSellerRequest, String sellerEmailReq, String sellerJobDescription,
+                String buyerAccept, String buyerAcceptStr, int sellerRated, int buyerRated)
     {
         this.jobDescription = jobDescription;
         this.location = location;
@@ -45,15 +50,52 @@ public class Task {
         this.businessName = businessName;
         this.getSellerRequest = getSellerRequest;
         this.sellerEmailReq = sellerEmailReq;
-        this.descriptionReq = descriptionReq;
+        this.sellerJobDescription = sellerJobDescription;
+        this.buyerAccept = buyerAccept;
+        this.buyerAcceptStr = buyerAcceptStr;
+        this.sellerRated = sellerRated;
+        this.buyerRated = buyerRated;
+
     }
 
-    public String getDescriptionReq() {
-        return descriptionReq;
+    public int getSellerRated() {
+        return sellerRated;
     }
 
-    public void setDescriptionReq(String descriptionReq) {
-        this.descriptionReq = descriptionReq;
+    public void setSellerRated(int sellerRated) {
+        this.sellerRated = sellerRated;
+    }
+
+    public int getBuyerRated() {
+        return buyerRated;
+    }
+
+    public void setBuyerRated(int buyerRated) {
+        this.buyerRated = buyerRated;
+    }
+
+    public String getBuyerAcceptStr() {
+        return buyerAcceptStr;
+    }
+
+    public void setBuyerAcceptStr(String buyerAcceptStr) {
+        this.buyerAcceptStr = buyerAcceptStr;
+    }
+
+    public String getBuyerAccept() {
+        return buyerAccept;
+    }
+
+    public void setBuyerAccept(String buyerAccept) {
+        this.buyerAccept = buyerAccept;
+    }
+
+    public String getSellerJobDescription() {
+        return sellerJobDescription;
+    }
+
+    public void setSellerJobDescription(String sellerJobDescription) {
+        this.sellerJobDescription = sellerJobDescription;
     }
 
     public String getSellerEmailReq() {

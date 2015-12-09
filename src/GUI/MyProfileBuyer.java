@@ -58,6 +58,8 @@ public class MyProfileBuyer
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(125);
         buttonUpdate.setPrefHeight(25);
+        buttonUpdate.setOnMouseEntered(e -> buttonUpdate.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        buttonUpdate.setOnMouseExited(event -> buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         buttonUpdate.setOnAction(e ->
         {
             EditBuyerProfile.openWindow();

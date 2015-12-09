@@ -33,6 +33,7 @@ public class Seller
     private String businessName;
     private String sellerRequest;
     private String sellerRequestStr = "";
+    private int isRequestedInt;
 
 
     //qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
@@ -47,7 +48,7 @@ public class Seller
                   String qualifications, String location, double rating, String city, int qualiCarpenter,
                   int qualiJanitor, int qualiCleaner, int qualiWaiter, int qualiChef, int qualiBartender, int qualiStore,
                   int qualiRetail, int qualiPeda, String jobDescription, String businessName, String sellerRequest,
-                  String sellerRequestStr)
+                  String sellerRequestStr, int isRequestedInt)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -71,6 +72,16 @@ public class Seller
         this.businessName = businessName;
         this.sellerRequest = sellerRequest;
         this.sellerRequestStr = sellerRequestStr;
+        this.isRequestedInt = isRequestedInt;
+
+    }
+
+    public int getIsRequestedInt() {
+        return isRequestedInt;
+    }
+
+    public void setIsRequestedInt(int isRequestedInt) {
+        this.isRequestedInt = isRequestedInt;
     }
 
     public String getSellerRequestStr() {
