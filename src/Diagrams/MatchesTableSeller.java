@@ -52,9 +52,9 @@ public class MatchesTableSeller {
                     {
                         if(rowData.getBuyerAcceptStr().equals("Yes"))
                         {
-                            HomeScreenSeller.ratingWindow(rowData.getBusinessName());
+                            HomeScreenSeller.ratingWindow(rowData.getBusinessName(), rowData.getJobDescription());
                         }
-                        else
+                        else if(rowData.getBuyerAcceptStr().equals("No"))
                         {
                             HomeScreenSeller.alertWindow(rowData.getJobDescription());
                         }
@@ -126,17 +126,20 @@ public class MatchesTableSeller {
 
                 task.setBusinessEmail(rs.getString("businessEmail"));
                 task.setBuyerAccept(rs.getString("buyerAccept"));
-                if(task.getBuyerAccept().equals(task.getBusinessEmail()))
+                task.setSellerRated(rs.getInt("sellerRated"));
+                if(task.getBuyerAccept().equals(task.getBusinessEmail()) && task.getSellerRated() == 0)
                 {
                     task.setBuyerAcceptStr("Yes");
                 }
+                else if(task.getSellerRated() == 1 )
+                {
+                    task.setBuyerAcceptStr("Rated");
+                }
+
                 else
                 {
                     task.setBuyerAcceptStr("No");
                 }
-
-
-
                 data.add(task);
             }
             matchesTable.setItems(data);

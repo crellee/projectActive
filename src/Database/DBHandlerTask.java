@@ -36,15 +36,19 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         String sellerRequestStr = " ";
         String buyerAcceptStr = " ";
+        int sellerRated = 0;
+        int buyerRated = 0;
 
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, requiredQualification, salary, " +
-                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept) " +
+                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept, sellerRated, buyerRated) " +
                     "VALUES ('" + jobDescriptionStr + "', '" + locationStr + "', '" + requiredQualificationStr + "', '" + salaryStr + "', " +
-                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' , '" + cellNumberInt + "', '" + email + "', '" + sellerRequestStr + "', '" + buyerAcceptStr + "'  )");
+                    "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' ," +
+                    " '" + cellNumberInt + "', '" + email + "', '" + sellerRequestStr + "', '" + buyerAcceptStr + "', " +
+                    " '"+sellerRated+"', '"+buyerRated+"' )");
 
             stmt.executeUpdate(sqlStrings);
 
@@ -112,7 +116,7 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
@@ -163,7 +167,7 @@ public class DBHandlerTask {
 
     }
 
-    public static void setNewBuyerRating(String businessName, ComboBox newRating)
+    public static void setNewBuyerRating(String businessName, ComboBox newRating, String jobDescription)
     {
         double newRatingDouble = Double.parseDouble(newRating.getValue().toString());
 
@@ -171,8 +175,18 @@ public class DBHandlerTask {
         {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE Buyers SET rating = (rating + '"+newRatingDouble+"') / numberOfRating, numberOfRating = numberOfRating + 1 " +
-                    "WHERE businessName = '" + businessName + "' ";
+
+            String sqlString2 = "UPDATE vicarius.Buyers AS b1 JOIN vicarius.Tasks AS t1 " +
+                    "SET totalRating = totalRating + '"+newRatingDouble+"' " +
+                    "WHERE t1.businessEmail = b1.businessEmail " +
+                    "AND b1.businessName = '" + businessName + "' ";
+            stmt.executeUpdate(sqlString2);
+
+            String sqlString = "UPDATE vicarius.Buyers AS b1 JOIN vicarius.Tasks AS t1 " +
+                    "SET b1.numberOfRating = b1.numberOfRating + 1 , t1.sellerRated = 1, b1.rating = b1.totalRating / b1.numberOfRating, b1.rating = b1.totalRating / numberOfRating " +
+                    "WHERE t1.businessEmail = b1.businessEmail " +
+                    "AND t1.jobDescription = '"+jobDescription+"' " +
+                    "AND b1.businessName = '" + businessName + "' ";
             System.out.print("About to ex");
             stmt.executeUpdate(sqlString);
             System.out.print("Executed");

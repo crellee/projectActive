@@ -212,7 +212,7 @@ public class HomeScreenSeller {
         }
     }
 
-    public static void ratingWindow(String businesssName)
+    public static void ratingWindow(String businesssName, String jobDescription)
     {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
@@ -246,7 +246,7 @@ public class HomeScreenSeller {
         rateButton.setOnMouseExited(event -> rateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         rateButton.setOnAction(e ->
         {
-            DBHandlerTask.setNewBuyerRating(businesssName, ratingCombo);
+            DBHandlerTask.setNewBuyerRating(businesssName, ratingCombo, jobDescription);
         });
 
 
