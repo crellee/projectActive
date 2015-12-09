@@ -85,10 +85,13 @@ public class Login extends Application {
         //user Label
         Label userLabel = new Label("Email");
         userLabel.setPrefWidth(200);
+        userLabel.setFont(Font.font("Verdana", 15));
 
         //
         Label passLabel = new Label("Password");
         passLabel.setPrefWidth(200);
+        passLabel.setPrefWidth(200);
+        passLabel.setFont(Font.font("Verdana", 15));
 
         //login textfield
         TextField loginTextfield = new TextField();
@@ -103,6 +106,9 @@ public class Login extends Application {
         //login button
         Button loginButton = new Button("Login");
         loginButton.setDefaultButton(true);
+        loginButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        loginButton.setOnMouseExited(e -> loginButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
+        loginButton.setOnMouseEntered(e ->loginButton.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)"));
         loginButton.setOnAction(e ->
         {
             LoginVerifier.setEmail(loginTextfield);
@@ -111,9 +117,12 @@ public class Login extends Application {
 
         //Create seller button
         Button createSellerButton = new Button("Create Seller");
+        createSellerButton.setFont(Font.font("Verdana", 15));
         createSellerButton.setPrefWidth(250);
         createSellerButton.setPrefHeight(65);
         createSellerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        createSellerButton.setOnMouseExited(e -> createSellerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
+        createSellerButton.setOnMouseEntered(e ->createSellerButton.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)"));
         createSellerButton.setOnAction(e ->
         {
             window.close();
@@ -123,9 +132,12 @@ public class Login extends Application {
 
         //create buyer button
         Button createBuyerButton = new Button("Create Buyer");
+        createBuyerButton.setFont(Font.font("Verdana", 15));
         createBuyerButton.setPrefWidth(250);
         createBuyerButton.setPrefHeight(65);
         createBuyerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        createBuyerButton.setOnMouseExited(e -> createBuyerButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
+        createBuyerButton.setOnMouseEntered(e ->createBuyerButton.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)"));
         createBuyerButton.setOnAction(e ->
         {
             window.close();

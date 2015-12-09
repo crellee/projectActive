@@ -50,6 +50,9 @@ public class CreateSellerWindow
 
         //Back button to previous window
         Button backBtn = new Button("Back");
+        backBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        backBtn.setOnMouseExited(e -> backBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
+        backBtn.setOnMouseEntered(e ->backBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)"));
         backBtn.setOnAction(e ->
         {
             window.close();
@@ -98,14 +101,32 @@ public class CreateSellerWindow
         PasswordField passwordField = new PasswordField();
         PasswordField confirmPasswordField = new PasswordField();
         CheckBox carpenterCheck = new CheckBox("Carpenter");
+        carpenterCheck.setOnMouseEntered(e -> carpenterCheck.setUnderline(true));
+        carpenterCheck.setOnMouseExited(e -> carpenterCheck.setUnderline(false));
         CheckBox janitorCheck = new CheckBox("Janitor");
+        janitorCheck.setOnMouseEntered(e -> janitorCheck.setUnderline(true));
+        janitorCheck.setOnMouseExited(e -> janitorCheck.setUnderline(false));
         CheckBox cleanerCheck = new CheckBox("Cleaner");
+        cleanerCheck.setOnMouseEntered(e -> cleanerCheck.setUnderline(true));
+        cleanerCheck.setOnMouseExited(e -> cleanerCheck.setUnderline(false));
         CheckBox waiterCheck = new CheckBox("Waiter");
+        waiterCheck.setOnMouseEntered(e -> waiterCheck.setUnderline(true));
+        waiterCheck.setOnMouseExited(e -> waiterCheck.setUnderline(false));
         CheckBox chefCheck = new CheckBox("Chef");
+        chefCheck.setOnMouseEntered(e -> chefCheck.setUnderline(true));
+        chefCheck.setOnMouseExited(e -> chefCheck.setUnderline(false));
         CheckBox bartenderCheck = new CheckBox("Bartender");
+        bartenderCheck.setOnMouseEntered(e -> bartenderCheck.setUnderline(true));
+        bartenderCheck.setOnMouseExited(e -> bartenderCheck.setUnderline(false));
         CheckBox storeCheck = new CheckBox("Store employee");
+        storeCheck.setOnMouseEntered(e -> storeCheck.setUnderline(true));
+        storeCheck.setOnMouseExited(e -> storeCheck.setUnderline(false));
         CheckBox retailCheck = new CheckBox("Retail");
+        retailCheck.setOnMouseEntered(e -> retailCheck.setUnderline(true));
+        retailCheck.setOnMouseExited(e -> retailCheck.setUnderline(false));
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
+        pedagogueCheck.setOnMouseEntered(e -> pedagogueCheck.setUnderline(true));
+        pedagogueCheck.setOnMouseExited(e -> pedagogueCheck.setUnderline(false));
 
 
         VBox checkRow1Box = new VBox();
@@ -158,6 +179,8 @@ public class CreateSellerWindow
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         createButton.setTextFill(Color.WHITE);
         createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        createButton.setOnMouseExited(event -> createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
 

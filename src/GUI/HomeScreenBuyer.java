@@ -73,6 +73,8 @@ public class HomeScreenBuyer
         sellersBtn.setPrefWidth(100);
         sellersBtn.setFont(Font.font("Verdana"));
         sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        sellersBtn.setOnMouseEntered(e -> sellersBtn.setUnderline(true));
+        sellersBtn.setOnMouseExited(e -> sellersBtn.setUnderline(false));
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
@@ -90,6 +92,8 @@ public class HomeScreenBuyer
         buyersBtn.setPrefWidth(100);
         buyersBtn.setFont(Font.font("Verdana"));
         buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        buyersBtn.setOnMouseEntered(e -> buyersBtn.setUnderline(true));
+        buyersBtn.setOnMouseExited(e -> buyersBtn.setUnderline(false));
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
@@ -107,6 +111,8 @@ public class HomeScreenBuyer
         matchesBtn.setPrefWidth(100);
         matchesBtn.setFont(Font.font("Verdana"));
         matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        matchesBtn.setOnMouseEntered(e -> matchesBtn.setUnderline(true));
+        matchesBtn.setOnMouseExited(e -> matchesBtn.setUnderline(false));
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
@@ -124,6 +130,8 @@ public class HomeScreenBuyer
         tasksBtn.setPrefWidth(100);
         tasksBtn.setFont(Font.font("Verdana"));
         tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        tasksBtn.setOnMouseEntered(e -> tasksBtn.setUnderline(true));
+        tasksBtn.setOnMouseExited(e -> tasksBtn.setUnderline(false));
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
@@ -142,6 +150,8 @@ public class HomeScreenBuyer
         myProfileBtn.setFont(Font.font("Verdana"));
         myProfileBtn.setToggleGroup(tGroup);
         myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+        myProfileBtn.setOnMouseEntered(e -> myProfileBtn.setUnderline(true));
+        myProfileBtn.setOnMouseExited(e -> myProfileBtn.setUnderline(false));
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
@@ -176,6 +186,18 @@ public class HomeScreenBuyer
         createTaskButton.setPrefWidth(150);
         createTaskButton.setTextFill(Color.WHITE);
         createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        createTaskButton.setOnMouseEntered(e -> createTaskButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        createTaskButton.setOnMouseExited(event -> createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
+        /*
+        createTaskButton.setOnMousePressed(e ->
+        {
+            createTaskButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)");
+        });
+        createTaskButton.setOnMouseReleased(e ->
+        {
+            createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        });
+        */
         createTaskButton.setOnAction(e ->
         {
             CreateTaskWindow.openWindow();
