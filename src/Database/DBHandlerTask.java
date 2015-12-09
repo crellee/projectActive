@@ -162,36 +162,17 @@ public class DBHandlerTask {
 
     }
 
-    public static ResultSet updateTest(String jobDescription)
-    {
-        ResultSet rs = null;
-        String email = LoginVerifier.getEmail();
-
+    public static void setNewBuyerRating(String businessName, double newRating) {
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "INSERT INTO Requests(description, sellerEmail) SELECT '"+jobDescription+"', '"+email+"' ";
+            String sqlString = "UPDATE vicarius.Buyers b1 SET numberOfRating + 1 AND b1.rating = b1.rating + '" + newRating + "' / numberOfRating " +
+                    "WHERE b1.businessName = '" + businessName + "' ";
             stmt.executeUpdate(sqlString);
-
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
-        return rs;
     }
-    public static ResultSet updateTest2()
-    {
-        ResultSet rs = null;
 
-        try {
-            Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT * FROM Requests ";
-            rs = conn.createStatement().executeQuery(sqlString);
 
-        } catch (Exception e)
-        {
-
-        }
-        return rs;
-    }
 }

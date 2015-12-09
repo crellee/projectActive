@@ -88,7 +88,6 @@ public class MatchesTableBuyer {
 
         try {
             ResultSet rs = DBHandlerTask.getMatchesInfoForBuyer();
-            ResultSet rs2 = DBHandlerTask.updateTest2();
 
 
             while (rs.next()) {

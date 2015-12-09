@@ -29,6 +29,7 @@ public class DBHandlerBuyer
         String locationStr = location.getValue().toString();
         int cvrInt = Integer.parseInt(cvr.getText());
         double rating = 0.0;
+        int numberOfRating = 0;
 
         try
         {
@@ -36,9 +37,9 @@ public class DBHandlerBuyer
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Buyers(firstName, lastName, businessName, businessEmail, password," +
-                    "location, cvr, rating) " +
+                    "location, cvr, rating, numberOfRating) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+businessNameStr+"', '"+businessEmailStr+"', " +
-                    "'"+passwordStr+"', '"+locationStr+"','"+cvrInt+"', '"+rating+"' )");
+                    "'"+passwordStr+"', '"+locationStr+"','"+cvrInt+"', '"+rating+"', '"+numberOfRating+"' )");
 
             stmt.executeUpdate(sqlStrings);
 
