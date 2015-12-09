@@ -29,7 +29,7 @@ public class DBHandlerBuyer
         String locationStr = location.getValue().toString();
         int cvrInt = Integer.parseInt(cvr.getText());
         double rating = 0.0;
-        int numberOfRating = 0;
+        int numberOfRating = 1;
 
         try
         {

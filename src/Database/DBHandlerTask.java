@@ -167,7 +167,7 @@ public class DBHandlerTask {
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Buyers b1 SET numberOfRating + 1 AND b1.rating = b1.rating + '" + newRatingDouble + "' / numberOfRating " +
+            String sqlString = "UPDATE vicarius.Buyers SET rating = (rating + '"+newRatingDouble+"') / numberOfRating, numberOfRating = numberOfRating + 1 " +
                     "WHERE b1.businessName = '" + businessName + "' ";
             stmt.executeUpdate(sqlString);
         } catch (Exception e) {
