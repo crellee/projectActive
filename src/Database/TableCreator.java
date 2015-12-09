@@ -103,6 +103,8 @@ public class TableCreator
                         "location VARCHAR(4) NOT NULL," +
                         "cvr INT(8) NOT NULL," +
                         "rating DOUBLE(3,2) DEFAULT NULL," +
+                        "numberOfRating INT(4) NOT NULL," +
+                        "totalRating DOUBLE(6,2) NOT NULL, " +
                         "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                         "PRIMARY KEY (businessEmail))";
 
@@ -139,6 +141,8 @@ public class TableCreator
                     "businessEmail VARCHAR(30) NOT NULL," +
                     "sellerRequest VARCHAR(30) NOT NULL," +
                     "buyerAccept VARCHAR(30) NOT NULL," +
+                    "sellerRated TINYINT(1) NOT NULL," +
+                    "buyerRated TINYINT(1) NOT NULL," +
                     "PRIMARY KEY (jobDescription))";
 
 
@@ -179,7 +183,7 @@ public class TableCreator
 
     }
 
-
+    /*
     public static void createRequestAcceptTable()
     {
         String sqlString;
@@ -207,6 +211,7 @@ public class TableCreator
         }
 
     }
+    */
 
 
 
