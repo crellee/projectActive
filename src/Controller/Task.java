@@ -21,6 +21,8 @@ public class Task {
     private String getSellerRequest;
     private String sellerEmailReq;
     private String sellerJobDescription;
+    private String buyerAccept;
+    private String buyerAcceptStr;
 
     public Task()
     {
@@ -28,7 +30,8 @@ public class Task {
     }
     public Task(String jobDescription, String location, String city, String requiredQualification, String salary,
                 String fromDate, String toDate, int numOfDays, int numberOfHours, int cellNumber, String businessEmail,
-                double rating, String businessName, String getSellerRequest, String sellerEmailReq, String sellerJobDescription)
+                double rating, String businessName, String getSellerRequest, String sellerEmailReq, String sellerJobDescription,
+                String buyerAccept, String buyerAcceptStr)
     {
         this.jobDescription = jobDescription;
         this.location = location;
@@ -46,7 +49,25 @@ public class Task {
         this.getSellerRequest = getSellerRequest;
         this.sellerEmailReq = sellerEmailReq;
         this.sellerJobDescription = sellerJobDescription;
+        this.buyerAccept = buyerAccept;
+        this.buyerAcceptStr = buyerAcceptStr;
 
+    }
+
+    public String getBuyerAcceptStr() {
+        return buyerAcceptStr;
+    }
+
+    public void setBuyerAcceptStr(String buyerAcceptStr) {
+        this.buyerAcceptStr = buyerAcceptStr;
+    }
+
+    public String getBuyerAccept() {
+        return buyerAccept;
+    }
+
+    public void setBuyerAccept(String buyerAccept) {
+        this.buyerAccept = buyerAccept;
     }
 
     public String getSellerJobDescription() {

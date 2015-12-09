@@ -6,9 +6,12 @@ import Controller.Task;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import Database.DBHandlerTask;
+import GUI.HomeScreenBuyer;
+import GUI.HomeScreenSeller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -33,6 +36,26 @@ public class MatchesTableBuyer {
         TableColumn qualificationsCol = new TableColumn("Qualifications");
         TableColumn ratingCol = new TableColumn("Rating");
         TableColumn isRequested = new TableColumn("Requested");
+
+        matchesTable.setRowFactory(tv -> {
+            TableRow<Seller> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Seller rowData = row.getItem();
+                    if(rowData.getSellerRequestStr().equals("Yes")) {
+                        try {
+                            HomeScreenBuyer.alertWindow(rowData.getJobDescription());
+
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                    }
+
+                }
+            });
+            return row;
+        });
+
 
         jobDescription.setPrefWidth(150);
         firstName.setPrefWidth(120);
@@ -95,6 +118,11 @@ public class MatchesTableBuyer {
                 }
 
 
+                if(seller.getSellerRequestStr().equals("Yes"))
+                {
+
+                }
+
                 data.add(seller);
             }
 
@@ -104,6 +132,7 @@ public class MatchesTableBuyer {
         } catch (Exception e) {
 
         }
+
         return matchesTable;
 
     }

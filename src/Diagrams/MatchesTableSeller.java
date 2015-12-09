@@ -38,6 +38,7 @@ public class MatchesTableSeller {
         TableColumn cellNumber = new TableColumn("Cell number");
         TableColumn rating = new TableColumn("Rating");
         TableColumn salary = new TableColumn("Salary");
+        TableColumn isAccepted = new TableColumn("Accepted");
 
 
 
@@ -71,10 +72,11 @@ public class MatchesTableSeller {
         numberOfHours.setPrefWidth(100);
         cellNumber.setPrefWidth(100);
         rating.setPrefWidth(50);
-        salary.setPrefWidth(100);
+        salary.setPrefWidth(60);
+        isAccepted.setPrefWidth(80);
 
         matchesTable.getColumns().addAll(jobDescription, businessName, location, city, requiredQualification,
-                fromDate, toDate, numofDays, numberOfHours, cellNumber, rating, salary);
+                fromDate, toDate, numofDays, numberOfHours, cellNumber, rating, salary, isAccepted);
 
         jobDescription.setCellValueFactory(new PropertyValueFactory<Task, String>("jobDescription"));
         businessName.setCellValueFactory(new PropertyValueFactory<Task, String>("businessName"));
@@ -88,6 +90,8 @@ public class MatchesTableSeller {
         cellNumber.setCellValueFactory(new PropertyValueFactory<Task, Integer>("cellNumber"));
         rating.setCellValueFactory(new PropertyValueFactory<Task, Double>("rating"));
         salary.setCellValueFactory(new PropertyValueFactory<Task, Integer>("salary"));
+        isAccepted.setCellValueFactory(new PropertyValueFactory<Task, String>("buyerAcceptStr"));
+
 
 
         ObservableList<Task> data = FXCollections.observableArrayList();
@@ -112,6 +116,17 @@ public class MatchesTableSeller {
                 task.setSalary(rs.getString("salary"));
                 task.setBusinessName(rs.getString("businessName"));
                 task.setRating(rs.getDouble("rating"));
+
+                task.setBusinessEmail(rs.getString("businessEmail"));
+                task.setBuyerAccept(rs.getString("buyerAccept"));
+                if(task.getBuyerAccept().equals(task.getBusinessEmail()))
+                {
+                    task.setBuyerAcceptStr("Yes");
+                }
+                else
+                {
+                    task.setBuyerAcceptStr("No");
+                }
 
 
 

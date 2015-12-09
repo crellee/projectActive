@@ -74,7 +74,7 @@ public class HomeScreenSeller {
         ToggleButton matchesBtn = new ToggleButton("Matches");
         ToggleButton tasksBtn = new ToggleButton("Tasks");
         ToggleButton myProfileBtn = new ToggleButton("My Profile");
-        Button requestTaskBtn = new Button("Request task");
+        Label requestTaskLbl = new Label("Double click to request task");
 
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
@@ -83,7 +83,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
-            requestTaskBtn.setVisible(false);
+            requestTaskLbl.setVisible(false);
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -100,7 +100,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
-            requestTaskBtn.setVisible(false);
+            requestTaskLbl.setVisible(false);
             sellersBtn.setStyle(("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -117,7 +117,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            requestTaskBtn.setVisible(true);
+            requestTaskLbl.setVisible(true);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -134,7 +134,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
-            requestTaskBtn.setVisible(false);
+            requestTaskLbl.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -152,7 +152,7 @@ public class HomeScreenSeller {
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
-            requestTaskBtn.setVisible(false);
+            requestTaskLbl.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -163,27 +163,20 @@ public class HomeScreenSeller {
         myProfileBtn.fire();
 
         //accceptBtn attributes
-        requestTaskBtn.setPrefHeight(20);
-        requestTaskBtn.setPrefWidth(150);
-        requestTaskBtn.setTextFill(Color.WHITE);
-        requestTaskBtn.setFont(Font.font("Verdana"));
-        requestTaskBtn.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        requestTaskBtn.setVisible(false);
-        requestTaskBtn.setOnAction(e ->
-                {
+        requestTaskLbl.setPrefHeight(20);
+        requestTaskLbl.setPrefWidth(190);
+        requestTaskLbl.setTextFill(Color.WHITE);
+        requestTaskLbl.setFont(Font.font("Verdana"));
+        requestTaskLbl.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        requestTaskLbl.setVisible(false);
 
-                });
         VBox accBox = new VBox();
-        accBox.setPadding(new Insets(0,0,0,580));
-        accBox.getChildren().add(requestTaskBtn);
+        accBox.setPadding(new Insets(0,0,0,550));
+        accBox.getChildren().add(requestTaskLbl);
         buttonBox.getChildren().add(accBox);
 
         //Task task = MatchesTableSeller.matchesTable().getSelectionModel().getSelectedItem();
 
-        requestTaskBtn.setOnAction(e ->
-        {
-
-        });
 
         //signOutBtn
         ToggleButton signOutBtn = new ToggleButton("Sign Out");
@@ -199,9 +192,9 @@ public class HomeScreenSeller {
     public static void alertWindow(String description)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog with Custom Actions");
-        alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
-        alert.setContentText("Choose your option.");
+        alert.setTitle("Request Task");
+        alert.setHeaderText("Do you want to request this task?");
+        alert.setContentText("Press OK to request.");
 
         ButtonType buttonTypeOk = new ButtonType("OK");
         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);

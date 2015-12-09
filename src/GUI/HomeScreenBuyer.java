@@ -3,6 +3,7 @@ package GUI;
 import Controller.Buyer;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
+import Database.DBHandlerTask;
 import Diagrams.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 /**
  * Created by christianhasselstrom on 01/12/2015.
@@ -67,7 +69,7 @@ public class HomeScreenBuyer
         ToggleButton matchesBtn = new ToggleButton("Matches");
         ToggleButton tasksBtn = new ToggleButton("Tasks");
         ToggleButton myProfileBtn = new ToggleButton("My Profile");
-        Button acceptSellerBtn = new Button("Accept seller");
+        Label acceptSellerLbl = new Label("Double click to accept seller");
 
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
@@ -78,7 +80,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(sellersBtn);
         sellersBtn.setOnAction(e ->
         {
-            acceptSellerBtn.setVisible(false);
+            acceptSellerLbl.setVisible(false);
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -97,7 +99,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(buyersBtn);
         buyersBtn.setOnAction(e ->
         {
-            acceptSellerBtn.setVisible(false);
+            acceptSellerLbl.setVisible(false);
             sellersBtn.setStyle(("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -116,7 +118,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(matchesBtn);
         matchesBtn.setOnAction(e ->
         {
-            acceptSellerBtn.setVisible(true);
+            acceptSellerLbl.setVisible(true);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -135,7 +137,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(tasksBtn);
         tasksBtn.setOnAction(e ->
         {
-            acceptSellerBtn.setVisible(false);
+            acceptSellerLbl.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -155,7 +157,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(myProfileBtn);
         myProfileBtn.setOnAction(e ->
         {
-            acceptSellerBtn.setVisible(false);
+            acceptSellerLbl.setVisible(false);
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
@@ -166,15 +168,15 @@ public class HomeScreenBuyer
         myProfileBtn.fire();
 
         //accceptBtn attributes
-        acceptSellerBtn.setPrefHeight(20);
-        acceptSellerBtn.setPrefWidth(150);
-        acceptSellerBtn.setTextFill(Color.WHITE);
-        acceptSellerBtn.setFont(Font.font("Verdana"));
-        acceptSellerBtn.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        acceptSellerBtn.setVisible(false);
+        acceptSellerLbl.setPrefHeight(20);
+        acceptSellerLbl.setPrefWidth(190);
+        acceptSellerLbl.setTextFill(Color.WHITE);
+        acceptSellerLbl.setFont(Font.font("Verdana"));
+        acceptSellerLbl.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        acceptSellerLbl.setVisible(false);
         VBox accBox = new VBox();
-        accBox.setPadding(new Insets(0,0,0,580));
-        accBox.getChildren().add(acceptSellerBtn);
+        accBox.setPadding(new Insets(0,0,0,530));
+        accBox.getChildren().add(acceptSellerLbl);
         buttonBox.getChildren().add(accBox);
 
         //signOutBtn
@@ -208,5 +210,28 @@ public class HomeScreenBuyer
 
         //topvbox get children
         topVBox.getChildren().addAll(topHBox, buttonBox);
+    }
+
+    public static void alertWindow(String description)
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Accept Seller");
+        alert.setHeaderText("Do you want to accept seller");
+        alert.setContentText("Press OK to accept.");
+
+        ButtonType buttonTypeOk = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOk)
+        {
+            DBHandlerTask.updateSetAccept(description);
+            System.out.print("Pressed OK");
+        } else
+        {
+
+        }
     }
 }
