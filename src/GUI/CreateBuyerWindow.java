@@ -165,7 +165,7 @@ public class CreateBuyerWindow
                 {
                     DBHandlerBuyer.saveBuyer(firstNameField, lastNameField, businessNameField, businessEmailField,
                             enterPasswordField, locationCombo, cvrNoField);
-                    Login.Login();
+                    Login.alertWindow();
                     window.close();
                 }
                 catch(NullPointerException e1)

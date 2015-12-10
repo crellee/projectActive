@@ -2,15 +2,13 @@ package GUI;
 
 import Controller.LoginVerifier;
 import Database.DBHandlerSeller;
+import Database.DBHandlerTask;
 import Database.SchemaCreator;
 import Database.TableCreator;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -20,6 +18,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import sun.rmi.runtime.Log;
+
+import java.util.Optional;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.
@@ -161,4 +161,24 @@ public class Login extends Application {
 
         window.show();
     }
+    public static void alertWindow()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("User Created");
+        alert.setHeaderText("Now login with your new user");
+
+        ButtonType buttonTypeOk = new ButtonType("OK");
+
+        alert.getButtonTypes().setAll(buttonTypeOk);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOk)
+        {
+            Login();
+        } else
+        {
+
+        }
+    }
+
 }
