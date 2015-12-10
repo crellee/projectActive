@@ -45,6 +45,11 @@ public class DBHandlerQualification
         }
     }
 
+    /*
+    This method returns a ResultSet consisting of Qualifications names in the database
+    It is in CreateTaskWindow class, when a Buyer creates a task.
+    The resultset is being used for populating a ComboBox
+     */
     public static ResultSet getQualificationName()
     {
         ResultSet rs = null;

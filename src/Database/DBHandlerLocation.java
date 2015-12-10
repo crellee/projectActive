@@ -64,6 +64,10 @@ public class DBHandlerLocation
         }
     }
 
+    /*
+    Selects all postNo from Cities. The method used for filling ComboBoxes when creating users, tasks and updating users
+    Used in CreateBuyerWindow , CreateSellerWindow, CreateTaskWindow, EditbuyerProfile and EditSellerProfile classes.
+     */
     public static ResultSet getPostNumbers()
     {
         ResultSet rs = null;
@@ -81,6 +85,10 @@ public class DBHandlerLocation
         return rs;
     }
 
+    /*
+    This method takes a String as parameter, which is the value in a ComboBox field for postNumbers
+    to set a textfield to the corresponding city in the database.
+    */
     public static String setCity(String postNumber)
     {
         String city = null;

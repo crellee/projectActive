@@ -7,7 +7,8 @@ import java.sql.*;
  * Created by roije on 23/11/2015.
  */
 /*
- * Opretter forbindelse til DB.
+ * This class has a getConnection which return a Connection method,
+ * which we use everytime we want to connect to the database
  */
 
 

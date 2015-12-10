@@ -3,6 +3,9 @@ package Controller;
 /**
  * Created by christianhasselstrom on 04/12/2015.
  */
+/*
+This class is for creating a Task
+ */
 public class Task {
 
     private String jobDescription;

@@ -125,8 +125,11 @@ public class DBHandlerSeller
         return age;
     }
 
-
-
+    /*
+    This method is used for getting the necessary information for the user logging in.
+    By using his email, which we get from LoginVerifier.getEmail(), we can use a WHERE statement to find
+    the user in the database. This method is being galled in myProfileWindow() method in MyProfileSeller class
+    */
     public static ResultSet getUserInformations()
     {
         String email = LoginVerifier.getEmail();
@@ -147,7 +150,10 @@ public class DBHandlerSeller
         return rs;
     }
 
-
+    /*
+    This method returns a ResultSet, which is used in BuyersTable class -> getBuyersTable() to populate
+    a TableView
+    */
     public static ResultSet getUserInformationForTable()
     {
 
@@ -167,6 +173,10 @@ public class DBHandlerSeller
         return rs;
     }
 
+    /*
+    This method is used when editing a user of type Seller.
+    It is used in openWindow() method in EditSellerClass.
+     */
     public static ResultSet getUserInformationForEdit()
     {
         String email = LoginVerifier.getEmail();
