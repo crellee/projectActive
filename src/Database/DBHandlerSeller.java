@@ -40,6 +40,8 @@ public class DBHandlerSeller
         String locationStr = location.getValue().toString();
         int age = calcAge(birthDateStr);
         double rating = 0.0;
+        int numberOfRating = 1;
+        double totalRating = 0.0;
 
         try
         {
@@ -48,11 +50,12 @@ public class DBHandlerSeller
 
             String sqlString = ("INSERT INTO Sellers(firstName, lastName, birthday, age, email, password, " +
                     "qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
-                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating) " +
+                    "qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda, location, rating, numberOfRating, " +
+                    "totalRating) " +
                     "VALUES ('"+firstNameStr+"', '"+lastNameStr+"', '"+birthDateStr+"', '"+age+"', '"+emailStr+"', " +
                     "'"+passwordStr+"', '"+carpenterInt+"', '"+janitorInt+"', '"+cleanerInt+"', '"+waiterInt+"'," +
                     "'"+chefInt+"', '"+bartenderInt+"', '"+storeInt+"', '"+retailInt+"', '"+pedaInt+"'," +
-                    "'"+locationStr+"', '"+rating+"')");
+                    "'"+locationStr+"', '"+rating+"', '"+numberOfRating+"', '"+totalRating+"' )");
 
             stmt.executeUpdate(sqlString);
             System.out.print("Controller.Seller saved");
