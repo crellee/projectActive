@@ -95,15 +95,15 @@ public class DBHandlerTask {
             String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Sellers as s1 INNER JOIN vicarius.Buyers as b1 " +
                     "ON s1.email = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
-                    "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
-                    "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 " +
-                    "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 " +
-                    "OR t1.requiredQualification = 'Store employee' AND s1.qualiStore = 1 " +
-                    "OR t1.requiredQualification = 'Pedagogue' AND s1.qualiPeda = 1 " +
-                    "OR t1.requiredQualification = 'Retail' AND s1.qualiRetail = 1 " +
-                    "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 " +
-                    "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 " +
-                    "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 ";
+                    "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Store employee' AND s1.qualiStore = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Pedagogue' AND s1.qualiPeda = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Retail' AND s1.qualiRetail = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 AND isActive = 1  ";
             rs = conn.createStatement().executeQuery(sqlString);
 
         } catch (Exception e) {
@@ -120,16 +120,15 @@ public class DBHandlerTask {
             String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated, t1.buyerRated, t1.isActive FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
-                    "WHERE isActive = 1 " +
-                    "OR t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
-                    "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 " +
-                    "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 " +
-                    "OR t1.requiredQualification = 'Store employee' AND s1.qualiStore = 1 " +
-                    "OR t1.requiredQualification = 'Pedagogue' AND s1.qualiPeda = 1 " +
-                    "OR t1.requiredQualification = 'Retail' AND s1.qualiRetail = 1 " +
-                    "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 " +
-                    "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 " +
-                    "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 " +
+                    "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 AND isActive = 1 " +
+                    "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Store employee' AND s1.qualiStore = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Pedagogue' AND s1.qualiPeda = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Retail' AND s1.qualiRetail = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 AND isActive = 1  " +
+                    "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 AND isActive = 1  " +
                     "ORDER BY t1.jobDescription ";
             rs = conn.createStatement().executeQuery(sqlString);
         } catch (Exception e) {
