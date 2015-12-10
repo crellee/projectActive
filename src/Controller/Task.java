@@ -30,6 +30,7 @@ public class Task {
     private String sellerAcceptStr;
     private int sellerRated;
     private int buyerRated;
+    private int isActive;
 
     public Task()
     {
@@ -61,6 +62,15 @@ public class Task {
         this.sellerRated = sellerRated;
         this.buyerRated = buyerRated;
 
+
+    }
+
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
     }
 
     public String getSellerAccept() {
