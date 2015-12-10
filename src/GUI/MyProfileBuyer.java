@@ -38,10 +38,12 @@ public class MyProfileBuyer
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vBox1 = new VBox();
-        VBox vBox2 = new VBox();
+        VBox vBox1 = new VBox(20);
+        VBox vBox2 = new VBox(20);
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
+        VBox vboxInfo = new VBox(10);
+        VBox vboxInfo2 = new VBox(10);
 
         // Separator
         Separator separator = new Separator();
@@ -107,9 +109,11 @@ public class MyProfileBuyer
 
         //Tilføjelser til HBox, VBox og Borderpane
         ///////////////////////////////////////////
-        vBox1.getChildren().addAll(firstName, businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
+        vboxInfo.getChildren().addAll( businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
                 cvrLabelLabel);
-        vBox2.getChildren().addAll(lastName, businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
+        vboxInfo2.getChildren().addAll(businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);
+        vBox1.getChildren().addAll(firstName,vboxInfo);
+        vBox2.getChildren().addAll(lastName, vboxInfo2);
         //vboxButton.getChildren().add(null);
         profilVBox.getChildren().addAll(imageview, buttonUpdate);
         profilHBox.getChildren().addAll(separator, vBox1, vBox2, ratingLabel, rating, vboxButton);
