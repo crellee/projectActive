@@ -180,7 +180,7 @@ public class HomeScreenBuyer
         buttonBox.getChildren().add(accBox);
 
         //signOutBtn
-        ToggleButton signOutBtn = new ToggleButton("Sign Out");
+        Button signOutBtn = new Button("Sign Out");
 
         //CreateTaskButton
         Button createTaskButton = new Button("Create Task");
