@@ -5,6 +5,9 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Created by roije on 27/11/2015.
  */
+/*
+This class is creating a Location object. Used when filling ComboBoxes with standard locations from the database
+ */
 public class Location
 {
     private String postNo;

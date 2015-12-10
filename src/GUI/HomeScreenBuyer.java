@@ -234,4 +234,54 @@ public class HomeScreenBuyer
 
         }
     }
+
+    public static void ratingWindow(String email, String jobDescription)
+    {
+        BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
+
+        Stage window = new Stage();
+        Scene scene = new Scene(root, 400, 250);
+        window.setScene(scene);
+        window.setResizable(false);
+
+        Label topLabel = new Label("Rate " + email);
+        topLabel.setPadding(new Insets(10,0,0,10));
+        Reflection r = new Reflection();
+        r.setFraction(0.7f);
+        topLabel.setEffect(r);
+        topLabel.setTextFill(Color.GHOSTWHITE);
+        topLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+
+        Label centerLabel = new Label("Give rating from 1-9: ");
+        topLabel.setTextFill(Color.GHOSTWHITE);
+        topLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+
+        ComboBox ratingCombo = new ComboBox();
+        ratingCombo.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9");
+        ratingCombo.setPrefWidth(100);
+
+        Button rateButton = new Button("Rate!");
+        rateButton.setTextFill((Color.GHOSTWHITE));
+        rateButton.setFont(Font.font("Verdana"));
+        rateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        rateButton.setOnMouseEntered(e -> rateButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        rateButton.setOnMouseExited(event -> rateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
+        rateButton.setOnAction(e ->
+        {
+            DBHandlerTask.setNewSellerRating(email, ratingCombo, jobDescription);
+        });
+
+
+        HBox centerHBox = new HBox();
+        centerHBox.setPadding(new Insets(40,0,0,10));
+        centerHBox.getChildren().addAll(centerLabel, ratingCombo, rateButton);
+
+        root.setTop(topLabel);
+        root.setCenter(centerHBox);
+
+
+        window.show();
+    }
+
 }

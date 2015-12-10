@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * Created by christianhasselstrom on 25/11/2015.
  */
-//DBHandlerBuyer contains methods which have to do with Controller.Buyer and the connection to the database
+//DBHandlerBuyer contains methods which have to do with Buyer and the connection to the database
 public class DBHandlerBuyer
 {
     //This method takes parameters from the GUI and saves the information in a database.
@@ -52,61 +52,10 @@ public class DBHandlerBuyer
 
     }
 
-    public static ResultSet getUserInformations()
-    {
-        String email = LoginVerifier.getEmail();
-        ResultSet rs = null;
-        try
-        {
-            Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
-                    " FROM Buyers WHERE businessEmail = '"+email+"' ";
-            rs = conn.createStatement().executeQuery(sqlString);
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        return rs;
-    }
-    public static ResultSet getUserInformationsForEdit()
-    {
-        String email = LoginVerifier.getEmail();
-        ResultSet rs = null;
-        try
-        {
-            Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, password" +
-                    " FROM Buyers WHERE businessEmail = '"+email+"' ";
-            rs = conn.createStatement().executeQuery(sqlString);
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        return rs;
-    }
-
-    public static ResultSet getUserInformationsForTable()
-    {
-        ResultSet rs = null;
-        try
-        {
-            Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
-                    " FROM Buyers ";
-            rs = conn.createStatement().executeQuery(sqlString);
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        return rs;
-    }
-
+    /*
+    This method is user for updating a user of type Buyer. The methods takes parameters from the GUI
+   and uses them to update in the Database
+     */
     public static void updateBuyerProfile(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
                                           PasswordField password, ComboBox location, TextField cvr)
     {
@@ -133,6 +82,75 @@ public class DBHandlerBuyer
         {
 
         }
+    }
+
+    /*
+    This method is used for getting the necessary information for the user logging in.
+    By using his email, which we get from LoginVerifier.getEmail(), we can use a WHERE statement to find
+    the user in the database. This method is being galled in myProfileWindow() method in MyProfileBuyer class
+    */
+    public static ResultSet getUserInformations()
+    {
+        String email = LoginVerifier.getEmail();
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
+                    " FROM Buyers WHERE businessEmail = '"+email+"' ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
+    }
+
+    /*
+    This method is used when editing a user of type Buyer.
+    It is used in openWindow() method in EditBuyerClass.
+     */
+    public static ResultSet getUserInformationsForEdit()
+    {
+        String email = LoginVerifier.getEmail();
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, password" +
+                    " FROM Buyers WHERE businessEmail = '"+email+"' ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
+    }
+
+    /*
+    This method returns a ResultSet, which is used in BuyersTable class -> getBuyersTable() to populate
+    a TableView
+     */
+    public static ResultSet getUserInformationsForTable()
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            String sqlString = "SELECT firstName, lastName, businessName, businessEmail, location, cvr, rating" +
+                    " FROM Buyers ";
+            rs = conn.createStatement().executeQuery(sqlString);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return rs;
     }
 
 }

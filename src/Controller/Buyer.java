@@ -3,6 +3,11 @@ package Controller;
 /**
  * Created by christianhasselstrom on 25/11/2015.
  */
+
+/*
+This class is used to create a user type of Buyer.
+ */
+
 public class Buyer
 {
     private String firstName;

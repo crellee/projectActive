@@ -3,6 +3,9 @@ package Controller;
 /**
  * Created by christianhasselstrom on 04/12/2015.
  */
+/*
+This class is for creating a Task
+ */
 public class Task {
 
     private String jobDescription;
@@ -23,6 +26,8 @@ public class Task {
     private String sellerJobDescription;
     private String buyerAccept;
     private String buyerAcceptStr;
+    private String sellerAccept;
+    private String sellerAcceptStr;
     private int sellerRated;
     private int buyerRated;
 
@@ -56,6 +61,22 @@ public class Task {
         this.sellerRated = sellerRated;
         this.buyerRated = buyerRated;
 
+    }
+
+    public String getSellerAccept() {
+        return sellerAccept;
+    }
+
+    public void setSellerAccept(String sellerAccept) {
+        this.sellerAccept = sellerAccept;
+    }
+
+    public String getSellerAcceptStr() {
+        return sellerAcceptStr;
+    }
+
+    public void setSellerAcceptStr(String sellerAcceptStr) {
+        this.sellerAcceptStr = sellerAcceptStr;
     }
 
     public int getSellerRated() {

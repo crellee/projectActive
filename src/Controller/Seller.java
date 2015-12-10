@@ -8,6 +8,9 @@ import java.util.Date;
 /**
  * Created by roije on 25/11/2015.
  */
+/*
+This class is for creating a user of type Seller
+ */
 public class Seller
 {
     private String firstName;

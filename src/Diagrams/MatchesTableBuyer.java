@@ -42,13 +42,24 @@ public class MatchesTableBuyer {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Seller rowData = row.getItem();
-                    if(rowData.getSellerRequestStr().equals("Yes")) {
-                        try {
+
+                    try
+                    {
+
+                        if(rowData.getSellerRequestStr().equals("Yes"))
+                        {
                             HomeScreenBuyer.alertWindow(rowData.getJobDescription());
 
-                        } catch (Exception e) {
-                            System.out.println(e);
                         }
+                        else if(rowData.getSellerRequestStr().equals("Rate seller now"))
+                        {
+                            HomeScreenBuyer.ratingWindow(rowData.getEmail(), rowData.getJobDescription());
+                        }
+
+
+                    }
+                    catch (Exception e) {
+                        System.out.println(e);
                     }
 
                 }
@@ -106,20 +117,28 @@ public class MatchesTableBuyer {
                 seller.setRating(rs.getDouble("rating"));
 
 
+                /*task.setBusinessEmail(rs.getString("businessEmail"));
+                task.setBuyerAccept(rs.getString("buyerAccept"));
+                task.setSellerRated(rs.getInt("sellerRated"));
+                if(task.getBuyerAccept().equals(task.getBusinessEmail()) && task.getSellerRated() == 0)*/
+                task.setSellerRated(rs.getInt("sellerRated"));
+                task.setBuyerRated(rs.getInt("buyerRated"));
                 task.setGetSellerRequest(rs.getString("sellerRequest"));
-                if(task.getGetSellerRequest().equals(seller.getEmail()))
+                if(task.getGetSellerRequest().equals(seller.getEmail()) && task.getBuyerRated() == 0 && task.getSellerRated() == 0 )
                 {
                     seller.setSellerRequestStr("Yes");
+                }
+                else if(task.getGetSellerRequest().equals(seller.getEmail()) && task.getBuyerRated() == 1 && task.getSellerRated() == 1)
+                {
+                    seller.setSellerRequestStr("Rated");
+                }
+                else if(task.getGetSellerRequest().equals(seller.getEmail()) && task.getSellerRated() == 1)
+                {
+                    seller.setSellerRequestStr("Rate seller now");
                 }
                 else
                 {
                     seller.setSellerRequestStr("No");
-                }
-
-
-                if(seller.getSellerRequestStr().equals("Yes"))
-                {
-
                 }
 
                 data.add(seller);

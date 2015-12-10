@@ -70,6 +70,8 @@ public class TableCreator
                     "qualiPeda TINYINT(1) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "location VARCHAR(4) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
+                    "numberOfRating INT(4) NOT NULL," +
+                    "totalRating DOUBLE (6,2) NOT NULL," +
                     "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                     "PRIMARY KEY (email))";
 
@@ -143,6 +145,7 @@ public class TableCreator
                     "buyerAccept VARCHAR(30) NOT NULL," +
                     "sellerRated TINYINT(1) NOT NULL," +
                     "buyerRated TINYINT(1) NOT NULL," +
+                    "isActive TINYINT(1) NOT NULL " +
                     "PRIMARY KEY (jobDescription))";
 
 

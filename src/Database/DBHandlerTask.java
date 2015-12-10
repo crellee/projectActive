@@ -116,7 +116,7 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated, t1.buyerRated FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
@@ -128,7 +128,10 @@ public class DBHandlerTask {
                     "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 " +
                     "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 " +
                     "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 " +
-                    "ORDER BY t1.jobDescription";
+                    "OR t1.buyerRated = 0 AND t1.sellerRated = 0 " +
+                    "OR t1.buyerRated = 0 AND t1.sellerRated = 1 " +
+                    "OR t1.buyerRated = 1 AND t1.sellerRated = 0 " +
+                    "ORDER BY t1.jobDescription ";
             rs = conn.createStatement().executeQuery(sqlString);
         } catch (Exception e) {
 
@@ -187,6 +190,34 @@ public class DBHandlerTask {
                     "WHERE t1.businessEmail = b1.businessEmail " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND b1.businessName = '" + businessName + "' ";
+            System.out.print("About to ex");
+            stmt.executeUpdate(sqlString);
+            System.out.print("Executed");
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static void setNewSellerRating(String email, ComboBox newRating, String jobDescription)
+    {
+        double newRatingDouble = Double.parseDouble(newRating.getValue().toString());
+
+        try
+        {
+            Connection conn = DBConnection.getConnection();
+            Statement stmt = (Statement) conn.createStatement();
+
+            String sqlString2 = "UPDATE vicarius.Sellers AS s1 JOIN vicarius.Tasks AS t1 " +
+                    "SET totalRating = totalRating + '"+newRatingDouble+"' " +
+                    "WHERE t1.sellerRequest = s1.email " +
+                    "AND s1.email = '" + email + "' ";
+            stmt.executeUpdate(sqlString2);
+
+            String sqlString = "UPDATE vicarius.Sellers AS s1 JOIN vicarius.Tasks AS t1 " +
+                    "SET s1.numberOfRating = s1.numberOfRating + 1 , t1.buyerRated = 1, s1.rating = s1.totalRating / s1.numberOfRating, s1.rating = s1.totalRating / s1.numberOfRating " +
+                    "WHERE t1.sellerRequest = s1.email " +
+                    "AND t1.jobDescription = '"+jobDescription+"' " +
+                    "AND s1.email = '"+ email +"' ";
             System.out.print("About to ex");
             stmt.executeUpdate(sqlString);
             System.out.print("Executed");
