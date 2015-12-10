@@ -78,7 +78,8 @@ public class DBHandlerTask {
         try {
             Connection conn = DBConnection.getConnection();
             String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers as b1 " +
-                    "ON t1.businessEmail = b1.businessEmail ";
+                    "ON t1.businessEmail = b1.businessEmail " +
+                    "WHERE t1.isActive = 1 ";
             rs = conn.createStatement().executeQuery(sqlString);
 
         } catch (Exception e) {
@@ -216,8 +217,17 @@ public class DBHandlerTask {
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND s1.email = '"+ email +"' ";
-            System.out.print("About to ex");
             stmt.executeUpdate(sqlString);
+
+
+            String sqlString3 = "UPDATE vicarius.Tasks AS t1 JOIN vicarius.Sellers AS s1 SET t1.isActive = 0 " +
+                    "WHERE t1.sellerRequest = s1.email " +
+                    "AND t1.jobDescription = '"+jobDescription+"' " +
+                    "AND s1.email = '"+ email +"' ";
+            stmt.executeUpdate(sqlString3);
+
+
+
             System.out.print("Executed");
         } catch (Exception e) {
 

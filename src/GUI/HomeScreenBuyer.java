@@ -270,6 +270,7 @@ public class HomeScreenBuyer
         rateButton.setOnAction(e ->
         {
             DBHandlerTask.setNewSellerRating(email, ratingCombo, jobDescription);
+            window.close();
         });
 
 
