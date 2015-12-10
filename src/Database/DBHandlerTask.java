@@ -38,17 +38,18 @@ public class DBHandlerTask {
         String buyerAcceptStr = " ";
         int sellerRated = 0;
         int buyerRated = 0;
+        int isActive = 1;
 
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
             String sqlStrings = ("INSERT INTO Tasks(jobDescription, location, requiredQualification, salary, " +
-                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept, sellerRated, buyerRated) " +
+                    "fromDate, toDate, numOfDays, numberOfHours, cellNumber, businessEmail, sellerRequest, buyerAccept, sellerRated, buyerRated, isActive) " +
                     "VALUES ('" + jobDescriptionStr + "', '" + locationStr + "', '" + requiredQualificationStr + "', '" + salaryStr + "', " +
                     "'" + fromDateStr + "', '" + toDateStr + "', '" + numOfDaysInt + "', '" + numberOfHoursInt + "' ," +
                     " '" + cellNumberInt + "', '" + email + "', '" + sellerRequestStr + "', '" + buyerAcceptStr + "', " +
-                    " '"+sellerRated+"', '"+buyerRated+"' )");
+                    " '"+sellerRated+"', '"+buyerRated+"', '"+isActive+"' )");
 
             stmt.executeUpdate(sqlStrings);
 
@@ -116,10 +117,11 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated, t1.buyerRated FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated, t1.buyerRated, t1.isActive FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
-                    "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
+                    "WHERE isActive = 1 " +
+                    "OR t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 " +
                     "OR t1.requiredQualification = 'Carpenter' AND s1.qualiCarpenter = 1 " +
                     "OR t1.requiredQualification = 'Janitor' AND s1.qualiJanitor = 1 " +
                     "OR t1.requiredQualification = 'Store employee' AND s1.qualiStore = 1 " +
@@ -128,9 +130,6 @@ public class DBHandlerTask {
                     "OR t1.requiredQualification = 'Bartender' AND s1.qualiBartender = 1 " +
                     "OR t1.requiredQualification = 'Cleaner' AND s1.qualiCleaner = 1 " +
                     "OR t1.requiredQualification = 'Waiter' AND s1.qualiWaiter = 1 " +
-                    "OR t1.buyerRated = 0 AND t1.sellerRated = 0 " +
-                    "OR t1.buyerRated = 0 AND t1.sellerRated = 1 " +
-                    "OR t1.buyerRated = 1 AND t1.sellerRated = 0 " +
                     "ORDER BY t1.jobDescription ";
             rs = conn.createStatement().executeQuery(sqlString);
         } catch (Exception e) {

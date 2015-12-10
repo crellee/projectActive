@@ -121,6 +121,8 @@ public class MatchesTableBuyer {
                 task.setBuyerAccept(rs.getString("buyerAccept"));
                 task.setSellerRated(rs.getInt("sellerRated"));
                 if(task.getBuyerAccept().equals(task.getBusinessEmail()) && task.getSellerRated() == 0)*/
+
+                //task.setIsActive(rs.getInt("isActive"));
                 task.setSellerRated(rs.getInt("sellerRated"));
                 task.setBuyerRated(rs.getInt("buyerRated"));
                 task.setGetSellerRequest(rs.getString("sellerRequest"));

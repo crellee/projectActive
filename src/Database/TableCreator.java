@@ -145,7 +145,7 @@ public class TableCreator
                     "buyerAccept VARCHAR(30) NOT NULL," +
                     "sellerRated TINYINT(1) NOT NULL," +
                     "buyerRated TINYINT(1) NOT NULL," +
-                    "isActive TINYINT(1) NOT NULL " +
+                    "isActive TINYINT(1) NOT NULL, " +
                     "PRIMARY KEY (jobDescription))";
 
 
