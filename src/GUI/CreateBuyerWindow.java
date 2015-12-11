@@ -1,8 +1,11 @@
 package GUI;
 
+import Controller.Buyer;
 import Controller.Location;
+import Controller.Seller;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
+import Database.DBHandlerSellerAndBuyer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -18,6 +21,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.
@@ -86,6 +90,8 @@ public class CreateBuyerWindow
             fillAllFields.setTextFill(Color.RED);
         Label cvrMax8 = new Label("Cvr must max be 8 characters and only numbers");
         cvrMax8.setTextFill(Color.RED);
+        Label allReadyExists = new Label("Email allready exists in database, choose another please.");
+        allReadyExists.setTextFill(Color.RED);
 
         //Input fields
         TextField firstNameField = new TextField();
@@ -138,23 +144,72 @@ public class CreateBuyerWindow
         createButton.setOnMouseExited(event -> createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
+
+        //creates Arraylists with buyers emails and sellers email
+
+        ArrayList<Buyer> ls1 = new ArrayList<>();
+        ArrayList<Seller> ls2 = new ArrayList<>();
+
+
+        try {
+            ResultSet rs2 = DBHandlerSellerAndBuyer.isUnique();
+
+            while (rs2.next()) {
+
+                Buyer buyer = new Buyer();
+                Seller seller = new Seller();
+
+                buyer.setBusinessEmail(rs2.getString("businessEmail"));
+
+                seller.setEmail(rs2.getString("email"));
+
+                ls1.add(buyer);
+                ls2.add(seller);
+            }
+        }
+        catch(Exception e1)
+        {
+
+        }
+
         createButton.setOnAction(e ->
         {
-            /*
-            if(firstNameField.getText().equals("") || lastNameField.getText().equals("") ||
-                    businessEmailField.getText().equals("") || enterPasswordField.getText().equals("") ||
-                    confirmPasswordField.getText().equals("") || locationCombo.getValue().toString().equals("") ||
-                    cityField.getText().equals("") || cvrNoField.getText().equals(""))
+            // if when a new user is created the chosen email allready exists in the database either busiE or sellE will be 1
+            int busiE = 0;
+            int sellE = 0;
+
+            for(int i = 0; i < ls1.size(); i++)
             {
-                root.setBottom(fillInformationerrorLabel);
+                if(businessEmailField.getText().equals(ls1.get(i).getBusinessEmail()))
+                {
+                    busiE = 1;
+
+                }
             }
-            */
+            for(int i = 0; i < ls2.size(); i++)
+            {
+                if(businessEmailField.getText().equals(ls2.get(i).getEmail()))
+                {
+                    sellE = 1;
+
+                }
+            }
+
             if (!enterPasswordField.getText().equals(confirmPasswordField.getText()))
             {
                 root.setBottom(passwordNotSame);
             }
 
-            else if(cvrNoField.getLength() > 8 && cvrNoField.getLength() < 8)
+            else if(busiE == 1)
+            {
+                root.setBottom(allReadyExists);
+            }
+            else if( sellE == 1)
+            {
+                root.setBottom(allReadyExists);
+            }
+
+            else if(cvrNoField.getLength() != 8)
             {
                 root.setBottom(cvrMax8);
 
