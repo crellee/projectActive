@@ -11,10 +11,8 @@ import java.util.Date;
 /*
 This class is for creating a user of type Seller
  */
-public class Seller
+public class Seller extends Person
 {
-    private String firstName;
-    private String lastName;
     private String birthday;
     private int age;
     private String email;
@@ -53,8 +51,6 @@ public class Seller
                   int qualiRetail, int qualiPeda, String jobDescription, String businessName, String sellerRequest,
                   String sellerRequestStr, int isRequestedInt)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.birthday = birthday;
         this.email = email;
         this.password = password;
@@ -119,15 +115,15 @@ public class Seller
         this.jobDescription = jobDescription;
     }
 
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
+//    public String getFirstName()
+//    {
+//        return firstName;
+//    }
+//
+//    public void setFirstName(String firstName)
+//    {
+//        this.firstName = firstName;
+//    }
 
     public int getQualiCarpenter() {
         return qualiCarpenter;
@@ -201,15 +197,15 @@ public class Seller
         this.qualiChef = qualiChef;
     }
 
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
+//    public String getLastName()
+//    {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName)
+//    {
+//        this.lastName = lastName;
+//    }
 
     public int getAge()
     {

@@ -8,10 +8,8 @@ package Controller;
 This class is used to create a user type of Buyer.
  */
 
-public class Buyer
+public class Buyer extends Person
 {
-    private String firstName;
-    private String lastName;
     private String businessName;
     private String businessEmail;
     private String password;
@@ -29,8 +27,7 @@ public class Buyer
     public Buyer(String firstName, String lastName, String businessName, String businessEmail, String password,
                   String location, String city, int cvr, double rating)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
+
         this.businessName = businessName;
         this.businessEmail = businessEmail;
         this.password = password;
@@ -40,21 +37,7 @@ public class Buyer
         this.rating = rating;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getBusinessName() {
         return businessName;
