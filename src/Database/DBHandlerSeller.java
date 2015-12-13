@@ -58,19 +58,12 @@ public class DBHandlerSeller
                     "'"+locationStr+"', '"+rating+"', '"+numberOfRating+"', '"+totalRating+"' )");
 
             stmt.executeUpdate(sqlString);
-            System.out.print("Controller.Seller saved");
         }
         catch (Exception e)
         {
 
         }
     }
-
-    /*
-    DBHandlerSeller.updateSellerProfile(firstNameField, lastNameField, passwordField,
-                            locationCombo, carpenterCheck, janitorCheck, cleanerCheck, waiterCheck,
-                            chefCheck, bartenderCheck, storeCheck, retailCheck, pedagogueCheck);
-     */
 
     public static void updateSellerProfile(TextField email, TextField firstName, TextField lastName, DatePicker birthdate,
                                   PasswordField password, ComboBox location,int carpenter, int janitor,
@@ -93,7 +86,6 @@ public class DBHandlerSeller
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            System.out.print("Trying to update");
             String sqlString = "UPDATE Sellers SET firstName='"+firstNameStr+"', lastName='"+lastNameStr+"'," +
                     "birthday='"+birthDateStr+"', age = '"+age+"', password='"+passwordStr+"'," +
                     "qualiCarpenter='"+carpenter+"', qualiJanitor='"+janitor+"'," +
@@ -102,9 +94,7 @@ public class DBHandlerSeller
                     "qualiStore='"+store+"', qualiRetail='"+retail+"'," +
                     "qualiPeda='"+peda+"', location = '"+locationStr+"' WHERE email = '"+emailStr+"'";
 
-            System.out.print("About to execute");
             stmt.executeUpdate(sqlString);
-            System.out.print("executed");
         }
         catch(SQLException e)
         {

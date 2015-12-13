@@ -18,11 +18,10 @@ import java.text.DecimalFormat;
  */
 public class DBHandlerTask {
     //This method takes paramameters from the GUI in the CreateTaskWindow and inserts into Tasks table in the database
-    public static void saveTask(TextField jobDescription, ComboBox location, TextField city, ComboBox requiredQualification, TextField salary,
+    public static void saveTask(TextField jobDescription, ComboBox location, ComboBox requiredQualification, TextField salary,
                                 DatePicker fromDate, DatePicker toDate, TextField numOfDays, TextField numberOfHours, TextField cellNumber) {
         String jobDescriptionStr = jobDescription.getText();
         String locationStr = location.getValue().toString();
-        String cityStr = city.getText();
         String requiredQualificationStr = requiredQualification.getValue().toString();
         String salaryStr = salary.getText();
         String fromDateStr = fromDate.getValue().toString();
@@ -189,9 +188,8 @@ public class DBHandlerTask {
                     "WHERE t1.businessEmail = b1.businessEmail " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND b1.businessName = '" + businessName + "' ";
-            System.out.print("About to ex");
+
             stmt.executeUpdate(sqlString);
-            System.out.print("Executed");
         } catch (Exception e) {
 
         }
@@ -224,12 +222,10 @@ public class DBHandlerTask {
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND s1.email = '"+ email +"' ";
+
             stmt.executeUpdate(sqlString3);
-
-
-
-            System.out.print("Executed");
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
 
         }
     }

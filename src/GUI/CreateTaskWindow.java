@@ -185,7 +185,7 @@ http://stackoverflow.com/questions/25753727/javafx-using-date-picker
 
             try
             {
-                DBHandlerTask.saveTask(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField, fromDatePicker,
+                DBHandlerTask.saveTask(jobDescriptionField, locationCombo, requiredQualificationCombo, salaryField, fromDatePicker,
                         toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField);
                 window.close();
             }

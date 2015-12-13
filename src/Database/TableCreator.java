@@ -57,7 +57,7 @@ public class TableCreator
                     "lastName VARCHAR(30) NOT NULL," +  //Variable lenght, max lenght 30. Range: 0-30
                     "birthday VARCHAR(10) NOT NULL," +
                     "age INT(2) NOT NULL," + //Range 0-99
-                    "email VARCHAR(30) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
+                    "email VARCHAR(40) NOT NULL," + //Variable lenght, max lenght 30. Range: 0-30
                     "password VARCHAR(30) NOT NULL," +
                     "qualiCarpenter TINYINT(1) NOT NULL," +
                     "qualiJanitor TINYINT(1) NOT NULL," +
@@ -71,7 +71,7 @@ public class TableCreator
                     "location VARCHAR(4) NOT NULL," +
                     "rating DOUBLE(3,2) DEFAULT NULL," +
                     "numberOfRating INT(4) NOT NULL," +
-                    "totalRating DOUBLE (6,2) NOT NULL," +
+                    "totalRating INT(6) NOT NULL," +
                     "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                     "PRIMARY KEY (email))";
 
@@ -100,13 +100,13 @@ public class TableCreator
                         "(firstName VARCHAR(20) NOT NULL, " +
                         "lastName VARCHAR(30) NOT NULL," +
                         "businessName VARCHAR(30) NOT NULL," +
-                        "businessEmail VARCHAR(30) NOT NULL," +
+                        "businessEmail VARCHAR(40) NOT NULL," +
                         "password VARCHAR(30) NOT NULL," +
                         "location VARCHAR(4) NOT NULL," +
                         "cvr INT(8) NOT NULL," +
                         "rating DOUBLE(3,2) DEFAULT NULL," +
                         "numberOfRating INT(4) NOT NULL," +
-                        "totalRating DOUBLE(6,2) NOT NULL, " +
+                        "totalRating INT(6) NOT NULL, " +
                         "FOREIGN KEY (location) REFERENCES Cities(postNo)," +
                         "PRIMARY KEY (businessEmail))";
 
@@ -135,14 +135,14 @@ public class TableCreator
                     "location VARCHAR(4) NOT NULL," +
                     "requiredQualification VARCHAR(30) NOT NULL," +
                     "salary VARCHAR(30) NOT NULL," +
-                    "fromDate VARCHAR(30) NOT NULL," +
-                    "toDate VARCHAR(30) NOT NULL," +
-                    "numOfDays INT(4) NOT NULL," +
-                    "numberOfHours INT(8) NOT NULL," +
+                    "fromDate VARCHAR(10) NOT NULL," +
+                    "toDate VARCHAR(10) NOT NULL," +
+                    "numOfDays INT(3) NOT NULL," +
+                    "numberOfHours INT(5) NOT NULL," +
                     "cellNumber INT(8) NOT NULL," +
-                    "businessEmail VARCHAR(30) NOT NULL," +
-                    "sellerRequest VARCHAR(30) NOT NULL," +
-                    "buyerAccept VARCHAR(30) NOT NULL," +
+                    "businessEmail VARCHAR(40) NOT NULL," +
+                    "sellerRequest VARCHAR(40) NOT NULL," +
+                    "buyerAccept VARCHAR(40) NOT NULL," +
                     "sellerRated TINYINT(1) NOT NULL," +
                     "buyerRated TINYINT(1) NOT NULL," +
                     "isActive TINYINT(1) NOT NULL, " +

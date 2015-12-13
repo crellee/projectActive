@@ -1,11 +1,14 @@
 package GUI;
 
+import Controller.InputValidator;
 import Controller.LoginVerifier;
 import Database.DBHandlerSeller;
 import Database.DBHandlerTask;
 import Database.SchemaCreator;
 import Database.TableCreator;
 import javafx.application.Application;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,6 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import sun.rmi.runtime.Log;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -45,7 +49,9 @@ public class Login extends Application {
         Login();
     }
 
-    public static void Login() {
+    public static void Login()
+    {
+        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(15));
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
@@ -63,6 +69,7 @@ public class Login extends Application {
         loginHBox.setPrefWidth(300);
         loginHBox.setSpacing(30);
 
+
         //Users HBox
         HBox usersHBox = new HBox();
         usersHBox.setPrefWidth(1280);
@@ -74,7 +81,6 @@ public class Login extends Application {
         usersVBox.setSpacing(10);
         root.setCenter(usersVBox);
         usersVBox.setPadding(new Insets(150));
-
 
         Stage window = new Stage();
         Scene scene = new Scene(root, 550, 600);
@@ -92,26 +98,69 @@ public class Login extends Application {
         passLabel.setPrefWidth(200);
         passLabel.setFont(Font.font("Verdana", 15));
 
+        Label errorMessage = new Label();
+        errorMessage.setFont(Font.font("Verdana", 15));
+        errorMessage.setTextFill(Color.RED);
+        HBox errorMessageBox = new HBox();
+        errorMessageBox.getChildren().add(errorMessage);
+
         //login textfield
         TextField loginTextfield = new TextField();
+        loginTextfield.setFont(Font.font("Verdana"));
+        loginTextfield.setPromptText("example@example.com");
+        loginTextfield.setOnMouseClicked(e -> errorMessage.setText(""));
         loginTextfield.setPrefWidth(200);
         loginTextfield.setPrefHeight(30);
+        //http://stackoverflow.com/questions/29051225/remove-default-focus-from-textfield-javafx
+        loginTextfield.focusedProperty().addListener((observable,  oldValue,  newValue) ->
+        {
+            if(newValue && firstTime.get()){
+                root.requestFocus(); // Delegate the focus to container
+                firstTime.setValue(false); // Variable value changed for future references
+            }
+        });
+
 
         //login passwordfield
         PasswordField passwordField = new PasswordField();
+        passwordField.setOnMouseClicked(e -> errorMessage.setText(""));
+        passwordField.setFont(Font.font("Verdana"));
+        passwordField.setPromptText("You password");
         passwordField.setPrefWidth(200);
         passwordField.setPrefHeight(30);
 
         //login button
         Button loginButton = new Button("Login");
+        loginButton.setFont(Font.font("Verdana"));
         loginButton.setDefaultButton(true);
         loginButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
         loginButton.setOnMouseExited(e -> loginButton.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
         loginButton.setOnMouseEntered(e ->loginButton.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)"));
         loginButton.setOnAction(e ->
         {
-            LoginVerifier.setEmail(loginTextfield);
-            LoginVerifier.verifyUser(loginTextfield, passwordField);
+                if (InputValidator.checkLoginEmail(loginTextfield) == 1)
+                {
+                    errorMessage.setText("Email field is empty");
+                } else if (InputValidator.checkLoginEmail(loginTextfield) == 2)
+                {
+                    errorMessage.setText("Email must contain '@' and '.'");
+                } else if (InputValidator.checkLoginPassword(passwordField) == false)
+                {
+                    errorMessage.setText("Password field is empty");
+                } else
+                {
+                    try
+                    {
+                        LoginVerifier.setEmail(loginTextfield);
+                        LoginVerifier.verifyUser(loginTextfield, passwordField);
+                    }
+                    catch (SQLException sqlEx)
+                    {
+                        errorMessage.setText("sdf");
+                    }
+
+                }
+
         });
 
         //Create seller button
@@ -153,7 +202,7 @@ public class Login extends Application {
 
 
         //getChildren()
-        loginVBox.getChildren().addAll(vicarius, topHBox, loginHBox);
+        loginVBox.getChildren().addAll(vicarius, topHBox, loginHBox, errorMessageBox);
         topHBox.getChildren().addAll(userLabel, passLabel);
         loginHBox.getChildren().addAll(loginTextfield, passwordField, loginButton);
         //usersHBox.getChildren().addAll(createBuyerButton, createSellerButton);

@@ -1,6 +1,7 @@
 package Diagrams;
 
 import Controller.Seller;
+import Controller.TableViewCreator;
 import Database.DBHandlerLocation;
 import Database.DBHandlerSeller;
 import javafx.collections.FXCollections;
@@ -14,9 +15,10 @@ import java.sql.ResultSet;
 /**
  * Created by christianhasselstrom on 06/12/2015.
  */
-public class SellersTable {
+public class SellersTable implements TableViewCreator
+{
 
-    public static TableView getSellersTable()
+    public TableView getTable()
     {
         TableView<Seller> sellersTable = new TableView();
         sellersTable.setPrefWidth(400);

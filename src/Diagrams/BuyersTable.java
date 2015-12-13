@@ -1,6 +1,7 @@
 package Diagrams;
 
 import Controller.Buyer;
+import Controller.TableViewCreator;
 import Database.DBHandlerBuyer;
 import Database.DBHandlerLocation;
 import javafx.collections.FXCollections;
@@ -14,10 +15,12 @@ import java.sql.ResultSet;
 /**
  * Created by christianhasselstrom on 06/12/2015.
  */
-public class BuyersTable {
+public class BuyersTable implements TableViewCreator
+{
 
-    public static TableView getBuyersTable() {
-        TableView buyersTable = new TableView();
+    public TableView getTable()
+    {
+        TableView<Buyer> buyersTable = new TableView();
 
         buyersTable.setPrefWidth(400);
         TableColumn buyerName = new TableColumn("Employee Name");
@@ -71,7 +74,6 @@ public class BuyersTable {
         {
 
         }
-
         return buyersTable;
     }
 }

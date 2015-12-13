@@ -78,7 +78,7 @@ public class CreateSellerWindow
         birthdateLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label emailLabel = new Label("Email:");
         emailLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        Label enterPasswordLabel = new Label("Enter password:");
+        Label enterPasswordLabel = new Label("Password:");
         enterPasswordLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label confirmPasswordLabel = new Label("Confirm password:");
         confirmPasswordLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
@@ -97,13 +97,20 @@ public class CreateSellerWindow
         allReadyExists.setTextFill(Color.RED);
 
         //Input fields
-        TextField firstNameText = new TextField();
-        TextField lastNameText = new TextField();
+        TextField firstNameField = new TextField();
+        firstNameField.setPromptText("Enter your first name");
+        TextField lastNameField = new TextField();
+        lastNameField.setPromptText("Enter your last name");
         DatePicker birthdateField = new DatePicker();
+        birthdateField.setPromptText("Enter your birthday");
         birthdateField.setPrefWidth(312);
-        TextField emailText = new TextField();
+        TextField emailField = new TextField();
+        emailField.setPromptText("Enter your email");
         PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Enter your new password");
         PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField.setPromptText("Repeat password");
+
         CheckBox carpenterCheck = new CheckBox("Carpenter");
         carpenterCheck.setOnMouseEntered(e -> carpenterCheck.setUnderline(true));
         carpenterCheck.setOnMouseExited(e -> carpenterCheck.setUnderline(false));
@@ -150,6 +157,7 @@ public class CreateSellerWindow
         allCheckRows.setSpacing(5);
 
         ComboBox locationCombo = new ComboBox();
+        locationCombo.setPromptText("Enter location");
 
         ResultSet rs = DBHandlerLocation.getPostNumbers();
         ObservableList<String> data = FXCollections.observableArrayList();
@@ -227,7 +235,7 @@ public class CreateSellerWindow
 
             for(int i = 0; i < ls1.size(); i++)
             {
-                if(emailText.getText().equals(ls1.get(i).getBusinessEmail()))
+                if(emailField.getText().equals(ls1.get(i).getBusinessEmail()))
                 {
                     busiE = 1;
 
@@ -235,7 +243,7 @@ public class CreateSellerWindow
             }
             for(int i = 0; i < ls2.size(); i++)
             {
-                if(emailText.getText().equals(ls2.get(i).getEmail()))
+                if(emailField.getText().equals(ls2.get(i).getEmail()))
                 {
                     sellE = 1;
 
@@ -270,8 +278,7 @@ public class CreateSellerWindow
                     int retailInt = Checker.checkSelected(retailCheck);
                     int pedaInt = Checker.checkSelected(pedagogueCheck);
 
-
-                    DBHandlerSeller.saveSeller(firstNameText, lastNameText, birthdateField, emailText, passwordField,
+                    DBHandlerSeller.saveSeller(firstNameField, lastNameField, birthdateField, emailField, passwordField,
                             carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
                             bartenderInt, storeInt, retailInt, pedaInt, locationCombo);
                     Login.alertWindow();
@@ -288,11 +295,11 @@ public class CreateSellerWindow
         VBox labelVBox = new VBox();
         labelVBox.getChildren().addAll(firstNameLabel,lastNameLabel,birthdateLabel, emailLabel, enterPasswordLabel,
                 confirmPasswordLabel, qualificationsLabel, locationLabel, cityLabel);
-        labelVBox.setSpacing(24);
+        labelVBox.setSpacing(22.3);
 
         //VBox with all input fields
         VBox inputVBox = new VBox();
-        inputVBox.getChildren().addAll(firstNameText, lastNameText, birthdateField, emailText, passwordField,
+        inputVBox.getChildren().addAll(firstNameField, lastNameField, birthdateField, emailField, passwordField,
                 confirmPasswordField, allCheckRows, locationCombo, cityField, createButton);
         inputVBox.setSpacing(15);
 

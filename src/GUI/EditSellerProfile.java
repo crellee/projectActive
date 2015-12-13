@@ -99,14 +99,32 @@ public class EditSellerProfile
         cityField.setEditable(false);
         cityField.setPrefWidth(160);
         CheckBox carpenterCheck = new CheckBox("Carpenter");
+        carpenterCheck.setOnMouseEntered(e -> carpenterCheck.setUnderline(true));
+        carpenterCheck.setOnMouseExited(e -> carpenterCheck.setUnderline(false));
         CheckBox janitorCheck = new CheckBox("Janitor");
+        janitorCheck.setOnMouseEntered(e -> janitorCheck.setUnderline(true));
+        janitorCheck.setOnMouseExited(e -> janitorCheck.setUnderline(false));
         CheckBox cleanerCheck = new CheckBox("Cleaner");
+        cleanerCheck.setOnMouseEntered(e -> cleanerCheck.setUnderline(true));
+        cleanerCheck.setOnMouseExited(e -> cleanerCheck.setUnderline(false));
         CheckBox waiterCheck = new CheckBox("Waiter");
+        waiterCheck.setOnMouseEntered(e -> waiterCheck.setUnderline(true));
+        waiterCheck.setOnMouseExited(e -> waiterCheck.setUnderline(false));
         CheckBox chefCheck = new CheckBox("Chef");
+        chefCheck.setOnMouseEntered(e -> chefCheck.setUnderline(true));
+        chefCheck.setOnMouseExited(e -> chefCheck.setUnderline(false));
         CheckBox bartenderCheck = new CheckBox("Bartender");
+        bartenderCheck.setOnMouseEntered(e -> bartenderCheck.setUnderline(true));
+        bartenderCheck.setOnMouseExited(e -> bartenderCheck.setUnderline(false));
         CheckBox storeCheck = new CheckBox("Store employee");
+        storeCheck.setOnMouseEntered(e -> storeCheck.setUnderline(true));
+        storeCheck.setOnMouseExited(e -> storeCheck.setUnderline(false));
         CheckBox retailCheck = new CheckBox("Retail");
+        retailCheck.setOnMouseEntered(e -> retailCheck.setUnderline(true));
+        retailCheck.setOnMouseExited(e -> retailCheck.setUnderline(false));
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
+        pedagogueCheck.setOnMouseEntered(e -> pedagogueCheck.setUnderline(true));
+        pedagogueCheck.setOnMouseExited(e -> pedagogueCheck.setUnderline(false));
 
         ComboBox locationCombo = new ComboBox();
         locationCombo.setPrefWidth(200);
@@ -144,6 +162,8 @@ public class EditSellerProfile
         updateButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         updateButton.setTextFill(Color.WHITE);
         updateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        updateButton.setOnMouseEntered(e -> updateButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        updateButton.setOnMouseExited(event -> updateButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         updateButton.setPrefWidth(150);
         updateButton.setPrefHeight(50);
         updateButton.setOnAction(e ->

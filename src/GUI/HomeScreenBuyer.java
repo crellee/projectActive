@@ -1,19 +1,11 @@
 package GUI;
 
-import Controller.Buyer;
-import Database.DBHandlerBuyer;
-import Database.DBHandlerLocation;
 import Database.DBHandlerTask;
 import Diagrams.*;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.effect.Reflection;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,8 +14,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -31,6 +21,8 @@ import java.util.Optional;
  */
 public class HomeScreenBuyer
 {
+    private static BuyersTable buyersTable = new BuyersTable();
+    private static SellersTable sellersTable = new SellersTable();
 
     public static void homeScreenBuyer() {
         BorderPane root = new BorderPane();
@@ -86,7 +78,7 @@ public class HomeScreenBuyer
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             sellersBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
-            root.setCenter(SellersTable.getSellersTable());
+            root.setCenter(sellersTable.getTable());
         });
 
         //buyersBtn
@@ -105,7 +97,7 @@ public class HomeScreenBuyer
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
-            root.setCenter(BuyersTable.getBuyersTable());
+            root.setCenter(buyersTable.getTable());
         });
 
         //matchesBtn

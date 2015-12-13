@@ -16,7 +16,6 @@ public class DBHandlerQualification
         try
         {
             String sqlString;
-            System.out.println("Entered");
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 

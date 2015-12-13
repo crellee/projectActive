@@ -72,7 +72,7 @@ public class CreateBuyerWindow
         businessNameLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label businessEmailLabel = new Label("Business Email");
         businessEmailLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        Label enterPasswordLabel = new Label("Enter Password");
+        Label enterPasswordLabel = new Label("Password");
         enterPasswordLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label confirmPasswordLabel = new Label("Confirm Password");
         confirmPasswordLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
@@ -80,7 +80,7 @@ public class CreateBuyerWindow
         locationLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cityLabel = new Label("City");
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        Label cvrNoLabel = new Label("Enter CVR-Number");
+        Label cvrNoLabel = new Label("CVR-Number");
         cvrNoLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label fillInformationerrorLabel = new Label("Fill all text fields before creating profile");
             fillInformationerrorLabel.setTextFill(Color.RED);
@@ -95,16 +95,24 @@ public class CreateBuyerWindow
 
         //Input fields
         TextField firstNameField = new TextField();
+        firstNameField.setPromptText("Enter your first name");
         TextField lastNameField = new TextField();
+        lastNameField.setPromptText("Enter your last name");
         TextField businessNameField = new TextField();
+        businessNameField.setPromptText("Enter name of your business");
         TextField businessEmailField = new TextField();
+        businessEmailField.setPromptText("Enter business email");
         PasswordField enterPasswordField = new PasswordField();
+        enterPasswordField.setPromptText("Enter your new password");
         PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField.setPromptText("Repeat password");
         TextField cityField = new TextField();
         cityField.setEditable(false);
         TextField cvrNoField = new TextField();
+        cvrNoField.setPromptText("Enter business CVR number");
 
         ComboBox locationCombo = new ComboBox();
+        locationCombo.setPromptText("Enter location");
         locationCombo.setPrefWidth(200);
         //ResultSet rs which has the values the getPostNumbers method returns.
         //Look up DBHandlerLocation class to see getPostNumbers definition.

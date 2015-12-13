@@ -39,8 +39,10 @@ public class MyProfileSeller
         profilHBox.setPadding(new Insets(20, 10, 10, 20));
         VBox profilVBox = new VBox(20);                  //Left BorderPane
         profilVBox.setPadding(new Insets(50, 0, 10, 30));
-        VBox vBox1 = new VBox(20);
-        VBox vBox2 = new VBox(20);
+        VBox vBox1 = new VBox();
+        vBox1.setSpacing(13);
+        VBox vBox2 = new VBox();
+        vBox2.setSpacing(13);
         VBox vboxButton = new VBox();
         vboxButton.setPadding(new Insets(400, 0, 0, 0));
         VBox vBoxCheckBox = new VBox(10);
@@ -63,6 +65,8 @@ public class MyProfileSeller
         buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         buttonUpdate.setPrefWidth(125);
         buttonUpdate.setPrefHeight(25);
+        buttonUpdate.setOnMouseEntered(e -> buttonUpdate.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        buttonUpdate.setOnMouseExited(event -> buttonUpdate.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         buttonUpdate.setOnAction(e ->
         {
             EditSellerProfile.openWindow();
@@ -84,23 +88,23 @@ public class MyProfileSeller
         Label checkBoxLabel = new Label("My qualifications:");
         checkBoxLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 20));
         Label ageLabel = new Label();
-        ageLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        ageLabel.setFont(Font.font("Oswald", 15));
         Label ageLabelLabel = new Label("Age:");
         ageLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label birthLabel = new Label();
-        birthLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        birthLabel.setFont(Font.font("Oswald",  15));
         Label birthLabelLabel = new Label("Birthday:");
         birthLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label mailLabel = new Label();
-        mailLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        mailLabel.setFont(Font.font("Oswald", 15));
         Label mailLabelLabel = new Label("Email:");
         mailLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label cityLabel = new Label();
-        cityLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        cityLabel.setFont(Font.font("Oswald", 15));
         Label cityLabelLabel = new Label("City:");
         cityLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
         Label locationLabel = new Label();
-        locationLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
+        locationLabel.setFont(Font.font("Oswald", 15));
         Label locationLabelLabel = new Label("Post No:");
         locationLabelLabel.setFont(Font.font("Oswald", FontWeight.BOLD, 15));
 
@@ -113,30 +117,41 @@ public class MyProfileSeller
         //CheckBox
         CheckBox carpenterCheck = new CheckBox("Carpenter");
         carpenterCheck.setDisable(true);
+        carpenterCheck.setFont(Font.font("Verdana", 13));
         carpenterCheck.setStyle("-fx-opacity: 1");
         CheckBox janitorCheck = new CheckBox("Janitor");
         janitorCheck.setDisable(true);
+        janitorCheck.setFont(Font.font("Verdana", 13));
+        janitorCheck.setOnMouseEntered(e -> janitorCheck.setFont(Font.font(14)));
+        janitorCheck.setOnMouseExited(e -> janitorCheck.setFont(Font.font(12)));
         janitorCheck.setStyle("-fx-opacity: 1");
         CheckBox cleanerCheck = new CheckBox("Cleaner");
         cleanerCheck.setDisable(true);
+        cleanerCheck.setFont(Font.font("Verdana", 13));
         cleanerCheck.setStyle("-fx-opacity: 1");
         CheckBox waiterCheck = new CheckBox("Waiter");
         waiterCheck.setDisable(true);
+        waiterCheck.setFont(Font.font("Verdana", 13));
         waiterCheck.setStyle("-fx-opacity: 1");
         CheckBox chefCheck = new CheckBox("Chef");
         chefCheck.setDisable(true);
+        chefCheck.setFont(Font.font("Verdana", 12));
         chefCheck.setStyle("-fx-opacity: 1");
         CheckBox bartenderCheck = new CheckBox("Bartender");
         bartenderCheck.setDisable(true);
+        bartenderCheck.setFont(Font.font("Verdana", 13));
         bartenderCheck.setStyle("-fx-opacity: 1");
         CheckBox storeCheck = new CheckBox("Store employee");
         storeCheck.setDisable(true);
+        storeCheck.setFont(Font.font("Verdana", 13));
         storeCheck.setStyle("-fx-opacity: 1");
         CheckBox retailCheck = new CheckBox("Retail");
         retailCheck.setDisable(true);
+        retailCheck.setFont(Font.font("Verdana", 13));
         retailCheck.setStyle("-fx-opacity: 1");
         CheckBox pedagogueCheck = new CheckBox("Pedagogue");
         pedagogueCheck.setDisable(true);
+        pedagogueCheck.setFont(Font.font("Verdana", 13));
         pedagogueCheck.setStyle("-fx-opacity: 1");
 
         //Tilføjelser til HBox, VBox og Borderpane

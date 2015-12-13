@@ -8,17 +8,19 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  * Created by christianhasselstrom on 30/11/2015.
  */
-public class LoginVerifier {
+public class LoginVerifier
+{
 
     static String email;
 
-    public static void verifyUser (TextField mail, PasswordField pass)
+    public static void verifyUser (TextField mail, PasswordField pass) throws SQLDataException
     {
 
         String mailStr = mail.getText();
