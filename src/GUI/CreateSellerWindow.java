@@ -254,6 +254,15 @@ public class CreateSellerWindow
             {
                 root.setBottom(passwordNotSame);
             }
+            else if (InputValidator.checkLoginEmail(emailField) == 1)
+            {
+                fillAllFields.setText("Please fill email field");
+                root.setBottom(fillAllFields);
+            } else if (InputValidator.checkLoginEmail(emailField) == 2)
+            {
+                fillAllFields.setText("Email must contain '@' and '.'");
+                root.setBottom(fillAllFields);
+            }
 
             else if(busiE == 1)
             {

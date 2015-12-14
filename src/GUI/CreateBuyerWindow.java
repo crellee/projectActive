@@ -1,6 +1,7 @@
 package GUI;
 
 import Controller.Buyer;
+import Controller.InputValidator;
 import Controller.Location;
 import Controller.Seller;
 import Database.DBHandlerBuyer;
@@ -206,6 +207,16 @@ public class CreateBuyerWindow
             if (!enterPasswordField.getText().equals(confirmPasswordField.getText()))
             {
                 root.setBottom(passwordNotSame);
+            }
+
+            else if (InputValidator.checkLoginEmail(businessEmailField) == 1)
+            {
+                fillAllFields.setText("Please fill email field");
+                root.setBottom(fillAllFields);
+            } else if (InputValidator.checkLoginEmail(businessEmailField) == 2)
+            {
+                fillAllFields.setText("Email must contain '@' and '.'");
+                root.setBottom(fillAllFields);
             }
 
             else if(busiE == 1)
