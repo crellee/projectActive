@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.InputValidator;
 import Controller.Location;
 import Controller.Qualification;
 import Database.DBHandlerLocation;
@@ -31,7 +32,7 @@ public class CreateTaskWindow
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
         Stage window = new Stage();
-        Scene scene = new Scene(root, 700, 600);
+        Scene scene = new Scene(root, 700, 630);
         window.setScene(scene);
 
         //Headline
@@ -71,26 +72,35 @@ public class CreateTaskWindow
         numberOfHoursPrDayLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cellNumberLabel = new Label("Phone number");
         cellNumberLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        Label fillAllFields = new Label("Please fill ALL fields before creating profile");
-        fillAllFields.setTextFill(Color.RED);
 
+        Label errorMessage = new Label();
+        errorMessage.setTextFill(Color.RED);
+        errorMessage.setFont(Font.font("Verdana", 13));
 
         //input fields
         TextField jobDescriptionField = new TextField();
+        jobDescriptionField.setOnMouseClicked(e -> errorMessage.setText(""));
         ComboBox locationCombo = new ComboBox<>();
         locationCombo.setPrefWidth(200);
+        locationCombo.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField cityField = new TextField();
         ComboBox requiredQualificationCombo = new ComboBox<>();
         requiredQualificationCombo.setPrefWidth(200);
+        requiredQualificationCombo.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField salaryField = new TextField();
+        salaryField.setOnMouseClicked(e -> errorMessage.setText(""));
         DatePicker fromDatePicker = new DatePicker();
         fromDatePicker.setPrefWidth(200);
+        fromDatePicker.setOnMouseClicked(e -> errorMessage.setText(""));
         DatePicker toDatePicker = new DatePicker();
         toDatePicker.setPrefWidth(200);
+        toDatePicker.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField numOfDaysField = new TextField();
         numOfDaysField.setEditable(false);
         TextField numberOfHoursPrDayField = new TextField();
+        numberOfHoursPrDayField.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField cellNumberField = new TextField();
+        cellNumberField.setOnMouseClicked(e -> errorMessage.setText(""));
 
         //combox required qualifications og database connector
         ResultSet rs1 = DBHandlerQualification.getQualificationName();
@@ -184,16 +194,38 @@ http://stackoverflow.com/questions/25753727/javafx-using-date-picker
         createButton.setOnMouseExited(event -> createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         createButton.setOnAction(e ->
         {
-
-            try
+            if(jobDescriptionField.getText().equals("") || cityField.getText().equals("") ||
+                    requiredQualificationCombo.getValue().toString().equals("") || salaryField.getText().equals("") ||
+                    fromDatePicker.getValue().toString().equals("") || toDatePicker.getValue().toString().equals("") ||
+                    numOfDaysField.getText().equals("") || numberOfHoursPrDayField.getText().equals("") ||
+                    cellNumberField.getText().equals(""))
             {
-                DBHandlerTask.saveTask(jobDescriptionField, locationCombo, requiredQualificationCombo, salaryField, fromDatePicker,
-                        toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField);
-                window.close();
+                errorMessage.setText("Please fill all fields");
             }
-            catch(NullPointerException e1)
+            else if(InputValidator.validDates(fromDatePicker, toDatePicker) == false)
             {
-                root.setBottom(fillAllFields);
+                errorMessage.setText("Start date is after end date");
+            }
+            else if(cellNumberField.getLength() != 8)
+            {
+                errorMessage.setText("Phone number too short");
+
+            }
+            else
+            {
+                try
+                {
+                    DBHandlerTask.saveTask(jobDescriptionField, locationCombo, requiredQualificationCombo, salaryField, fromDatePicker,
+                            toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField);
+                    window.close();
+                } catch (NullPointerException e1)
+                {
+                    errorMessage.setText("dfdsf");
+                }
+                catch (NumberFormatException e2)
+                {
+                    errorMessage.setText("CVR must be numbers");
+                }
             }
 
         });
@@ -207,7 +239,7 @@ http://stackoverflow.com/questions/25753727/javafx-using-date-picker
         //VBox med input fields
         VBox fieldVBox = new VBox();
         fieldVBox.getChildren().addAll(jobDescriptionField, locationCombo, cityField, requiredQualificationCombo, salaryField,
-                fromDatePicker, toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField, createButton);
+                fromDatePicker, toDatePicker, numOfDaysField, numberOfHoursPrDayField, cellNumberField, createButton, errorMessage);
         fieldVBox.setSpacing(15);
 
 

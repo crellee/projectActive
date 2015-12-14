@@ -1,9 +1,11 @@
 package Controller;
 
 import Database.DBHandlerSellerAndBuyer;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javax.xml.stream.events.Characters;
 import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -90,20 +92,12 @@ public class InputValidator
         return false;
     }
 
-    public static boolean containsNumber(TextField field)
+    public static boolean validDates(DatePicker startDate, DatePicker endDate)
     {
-        ArrayList<String> ls1 = new ArrayList();
-
-        if(field.getText().matches(("[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]")))
+        if(startDate.getValue().isBefore(endDate.getValue()) || startDate.getValue().isEqual(endDate.getValue()))
         {
             return true;
         }
-        /*else if(field.getText().matches(("[0-9]")) && field.getText().matches(("[A-Z]")) && field.getText().matches(("[a-z]")))
-        {
-            return true;
-        }
-        */
-
         else
         {
             return false;

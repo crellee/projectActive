@@ -97,17 +97,23 @@ public class CreateSellerWindow
         //Input fields
         TextField firstNameField = new TextField();
         firstNameField.setPromptText("Enter your first name");
+        firstNameField.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField lastNameField = new TextField();
         lastNameField.setPromptText("Enter your last name");
+        lastNameField.setOnMouseClicked(e -> errorMessage.setText(""));
         DatePicker birthdateField = new DatePicker();
         birthdateField.setPromptText("Enter your birthday");
+        birthdateField.setOnMouseClicked(e -> errorMessage.setText(""));
         birthdateField.setPrefWidth(312);
         TextField emailField = new TextField();
         emailField.setPromptText("Enter your email");
+        emailField.setOnMouseClicked(e -> errorMessage.setText(""));
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Enter your new password");
+        passwordField.setOnMouseClicked(e -> errorMessage.setText(""));
         PasswordField confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Repeat password");
+        confirmPasswordField.setOnMouseClicked(e -> errorMessage.setText(""));
 
         CheckBox carpenterCheck = new CheckBox("Carpenter");
         carpenterCheck.setOnMouseEntered(e -> carpenterCheck.setUnderline(true));
@@ -155,6 +161,7 @@ public class CreateSellerWindow
         allCheckRows.setSpacing(5);
 
         ComboBox locationCombo = new ComboBox();
+        locationCombo.setOnMouseClicked(e -> errorMessage.setText(""));
         locationCombo.setPromptText("Enter location");
 
         ResultSet rs = DBHandlerLocation.getPostNumbers();
@@ -204,10 +211,6 @@ public class CreateSellerWindow
             {
                 errorMessage.setText("Please fill all fields");
             }
-            else if(InputValidator.containsNumber(firstNameField))
-            {
-                errorMessage.setText("Firstname contains numbers");
-            }
             else if (!passwordField.getText().equals(confirmPasswordField.getText()))
             {
                 errorMessage.setText("Passwords don't match");
@@ -250,6 +253,8 @@ public class CreateSellerWindow
             {
                 errorMessage.setText("Please fill all fields");
             }
+
+
         });
 
         //VBox with all information labels.

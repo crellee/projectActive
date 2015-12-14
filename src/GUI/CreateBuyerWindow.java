@@ -103,23 +103,31 @@ public class CreateBuyerWindow
         //Input fields
         TextField firstNameField = new TextField();
         firstNameField.setPromptText("Enter your first name");
+        firstNameField.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField lastNameField = new TextField();
         lastNameField.setPromptText("Enter your last name");
+        lastNameField.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField businessNameField = new TextField();
         businessNameField.setPromptText("Enter name of your business");
+        businessNameField.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField businessEmailField = new TextField();
         businessEmailField.setPromptText("Enter business email");
+        businessEmailField.setOnMouseClicked(e -> errorMessage.setText(""));
         PasswordField enterPasswordField = new PasswordField();
         enterPasswordField.setPromptText("Enter your new password");
+        enterPasswordField.setOnMouseClicked(e -> errorMessage.setText(""));
         PasswordField confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Repeat password");
+        confirmPasswordField.setOnMouseClicked(e -> errorMessage.setText(""));
         TextField cityField = new TextField();
         cityField.setEditable(false);
         TextField cvrNoField = new TextField();
         cvrNoField.setPromptText("Enter business CVR number");
+        cvrNoField.setOnMouseClicked(e -> errorMessage.setText(""));
 
         ComboBox locationCombo = new ComboBox();
         locationCombo.setPromptText("Enter location");
+        locationCombo.setOnMouseClicked(e -> errorMessage.setText(""));
         locationCombo.setPrefWidth(200);
         //ResultSet rs which has the values the getPostNumbers method returns.
         //Look up DBHandlerLocation class to see getPostNumbers definition.
