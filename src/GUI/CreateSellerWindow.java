@@ -196,12 +196,17 @@ public class CreateSellerWindow
 
         createButton.setOnAction(e ->
         {
-            try {
+            try
+            {
             if(firstNameField.getText().equals("") || lastNameField.getText().equals("") ||
                     birthdateField.getValue().toString().equals("") || emailField.getText().equals("") ||
                     confirmPasswordField.getText().equals("") || locationCombo.getValue().toString().equals(""))
             {
                 errorMessage.setText("Please fill all fields");
+            }
+            else if(InputValidator.containsNumber(firstNameField))
+            {
+                errorMessage.setText("Firstname contains numbers");
             }
             else if (!passwordField.getText().equals(confirmPasswordField.getText()))
             {
