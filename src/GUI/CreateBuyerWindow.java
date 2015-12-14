@@ -34,6 +34,7 @@ public class CreateBuyerWindow
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
         Stage window = new Stage();
+        window.setResizable(false);
         Scene scene = new Scene(root, 600, 600);
         window.setScene(scene);
 
@@ -175,7 +176,7 @@ public class CreateBuyerWindow
 
             else if(InputValidator.userExists(businessEmailField) == true)
             {
-                errorMessage.setText("Email already exists. Choose another please.");
+                errorMessage.setText("Email already exists. Choose another.");
             }
 
             else if (InputValidator.checkLoginEmail(businessEmailField) == 2)
@@ -185,7 +186,7 @@ public class CreateBuyerWindow
 
             else if(cvrNoField.getLength() != 8)
             {
-                errorMessage.setText("CVR must be 8 characters and only numbers");
+                errorMessage.setText("CVR must be 8 numbers");
 
             }
             else
@@ -200,6 +201,10 @@ public class CreateBuyerWindow
                 catch(NullPointerException e1)
                 {
                     errorMessage.setText("Please fill all fields");
+                }
+                catch (NumberFormatException e2)
+                {
+                    errorMessage.setText("CVR must be numbers");
                 }
             }
 
@@ -222,7 +227,6 @@ public class CreateBuyerWindow
         centerHBox.getChildren().addAll(labelVBox, inputVBox);
         centerHBox.setSpacing(10);
         centerHBox.setPadding(new Insets(5,0,0,130));
-
 
         root.setCenter(centerHBox);
 

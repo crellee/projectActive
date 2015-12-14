@@ -35,10 +35,10 @@ public class CreateSellerWindow
 {
     public static void openWindow()
     {
-
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: linear-gradient(#42C0FB, #236B8E) ");
         Stage window = new Stage();
+        window.setResizable(false);
         Scene scene = new Scene(root, 650, 650);
         window.setScene(scene);
 
