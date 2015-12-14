@@ -20,7 +20,7 @@ public class LoginVerifier
 
     static String email;
 
-    public static void verifyUser (TextField mail, PasswordField pass) throws SQLDataException
+    public static void verifyUser (TextField mail, PasswordField pass)
     {
 
         String mailStr = mail.getText();

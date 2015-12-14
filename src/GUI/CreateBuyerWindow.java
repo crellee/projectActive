@@ -83,6 +83,7 @@ public class CreateBuyerWindow
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cvrNoLabel = new Label("CVR-Number");
         cvrNoLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        /*
         Label fillInformationerrorLabel = new Label("Fill all text fields before creating profile");
             fillInformationerrorLabel.setTextFill(Color.RED);
         Label passwordNotSame = new Label("Passwords must be the same before creating profile");
@@ -93,6 +94,10 @@ public class CreateBuyerWindow
         cvrMax8.setTextFill(Color.RED);
         Label allReadyExists = new Label("Email allready exists in database, choose another please.");
         allReadyExists.setTextFill(Color.RED);
+        */
+        Label errorMessage = new Label();
+        errorMessage.setFont(Font.font("Verdana", 13));
+        errorMessage.setTextFill(Color.RED);
 
         //Input fields
         TextField firstNameField = new TextField();
@@ -154,83 +159,33 @@ public class CreateBuyerWindow
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
 
-        //creates Arraylists with buyers emails and sellers email
-
-        ArrayList<Buyer> ls1 = new ArrayList<>();
-        ArrayList<Seller> ls2 = new ArrayList<>();
-
-
-        try {
-            ResultSet rs2 = DBHandlerSellerAndBuyer.isUnique();
-
-            while (rs2.next()) {
-
-                Buyer buyer = new Buyer();
-                Seller seller = new Seller();
-
-                buyer.setBusinessEmail(rs2.getString("businessEmail"));
-
-                seller.setEmail(rs2.getString("email"));
-
-                ls1.add(buyer);
-                ls2.add(seller);
-            }
-        }
-        catch(Exception e1)
-        {
-
-        }
-
         createButton.setOnAction(e ->
         {
-            // if when a new user is created the chosen email allready exists in the database either busiE or sellE will be 1
-            int busiE = 0;
-            int sellE = 0;
 
-            for(int i = 0; i < ls1.size(); i++)
+            if(firstNameField.getText().equals("") || lastNameField.getText().equals("") ||
+                    businessNameField.getText().equals("") || businessEmailField.getText().equals("") ||
+                    enterPasswordField.getText().equals("") || confirmPasswordField.getText().equals(""))
             {
-                if(businessEmailField.getText().equals(ls1.get(i).getBusinessEmail()))
-                {
-                    busiE = 1;
-
-                }
+                errorMessage.setText("Please fill all fields");
             }
-            for(int i = 0; i < ls2.size(); i++)
+            else if (!enterPasswordField.getText().equals(confirmPasswordField.getText()))
             {
-                if(businessEmailField.getText().equals(ls2.get(i).getEmail()))
-                {
-                    sellE = 1;
-
-                }
+                errorMessage.setText("Passwords don't match.");
             }
 
-            if (!enterPasswordField.getText().equals(confirmPasswordField.getText()))
+            else if(InputValidator.userExists(businessEmailField) == true)
             {
-                root.setBottom(passwordNotSame);
+                errorMessage.setText("Email already exists. Choose another please.");
             }
 
-            else if (InputValidator.checkLoginEmail(businessEmailField) == 1)
+            else if (InputValidator.checkLoginEmail(businessEmailField) == 2)
             {
-                fillAllFields.setText("Please fill email field");
-                root.setBottom(fillAllFields);
-            } else if (InputValidator.checkLoginEmail(businessEmailField) == 2)
-            {
-                fillAllFields.setText("Email must contain '@' and '.'");
-                root.setBottom(fillAllFields);
-            }
-
-            else if(busiE == 1)
-            {
-                root.setBottom(allReadyExists);
-            }
-            else if( sellE == 1)
-            {
-                root.setBottom(allReadyExists);
+                errorMessage.setText("Email must contain '@' and '.'");
             }
 
             else if(cvrNoField.getLength() != 8)
             {
-                root.setBottom(cvrMax8);
+                errorMessage.setText("CVR must be 8 characters and only numbers");
 
             }
             else
@@ -244,7 +199,7 @@ public class CreateBuyerWindow
                 }
                 catch(NullPointerException e1)
                 {
-                    root.setBottom(fillAllFields);
+                    errorMessage.setText("Please fill all fields");
                 }
             }
 
@@ -259,8 +214,9 @@ public class CreateBuyerWindow
 
         VBox inputVBox = new VBox();
         inputVBox.getChildren().addAll(firstNameField, lastNameField, businessNameField, businessEmailField,
-                enterPasswordField, confirmPasswordField, locationCombo, cityField, cvrNoField, createButton);
+                enterPasswordField, confirmPasswordField, locationCombo, cityField, cvrNoField, createButton, errorMessage);
         inputVBox.setSpacing(15);
+        inputVBox.setPrefWidth(280);
 
         HBox centerHBox = new HBox();
         centerHBox.getChildren().addAll(labelVBox, inputVBox);

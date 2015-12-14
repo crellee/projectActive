@@ -1,7 +1,12 @@
 package Controller;
 
+import Database.DBHandlerSellerAndBuyer;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by roije on 11/12/2015.
@@ -37,5 +42,51 @@ public class InputValidator
             return false;
         }
         return true;
+    }
+
+    public static boolean userExists(TextField email)
+    {
+        //creates Arraylists with buyers emails and sellers email
+        ArrayList<Buyer> ls1 = new ArrayList<>();
+        ArrayList<Seller> ls2 = new ArrayList<>();
+        try
+        {
+            ResultSet rs = DBHandlerSellerAndBuyer.isUnique();
+
+            while (rs.next()) {
+
+                Buyer buyer = new Buyer();
+                Seller seller = new Seller();
+
+                buyer.setBusinessEmail(rs.getString("businessEmail"));
+
+                seller.setEmail(rs.getString("email"));
+
+                ls1.add(buyer);
+                ls2.add(seller);
+            }
+        }
+        catch(Exception e1)
+        {
+
+        }
+        // if when a new user is created the chosen email allready exists in the database either busiE or sellE will be 1
+        for(int i = 0; i < ls1.size(); i++)
+        {
+            if(email.getText().equals(ls1.get(i).getBusinessEmail()))
+            {
+                return true;
+
+            }
+        }
+        for(int i = 0; i < ls2.size(); i++)
+        {
+            if(email.getText().equals(ls2.get(i).getEmail()))
+            {
+                return true;
+
+            }
+        }
+        return false;
     }
 }

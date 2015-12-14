@@ -147,17 +147,15 @@ public class Login extends Application {
                 } else if (InputValidator.checkLoginPassword(passwordField) == false)
                 {
                     errorMessage.setText("Password field is empty");
-                } else
+                }
+                else if(InputValidator.userExists(loginTextfield) == false)
                 {
-                    try
-                    {
-                        LoginVerifier.setEmail(loginTextfield);
-                        LoginVerifier.verifyUser(loginTextfield, passwordField);
-                    }
-                    catch (SQLException sqlEx)
-                    {
-                        errorMessage.setText("sdf");
-                    }
+                    errorMessage.setText("No user registered with that email");
+                }
+                else
+                {
+                    LoginVerifier.setEmail(loginTextfield);
+                    LoginVerifier.verifyUser(loginTextfield, passwordField);
 
                 }
 
