@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 public class DBHandlerLocation
 {
 
+    //This method add standard data to the cities table.
     public static void fillLocationTable()
     {
         try

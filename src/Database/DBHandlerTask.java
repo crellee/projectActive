@@ -58,20 +58,7 @@ public class DBHandlerTask {
         }
     }
 
-    public static ResultSet getTaskInformationsForTable() {
-        ResultSet rs = null;
-        try {
-            Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT jobDescription, businessEmail, location, city, requiredQualification, salary, fromDate," +
-                    " toDate, numOfDays, numberOfHours, cellNumber FROM Tasks ";
-            rs = conn.createStatement().executeQuery(sqlString);
-        } catch (Exception e) {
-
-        }
-
-        return rs;
-    }
-
+    //This method gets all the task informations.
     public static ResultSet getAllTaskInfoForTable() {
         ResultSet rs = null;
         try {
@@ -87,6 +74,7 @@ public class DBHandlerTask {
         return rs;
     }
 
+    //this method gets alle the matches info for a seller.
     public static ResultSet getMatchesInfoForSeller() {
         ResultSet rs = null;
         String email = LoginVerifier.getEmail();
@@ -112,6 +100,7 @@ public class DBHandlerTask {
         return rs;
     }
 
+    //this methos gets all the matches informations for a buyer
     public static ResultSet getMatchesInfoForBuyer() {
         ResultSet rs = null;
         String email = LoginVerifier.getEmail();
@@ -138,6 +127,7 @@ public class DBHandlerTask {
         return rs;
     }
 
+    //this method sets a task requested by a seller.
     public static void updateSetRequest(String description) {
         String email = LoginVerifier.getEmail();
         try {
@@ -153,6 +143,7 @@ public class DBHandlerTask {
 
     }
 
+    //this method accepts a seller, who has requested a task.
     public static void updateSetAccept(String description) {
         String email = LoginVerifier.getEmail();
         try {
@@ -168,6 +159,7 @@ public class DBHandlerTask {
 
     }
 
+    //this method gives a new buyer a new rating by a seller after a seller has requested a task and a buyer has accepted it
     public static void setNewBuyerRating(String businessName, ComboBox newRating, String jobDescription)
     {
         double newRatingDouble = Double.parseDouble(newRating.getValue().toString());
@@ -195,6 +187,7 @@ public class DBHandlerTask {
         }
     }
 
+    //this method gives a new seller a new rating by a buyer after a seller has requested a task and a buyer has accepted it
     public static void setNewSellerRating(String email, ComboBox newRating, String jobDescription)
     {
         double newRatingDouble = Double.parseDouble(newRating.getValue().toString());

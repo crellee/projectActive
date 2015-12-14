@@ -14,6 +14,7 @@ import java.sql.Statement;
 
 /**
  * Created by christianhasselstrom on 30/11/2015.
+ * This class is creating a loginverifier, which is used to get the email from a user when he or she logs in.
  */
 public class LoginVerifier
 {

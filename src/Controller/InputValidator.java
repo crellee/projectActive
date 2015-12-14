@@ -92,14 +92,17 @@ public class InputValidator
 
     public static boolean containsNumber(TextField field)
     {
-        if(field.getText().matches(("[0,1,2,3,4,5,6,7,8,9]")))
+        ArrayList<String> ls1 = new ArrayList();
+
+        if(field.getText().matches(("[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]")))
         {
             return true;
         }
-        else if(field.getText().matches(("[0-9]")) && field.getText().matches(("[A-Z]")) && field.getText().matches(("[a-z]")))
+        /*else if(field.getText().matches(("[0-9]")) && field.getText().matches(("[A-Z]")) && field.getText().matches(("[a-z]")))
         {
             return true;
         }
+        */
 
         else
         {

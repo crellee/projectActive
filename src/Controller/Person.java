@@ -3,6 +3,7 @@ package Controller;
 /**
  * Created by BobLarsen on 11-12-2015.
  */
+// seller and buyer extends from this class.
 public class Person {
 
     private String firstName;
