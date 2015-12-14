@@ -35,7 +35,7 @@ public class HomeScreenSeller {
         topVBox.setSpacing(70);
         HBox topHBox = new HBox();
         topHBox.setPrefWidth(1280);
-        topHBox.setSpacing(800);
+        topHBox.setSpacing(700);
         root.setTop(topVBox);
         HBox buttonBox = new HBox();
         buttonBox.setPrefWidth(1280);

@@ -180,6 +180,8 @@ http://stackoverflow.com/questions/25753727/javafx-using-date-picker
         createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         createButton.setPrefWidth(150);
         createButton.setPrefHeight(50);
+        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
+        createButton.setOnMouseExited(event -> createButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
         createButton.setOnAction(e ->
         {
 
