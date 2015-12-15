@@ -65,7 +65,7 @@ public class HomeScreenSeller {
         ToggleButton matchesBtn = new ToggleButton("Matches");
         ToggleButton tasksBtn = new ToggleButton("Tasks");
         ToggleButton myProfileBtn = new ToggleButton("My Profile");
-        Label requestTaskLbl = new Label("Double click to request task");
+        Label requestTaskLbl = new Label("Double click to request task and to rate");
 
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
@@ -169,7 +169,7 @@ public class HomeScreenSeller {
         requestTaskLbl.setVisible(false);
 
         VBox accBox = new VBox();
-        accBox.setPadding(new Insets(0,0,0,500));
+        accBox.setPadding(new Insets(0,0,0,400));
         accBox.getChildren().add(requestTaskLbl);
         buttonBox.getChildren().add(accBox);
 

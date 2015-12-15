@@ -13,11 +13,11 @@ import java.sql.DriverManager;
 public class SchemaCreator
 {
     //Database URL
-    static final String DB_URL = "jdbc:mysql://db4free.net/";
+    final static String DB_URL = "jdbc:mysql://sql4.freesqldatabase.com/";
 
     //  Database credentials
-    static final String USER = "vicar";
-    static final String PASS = "123kaffe";
+    final static String USER = "sql499918";
+    final static String PASS = "issh1FmltI";
 
     public static void create()
     {
@@ -36,7 +36,7 @@ public class SchemaCreator
             System.out.println("Creating database...");
             stmt = (Statement) conn.createStatement();
 
-            String sql = "CREATE DATABASE IF NOT EXISTS vicarius";
+            String sql = "CREATE DATABASE IF NOT EXISTS sql499918";
             stmt.executeUpdate(sql);
             System.out.println("Database created successfully...");
             }

@@ -63,7 +63,7 @@ public class DBHandlerTask {
         ResultSet rs = null;
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers as b1 " +
+            String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM sql499918.Tasks AS t1 INNER JOIN sql499918.Buyers as b1 " +
                     "ON t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.isActive = 1 ";
             rs = conn.createStatement().executeQuery(sqlString);
@@ -80,7 +80,7 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM vicarius.Tasks AS t1 INNER JOIN vicarius.Sellers as s1 INNER JOIN vicarius.Buyers as b1 " +
+            String sqlString = "SELECT t1.* , b1.rating, b1.businessName FROM sql499918.Tasks AS t1 INNER JOIN sql499918.Sellers as s1 INNER JOIN sql499918.Buyers as b1 " +
                     "ON s1.email = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 AND isActive = 1  " +
@@ -106,7 +106,7 @@ public class DBHandlerTask {
         String email = LoginVerifier.getEmail();
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated, t1.buyerRated, t1.isActive FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Tasks AS t1 INNER JOIN vicarius.Buyers AS b1 " +
+            String sqlString = "SELECT s1.*, t1.jobDescription, b1.businessName, t1.requiredQualification, t1.sellerRequest, t1.sellerRated, t1.buyerRated, t1.isActive FROM sql499918.Sellers AS s1 INNER JOIN sql499918.Tasks AS t1 INNER JOIN sql499918.Buyers AS b1 " +
                     "ON b1.businessEmail = '" + email + "' " +
                     "AND t1.businessEmail = b1.businessEmail " +
                     "WHERE t1.requiredQualification = 'Chef' AND s1.qualiChef = 1 AND isActive = 1 " +
@@ -133,7 +133,7 @@ public class DBHandlerTask {
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Sellers s1 SET sellerRequest = '"+email+"' " +
+            String sqlString = "UPDATE sql499918.Tasks t1 JOIN sql499918.Sellers s1 SET sellerRequest = '"+email+"' " +
                     "WHERE t1.jobDescription = '"+description+"' ";
             stmt.executeUpdate(sqlString);
 
@@ -149,7 +149,7 @@ public class DBHandlerTask {
         try {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
-            String sqlString = "UPDATE vicarius.Tasks t1 JOIN vicarius.Buyers b1 SET buyerAccept = '"+email+"' " +
+            String sqlString = "UPDATE sql499918.Tasks t1 JOIN sql499918.Buyers b1 SET buyerAccept = '"+email+"' " +
                     "WHERE t1.jobDescription = '"+description+"' ";
             stmt.executeUpdate(sqlString);
 
@@ -169,13 +169,13 @@ public class DBHandlerTask {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            String sqlString2 = "UPDATE vicarius.Buyers AS b1 JOIN vicarius.Tasks AS t1 " +
+            String sqlString2 = "UPDATE sql499918.Buyers AS b1 JOIN sql499918.Tasks AS t1 " +
                     "SET totalRating = totalRating + '"+newRatingDouble+"' " +
                     "WHERE t1.businessEmail = b1.businessEmail " +
                     "AND b1.businessName = '" + businessName + "' ";
             stmt.executeUpdate(sqlString2);
 
-            String sqlString = "UPDATE vicarius.Buyers AS b1 JOIN vicarius.Tasks AS t1 " +
+            String sqlString = "UPDATE sql499918.Buyers AS b1 JOIN sql499918.Tasks AS t1 " +
                     "SET b1.numberOfRating = b1.numberOfRating + 1 , t1.sellerRated = 1, b1.rating = b1.totalRating / b1.numberOfRating, b1.rating = b1.totalRating / numberOfRating " +
                     "WHERE t1.businessEmail = b1.businessEmail " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
@@ -197,13 +197,13 @@ public class DBHandlerTask {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            String sqlString2 = "UPDATE vicarius.Sellers AS s1 JOIN vicarius.Tasks AS t1 " +
+            String sqlString2 = "UPDATE sql499918.Sellers AS s1 JOIN sql499918.Tasks AS t1 " +
                     "SET totalRating = totalRating + '"+newRatingDouble+"' " +
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND s1.email = '" + email + "' ";
             stmt.executeUpdate(sqlString2);
 
-            String sqlString = "UPDATE vicarius.Sellers AS s1 JOIN vicarius.Tasks AS t1 " +
+            String sqlString = "UPDATE sql499918.Sellers AS s1 JOIN sql499918.Tasks AS t1 " +
                     "SET s1.numberOfRating = s1.numberOfRating + 1 , t1.buyerRated = 1, s1.rating = s1.totalRating / s1.numberOfRating, s1.rating = s1.totalRating / s1.numberOfRating " +
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
@@ -211,7 +211,7 @@ public class DBHandlerTask {
             stmt.executeUpdate(sqlString);
 
 
-            String sqlString3 = "UPDATE vicarius.Tasks AS t1 JOIN vicarius.Sellers AS s1 SET t1.isActive = 0 " +
+            String sqlString3 = "UPDATE sql499918.Tasks AS t1 JOIN sql499918.Sellers AS s1 SET t1.isActive = 0 " +
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND s1.email = '"+ email +"' ";

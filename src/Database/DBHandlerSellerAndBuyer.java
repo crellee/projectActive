@@ -16,7 +16,7 @@ public class DBHandlerSellerAndBuyer
 
         try {
             Connection conn = DBConnection.getConnection();
-            String sqlString = "SELECT s1.email, b1.businessEmail FROM vicarius.Sellers AS s1 INNER JOIN vicarius.Buyers AS b1 ";
+            String sqlString = "SELECT s1.email, b1.businessEmail FROM sql499918.Sellers AS s1 INNER JOIN sql499918.Buyers AS b1 ";
             rs = conn.createStatement().executeQuery(sqlString);
         } catch (SQLException e) {
             e.printStackTrace();

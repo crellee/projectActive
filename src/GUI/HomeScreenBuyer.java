@@ -61,7 +61,7 @@ public class HomeScreenBuyer
         ToggleButton matchesBtn = new ToggleButton("Matches");
         ToggleButton tasksBtn = new ToggleButton("Tasks");
         ToggleButton myProfileBtn = new ToggleButton("My Profile");
-        Label acceptSellerLbl = new Label("Double click to accept seller");
+        Label acceptSellerLbl = new Label("Double click to accept seller and to rate");
 
         sellersBtn.setPrefHeight(20);
         sellersBtn.setPrefWidth(100);
@@ -160,14 +160,11 @@ public class HomeScreenBuyer
         myProfileBtn.fire();
 
         //accceptBtn attributes
-        acceptSellerLbl.setPrefHeight(20);
-        acceptSellerLbl.setPrefWidth(190);
         acceptSellerLbl.setTextFill(Color.WHITE);
-        acceptSellerLbl.setFont(Font.font("Verdana"));
-        acceptSellerLbl.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
+        acceptSellerLbl.setFont(Font.font("Verdana", 15));
         acceptSellerLbl.setVisible(false);
         VBox accBox = new VBox();
-        accBox.setPadding(new Insets(0,0,0,530));
+        accBox.setPadding(new Insets(0,0,0,400));
         accBox.getChildren().add(acceptSellerLbl);
         buttonBox.getChildren().add(accBox);
 
