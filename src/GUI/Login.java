@@ -147,6 +147,7 @@ public class Login extends Application
                 {
                     LoginVerifier.setEmail(loginTextfield);
                     LoginVerifier.verifyUser(loginTextfield, passwordField);
+                    window.close();
 
                 }
 
