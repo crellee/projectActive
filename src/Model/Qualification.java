@@ -9,7 +9,6 @@ are acquired from the database
  */
 public class Qualification
 {
-    private String qualificationId;
     private String qualificationName;
 
     public Qualification()
@@ -17,18 +16,11 @@ public class Qualification
 
     }
 
-    public Qualification(String qualificationId, String qualificationName)
+    public Qualification(String qualificationName)
     {
 
     }
 
-    public String getQualificationId() {
-        return qualificationId;
-    }
-
-    public void setQualificationId(String qualificationId) {
-        this.qualificationId = qualificationId;
-    }
 
     public String getQualificationName() {
         return qualificationName;

@@ -39,7 +39,7 @@ public class DBHandlerSeller
         String locationStr = location.getValue().toString();
         int age = calcAge(birthDateStr);
         double rating = 0.0;
-        int numberOfRating = 1;
+        int numberOfRating = 0;
         double totalRating = 0.0;
 
         try

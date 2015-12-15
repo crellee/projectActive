@@ -23,13 +23,9 @@ import java.util.Optional;
 /**
  * Created by christianhasselstrom on 25/11/2015.
  */
-public class Login extends Application {
-    BorderPane borderRoot;
+public class Login extends Application
+{
     Stage window;
-    HBox loginHBox;
-    Button loginButton;
-    TextField loginTextfield;
-    PasswordField passwordField;
 
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -192,7 +188,6 @@ public class Login extends Application {
         vicarius.setEffect(r);
         vicarius.setTextFill(Color.GHOSTWHITE);
         vicarius.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
-
 
         //getChildren()
         loginVBox.getChildren().addAll(vicarius, topHBox, loginHBox, errorMessageBox);

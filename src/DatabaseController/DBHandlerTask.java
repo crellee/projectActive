@@ -171,7 +171,7 @@ public class DBHandlerTask {
             stmt.executeUpdate(sqlString2);
 
             String sqlString = "UPDATE sql499918.Buyers AS b1 JOIN sql499918.Tasks AS t1 " +
-                    "SET b1.numberOfRating = b1.numberOfRating + 1 , t1.sellerRated = 1, b1.rating = b1.totalRating / b1.numberOfRating, b1.rating = b1.totalRating / numberOfRating " +
+                    "SET b1.numberOfRating = b1.numberOfRating + 1 , t1.sellerRated = 1, b1.rating = b1.totalRating / numberOfRating " +
                     "WHERE t1.businessEmail = b1.businessEmail " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND b1.businessName = '" + businessName + "' ";
@@ -192,18 +192,18 @@ public class DBHandlerTask {
             Connection conn = DBConnection.getConnection();
             Statement stmt = (Statement) conn.createStatement();
 
-            String sqlString2 = "UPDATE sql499918.Sellers AS s1 JOIN sql499918.Tasks AS t1 " +
+            String sqlString1 = "UPDATE sql499918.Sellers AS s1 JOIN sql499918.Tasks AS t1 " +
                     "SET totalRating = totalRating + '"+newRatingDouble+"' " +
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND s1.email = '" + email + "' ";
-            stmt.executeUpdate(sqlString2);
+            stmt.executeUpdate(sqlString1);
 
-            String sqlString = "UPDATE sql499918.Sellers AS s1 JOIN sql499918.Tasks AS t1 " +
-                    "SET s1.numberOfRating = s1.numberOfRating + 1 , t1.buyerRated = 1, s1.rating = s1.totalRating / s1.numberOfRating, s1.rating = s1.totalRating / s1.numberOfRating " +
+            String sqlString2 = "UPDATE sql499918.Sellers AS s1 JOIN sql499918.Tasks AS t1 " +
+                    "SET s1.numberOfRating = s1.numberOfRating + 1 , t1.buyerRated = 1, s1.rating = s1.totalRating / s1.numberOfRating " +
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +
                     "AND s1.email = '"+ email +"' ";
-            stmt.executeUpdate(sqlString);
+            stmt.executeUpdate(sqlString2);
 
 
             String sqlString3 = "UPDATE sql499918.Tasks AS t1 JOIN sql499918.Sellers AS s1 SET t1.isActive = 0 " +

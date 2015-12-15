@@ -33,6 +33,7 @@ public class MatchesTableBuyer {
         TableColumn ratingCol = new TableColumn("Rating");
         TableColumn isRequested = new TableColumn("Requested");
 
+        //Get the selected item in tableview
         matchesTable.setRowFactory(tv -> {
             TableRow<Seller> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -41,7 +42,6 @@ public class MatchesTableBuyer {
 
                     try
                     {
-
                         if(rowData.getSellerRequestStr().equals("Yes"))
                         {
                             HomeScreenBuyer.alertWindow(rowData.getJobDescription());
@@ -93,7 +93,6 @@ public class MatchesTableBuyer {
 
         try {
             ResultSet rs = DBHandlerTask.getMatchesInfoForBuyer();
-
 
             while (rs.next()) {
                 Seller seller = new Seller();

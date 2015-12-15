@@ -37,8 +37,7 @@ public class MatchesTableSeller {
         TableColumn salary = new TableColumn("Salary");
         TableColumn isAccepted = new TableColumn("Accepted");
 
-
-
+        //Get the selected row in the TableView
         matchesTable.setRowFactory(tv -> {
             TableRow<Task> row = new TableRow<>();
             row.setOnMouseClicked(event -> {

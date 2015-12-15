@@ -62,6 +62,7 @@ public class LoginVerifier
 
     }
 
+    //Set email variable to email in GUI TextField. Used when user is logging in to get the right user.
     public static void setEmail(TextField emailFromGui)
     {
         String emailStr = emailFromGui.getText();

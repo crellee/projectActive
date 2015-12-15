@@ -80,18 +80,7 @@ public class CreateBuyerWindow
         cityLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         Label cvrNoLabel = new Label("CVR-Number");
         cvrNoLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        /*
-        Label fillInformationerrorLabel = new Label("Fill all text fields before creating profile");
-            fillInformationerrorLabel.setTextFill(Color.RED);
-        Label passwordNotSame = new Label("Passwords must be the same before creating profile");
-            passwordNotSame.setTextFill(Color.RED);
-        Label fillAllFields = new Label("Please fill ALL fields before creating profile");
-            fillAllFields.setTextFill(Color.RED);
-        Label cvrMax8 = new Label("Cvr must max be 8 characters and only numbers");
-        cvrMax8.setTextFill(Color.RED);
-        Label allReadyExists = new Label("Email allready exists in database, choose another please.");
-        allReadyExists.setTextFill(Color.RED);
-        */
+
         Label errorMessage = new Label();
         errorMessage.setFont(Font.font("Verdana", 13));
         errorMessage.setTextFill(Color.RED);
@@ -125,11 +114,14 @@ public class CreateBuyerWindow
         locationCombo.setPromptText("Enter location");
         locationCombo.setOnMouseClicked(e -> errorMessage.setText(""));
         locationCombo.setPrefWidth(200);
+
         //ResultSet rs which has the values the getPostNumbers method returns.
         //Look up DBHandlerLocation class to see getPostNumbers definition.
         ResultSet rs = DBHandlerLocation.getPostNumbers();
+
         //Observable list data containing String.
         ObservableList<String> data = FXCollections.observableArrayList();
+
         //Loop through ResultSet. Create Location object, call setPostNo (in Location class)
         //to set postNo to the value in postNo column in ResultSet. Add value to observable list: data.
         try

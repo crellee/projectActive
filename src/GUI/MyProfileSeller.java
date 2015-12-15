@@ -155,7 +155,6 @@ public class MyProfileSeller
         pedagogueCheck.setStyle("-fx-opacity: 1");
 
         //Tilføjelser til HBox, VBox og Borderpane
-        ///////////////////////////////////////////
         vboxInfo.getChildren().addAll(mailLabelLabel, ageLabelLabel, birthLabelLabel, cityLabelLabel,
                 locationLabelLabel);
         vboxInfo2.getChildren().addAll(mailLabel, ageLabel, birthLabel, cityLabel, locationLabel);

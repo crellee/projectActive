@@ -263,8 +263,6 @@ public class HomeScreenSeller {
         centerVBox.setSpacing(9);
         centerVBox.getChildren().addAll(ratingStuffHBox, ratingSubmittedLabel);
 
-
-
         root.setTop(topLabel);
         root.setCenter(centerVBox);
 

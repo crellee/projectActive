@@ -108,7 +108,6 @@ public class MyProfileBuyer
         imageview.setFitWidth(172.5);
 
         //Tilføjelser til HBox, VBox og Borderpane
-        ///////////////////////////////////////////
         vboxInfo.getChildren().addAll( businessNameLabelLabel, businessEmailLabelLabel, postNoLabelLabel, cityLabelLabel,
                 cvrLabelLabel);
         vboxInfo2.getChildren().addAll(businessNameLabel, businessEmailLabel, postNoLabel, cityLabel, cvrLabel);

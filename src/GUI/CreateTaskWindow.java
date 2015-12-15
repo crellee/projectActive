@@ -250,7 +250,6 @@ http://stackoverflow.com/questions/25753727/javafx-using-date-picker
 
         root.setLeft(centerHBox);
 
-
         window.show();
     }
 }

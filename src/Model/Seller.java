@@ -31,17 +31,13 @@ public class Seller extends Person
     private String sellerRequestStr = "";
     private int isRequestedInt;
 
-
-    //qualiCarpenter, qualiJanitor, qualiCleaner, qualiWaiter," +
-    //"qualiChef, qualiBartender, qualiStore, qualiRetail, qualiPeda
-
     public Seller()
     {
 
     }
 
-    public Seller(String firstName, String lastName, String birthday, String email, String password,
-                  String qualifications, String location, double rating, String city, int qualiCarpenter,
+    public Seller(String birthday, String email, String password, String qualifications, String location,
+                  double rating, String city, int qualiCarpenter,
                   int qualiJanitor, int qualiCleaner, int qualiWaiter, int qualiChef, int qualiBartender, int qualiStore,
                   int qualiRetail, int qualiPeda, String jobDescription, String businessName, String sellerRequest,
                   String sellerRequestStr, int isRequestedInt)
@@ -109,16 +105,6 @@ public class Seller extends Person
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
     }
-
-//    public String getFirstName()
-//    {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(String firstName)
-//    {
-//        this.firstName = firstName;
-//    }
 
     public int getQualiCarpenter() {
         return qualiCarpenter;
@@ -191,16 +177,6 @@ public class Seller extends Person
     public void setQualiChef(int qualiChef) {
         this.qualiChef = qualiChef;
     }
-
-//    public String getLastName()
-//    {
-//        return lastName;
-//    }
-//
-//    public void setLastName(String lastName)
-//    {
-//        this.lastName = lastName;
-//    }
 
     public int getAge()
     {

@@ -31,7 +31,6 @@ public class BuyersTable implements TableViewCreator
         TableColumn rating = new TableColumn("Rating");
         TableColumn cvrNo = new TableColumn("CVR No");
 
-
         buyerName.setPrefWidth(150);
         buyerLastName.setPrefWidth(150);
         businessName.setPrefWidth(150);
@@ -49,7 +48,6 @@ public class BuyersTable implements TableViewCreator
         city.setCellValueFactory(new PropertyValueFactory<Buyer, String>("city"));
         rating.setCellValueFactory(new PropertyValueFactory<Buyer, Double>("rating"));
         cvrNo.setCellValueFactory(new PropertyValueFactory<Buyer, Integer>("cvr"));
-
 
         ObservableList<Buyer> data = FXCollections.observableArrayList();
 

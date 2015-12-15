@@ -43,12 +43,10 @@ public class TableCreator
         String sqlString;
         Statement stmt;
 
-
         try
         {
             Connection conn = DBConnection.getConnection();
             stmt = (Statement) conn.createStatement();
-
 
             sqlString = "CREATE TABLE IF NOT EXISTS Sellers" +
                     "(firstName VARCHAR(20) NOT NULL, " + //Variable lenght, max lenght 20. Range: 0-20
