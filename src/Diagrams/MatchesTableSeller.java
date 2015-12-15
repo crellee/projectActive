@@ -1,12 +1,9 @@
 package Diagrams;
 
-import Controller.Buyer;
-import Controller.LoginVerifier;
-import Controller.Seller;
-import Controller.Task;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
-import Database.DBHandlerTask;
+import Model.Seller;
+import Model.Task;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerTask;
 import GUI.HomeScreenSeller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

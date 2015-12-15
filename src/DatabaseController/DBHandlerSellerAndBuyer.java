@@ -1,7 +1,6 @@
-package Database;
+package DatabaseController;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

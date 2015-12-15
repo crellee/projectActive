@@ -1,6 +1,5 @@
-package Database;
+package DatabaseController;
 
-import Controller.LoginVerifier;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import javafx.scene.control.ComboBox;
@@ -8,7 +7,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.
@@ -54,7 +52,7 @@ public class DBHandlerBuyer
 
     /*
     This method is user for updating a user of type Buyer. The methods takes parameters from the GUI
-   and uses them to update in the Database
+   and uses them to update in the DatabaseController
      */
     public static void updateBuyerProfile(TextField firstName, TextField lastName, TextField businessName, TextField businessEmail,
                                           PasswordField password, ComboBox location, TextField cvr)

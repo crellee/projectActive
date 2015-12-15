@@ -1,8 +1,8 @@
 package Diagrams;
 
-import Controller.Task;
-import Database.DBHandlerLocation;
-import Database.DBHandlerTask;
+import Model.Task;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

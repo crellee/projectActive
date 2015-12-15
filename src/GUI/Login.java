@@ -1,11 +1,8 @@
 package GUI;
 
-import Controller.InputValidator;
-import Controller.LoginVerifier;
-import Database.DBHandlerSeller;
-import Database.DBHandlerTask;
-import Database.SchemaCreator;
-import Database.TableCreator;
+import DatabaseController.InputValidator;
+import DatabaseController.LoginVerifier;
+import DatabaseController.TableCreator;
 import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -20,9 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import sun.rmi.runtime.Log;
 
-import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -39,7 +34,7 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        SchemaCreator.create();
+        DatabaseController.SchemaCreator.create();
         TableCreator.createQualificationTable();
         TableCreator.createCitiesTable();
         TableCreator.createSellerTable();

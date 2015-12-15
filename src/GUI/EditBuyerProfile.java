@@ -1,9 +1,9 @@
 package GUI;
 
-import Controller.Buyer;
-import Controller.Location;
-import Database.DBHandlerBuyer;
-import Database.DBHandlerLocation;
+import Model.Buyer;
+import Model.Location;
+import DatabaseController.DBHandlerBuyer;
+import DatabaseController.DBHandlerLocation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

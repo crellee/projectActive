@@ -1,9 +1,7 @@
-package Database;
+package DatabaseController;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-
-import java.sql.SQLException;
 
 /* This class is for creating all the tables which we have in our schema.
  * Created by roije on 25/11/2015.

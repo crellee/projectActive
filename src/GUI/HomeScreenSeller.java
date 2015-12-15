@@ -1,6 +1,6 @@
 package GUI;
 
-import Database.DBHandlerTask;
+import DatabaseController.DBHandlerTask;
 import Diagrams.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

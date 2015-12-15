@@ -1,9 +1,5 @@
-package Database;
+package DatabaseController;
 
-import Controller.LoginVerifier;
-import Controller.Task;
-import Diagrams.MatchesTableSeller;
-import GUI.Login;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import javafx.scene.control.ComboBox;
@@ -11,7 +7,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
 
 /* This class contains methods which have to do with a Task and the connection to the Tasks table in the database
  * Created by christianhasselstrom on 27/11/2015.

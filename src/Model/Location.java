@@ -1,6 +1,4 @@
-package Controller;
-
-import javafx.beans.property.SimpleStringProperty;
+package Model;
 
 /**
  * Created by roije on 27/11/2015.

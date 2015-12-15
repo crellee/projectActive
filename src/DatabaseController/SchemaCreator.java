@@ -1,5 +1,5 @@
 
-package Database;
+package DatabaseController;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -12,10 +12,10 @@ import java.sql.DriverManager;
 
 public class SchemaCreator
 {
-    //Database URL
+    //DatabaseController URL
     final static String DB_URL = "jdbc:mysql://sql4.freesqldatabase.com/";
 
-    //  Database credentials
+    //  DatabaseController credentials
     final static String USER = "sql499918";
     final static String PASS = "issh1FmltI";
 
@@ -38,7 +38,7 @@ public class SchemaCreator
 
             String sql = "CREATE DATABASE IF NOT EXISTS sql499918";
             stmt.executeUpdate(sql);
-            System.out.println("Database created successfully...");
+            System.out.println("DatabaseController created successfully...");
             }
             catch (Exception se)
             {

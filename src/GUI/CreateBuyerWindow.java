@@ -1,12 +1,9 @@
 package GUI;
 
-import Controller.Buyer;
-import Controller.InputValidator;
-import Controller.Location;
-import Controller.Seller;
-import Database.DBHandlerBuyer;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSellerAndBuyer;
+import DatabaseController.InputValidator;
+import Model.Location;
+import DatabaseController.DBHandlerBuyer;
+import DatabaseController.DBHandlerLocation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -22,7 +19,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * Created by christianhasselstrom on 25/11/2015.

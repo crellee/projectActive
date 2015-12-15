@@ -1,6 +1,6 @@
-package Controller;
+package DatabaseController;
 
-import Database.DBConnection;
+import DatabaseController.DBConnection;
 import GUI.HomeScreenBuyer;
 import GUI.HomeScreenSeller;
 import com.mysql.jdbc.Connection;
@@ -8,7 +8,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.sql.Statement;
 

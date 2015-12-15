@@ -1,9 +1,4 @@
-package Controller;
-
-import javafx.beans.property.SimpleStringProperty;
-
-import java.util.ArrayList;
-import java.util.Date;
+package Model;
 
 /**
  * Created by roije on 25/11/2015.

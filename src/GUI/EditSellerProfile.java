@@ -1,11 +1,9 @@
 package GUI;
 
-import Controller.Checker;
-import Controller.Location;
-import Controller.Seller;
-import Database.DBHandlerBuyer;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
+import Model.Location;
+import Model.Seller;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerSeller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,15 +17,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import sun.util.calendar.BaseCalendar;
-import sun.util.calendar.LocalGregorianCalendar;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Created by roije on 04/12/2015.
@@ -168,16 +161,6 @@ public class EditSellerProfile
         updateButton.setPrefHeight(50);
         updateButton.setOnAction(e ->
         {
-            /*
-            if(firstNameField.getText().equals("") || lastNameField.getText().equals("") ||
-                    businessEmailField.getText().equals("") || enterPasswordField.getText().equals("") ||
-                    confirmPasswordField.getText().equals("") || locationCombo.getValue().toString().equals("") ||
-                    cityField.getText().equals("") || cvrNoField.getText().equals(""))
-            {
-                root.setBottom(fillInformationerrorLabel);
-            }
-            */
-
             if (!passwordField.getText().equals(confirmPasswordField.getText()))
             {
                 root.setBottom(passwordNotSame);
@@ -186,15 +169,15 @@ public class EditSellerProfile
             {
                 try
                 {
-                    int carpenterInt = Checker.checkSelected(carpenterCheck);
-                    int janitorInt = Checker.checkSelected(janitorCheck);
-                    int cleanerInt = Checker.checkSelected(cleanerCheck);
-                    int waiterInt = Checker.checkSelected(waiterCheck);
-                    int chefInt = Checker.checkSelected(chefCheck);
-                    int bartenderInt = Checker.checkSelected(bartenderCheck);
-                    int storeInt = Checker.checkSelected(storeCheck);
-                    int retailInt = Checker.checkSelected(retailCheck);
-                    int pedaInt = Checker.checkSelected(pedagogueCheck);
+                    int carpenterInt = DBHandlerSeller.checkSelected(carpenterCheck);
+                    int janitorInt = DBHandlerSeller.checkSelected(janitorCheck);
+                    int cleanerInt = DBHandlerSeller.checkSelected(cleanerCheck);
+                    int waiterInt = DBHandlerSeller.checkSelected(waiterCheck);
+                    int chefInt = DBHandlerSeller.checkSelected(chefCheck);
+                    int bartenderInt = DBHandlerSeller.checkSelected(bartenderCheck);
+                    int storeInt = DBHandlerSeller.checkSelected(storeCheck);
+                    int retailInt = DBHandlerSeller.checkSelected(retailCheck);
+                    int pedaInt = DBHandlerSeller.checkSelected(pedagogueCheck);
 
                     DBHandlerSeller.updateSellerProfile(emailField, firstNameField, lastNameField, birthdateField, passwordField,
                             locationCombo, carpenterInt, janitorInt, cleanerInt,  waiterInt,

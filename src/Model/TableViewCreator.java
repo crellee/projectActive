@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 import javafx.scene.control.TableView;
 

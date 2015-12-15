@@ -1,6 +1,5 @@
-package Database;
+package DatabaseController;
 
-import Controller.LoginVerifier;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import javafx.scene.control.*;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/** This class contains methods to handle a Controller.Seller and the connection to the Sellers table in the database
+/** This class contains methods to handle a Model.Seller and the connection to the Sellers table in the database
  * Created by roije on 25/11/2015.
  */
 public class DBHandlerSeller
@@ -187,6 +186,20 @@ public class DBHandlerSeller
 
         }
         return rs;
+    }
+
+    public static int checkSelected(CheckBox checkbox)
+    {
+        boolean selected;
+        selected = checkbox.isSelected();
+        if(selected == true)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
 }

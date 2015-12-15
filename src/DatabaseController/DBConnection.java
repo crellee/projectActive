@@ -1,4 +1,4 @@
-package Database;
+package DatabaseController;
 
 import com.mysql.jdbc.Connection;
 import java.sql.*;
@@ -21,7 +21,8 @@ public class DBConnection
     final static String db = "sql499918";
     final static String url = "jdbc:mysql://sql4.freesqldatabase.com/";
 
-    // This method connects to the Database using the attributes above.
+
+    // This method connects to the DatabaseController using the attributes above.
     public static Connection getConnection()
     {
         Connection conn;

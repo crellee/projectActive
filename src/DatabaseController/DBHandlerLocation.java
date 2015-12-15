@@ -1,4 +1,4 @@
-package Database;
+package DatabaseController;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;

@@ -1,12 +1,10 @@
-package Controller;
+package DatabaseController;
 
-import Database.DBHandlerSellerAndBuyer;
+import Model.Buyer;
+import Model.Seller;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import javax.xml.stream.events.Characters;
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 

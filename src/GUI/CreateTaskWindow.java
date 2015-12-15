@@ -1,11 +1,11 @@
 package GUI;
 
-import Controller.InputValidator;
-import Controller.Location;
-import Controller.Qualification;
-import Database.DBHandlerLocation;
-import Database.DBHandlerQualification;
-import Database.DBHandlerTask;
+import DatabaseController.InputValidator;
+import Model.Location;
+import Model.Qualification;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerQualification;
+import DatabaseController.DBHandlerTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;

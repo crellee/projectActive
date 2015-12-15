@@ -1,8 +1,8 @@
 package GUI;
 
-import Controller.Seller;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
+import Model.Seller;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerSeller;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;

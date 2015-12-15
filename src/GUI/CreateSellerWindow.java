@@ -1,10 +1,9 @@
 package GUI;
 
-import Controller.*;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
-import Database.DBHandlerSellerAndBuyer;
-import Database.DBHandlerTask;
+import Model.*;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerSeller;
+import DatabaseController.InputValidator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -23,7 +22,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * Created by roije on 25/11/2015.
@@ -143,7 +141,6 @@ public class CreateSellerWindow
         pedagogueCheck.setOnMouseEntered(e -> pedagogueCheck.setUnderline(true));
         pedagogueCheck.setOnMouseExited(e -> pedagogueCheck.setUnderline(false));
 
-
         VBox checkRow1Box = new VBox();
         checkRow1Box.getChildren().addAll(carpenterCheck, janitorCheck,cleanerCheck);
         checkRow1Box.setSpacing(5);
@@ -191,7 +188,6 @@ public class CreateSellerWindow
             cityField.setText(DBHandlerLocation.setCity(no));
         });
 
-
         Button createButton = new Button("Create account");
         createButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         createButton.setTextFill(Color.WHITE);
@@ -232,15 +228,15 @@ public class CreateSellerWindow
             else
             {
                     //Call a method which saves information in TextFields etc. in a database table
-                    int carpenterInt = Checker.checkSelected(carpenterCheck);
-                    int janitorInt = Checker.checkSelected(janitorCheck);
-                    int cleanerInt = Checker.checkSelected(cleanerCheck);
-                    int waiterInt = Checker.checkSelected(waiterCheck);
-                    int chefInt = Checker.checkSelected(chefCheck);
-                    int bartenderInt = Checker.checkSelected(bartenderCheck);
-                    int storeInt = Checker.checkSelected(storeCheck);
-                    int retailInt = Checker.checkSelected(retailCheck);
-                    int pedaInt = Checker.checkSelected(pedagogueCheck);
+                    int carpenterInt = DBHandlerSeller.checkSelected(carpenterCheck);
+                    int janitorInt = DBHandlerSeller.checkSelected(janitorCheck);
+                    int cleanerInt = DBHandlerSeller.checkSelected(cleanerCheck);
+                    int waiterInt = DBHandlerSeller.checkSelected(waiterCheck);
+                    int chefInt = DBHandlerSeller.checkSelected(chefCheck);
+                    int bartenderInt = DBHandlerSeller.checkSelected(bartenderCheck);
+                    int storeInt = DBHandlerSeller.checkSelected(storeCheck);
+                    int retailInt = DBHandlerSeller.checkSelected(retailCheck);
+                    int pedaInt = DBHandlerSeller.checkSelected(pedagogueCheck);
 
                     DBHandlerSeller.saveSeller(firstNameField, lastNameField, birthdateField, emailField, passwordField,
                             carpenterInt, janitorInt, cleanerInt, waiterInt, chefInt,
@@ -253,8 +249,6 @@ public class CreateSellerWindow
             {
                 errorMessage.setText("Please fill all fields");
             }
-
-
         });
 
         //VBox with all information labels.
@@ -274,7 +268,6 @@ public class CreateSellerWindow
         centerHBox.getChildren().addAll(labelVBox, inputVBox);
         centerHBox.setSpacing(10);
         centerHBox.setPadding(new Insets(5,0,0,130));
-
 
         root.setCenter(centerHBox);
 

@@ -1,9 +1,9 @@
 package Diagrams;
 
-import Controller.Seller;
-import Controller.TableViewCreator;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
+import Model.Seller;
+import Model.TableViewCreator;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerSeller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

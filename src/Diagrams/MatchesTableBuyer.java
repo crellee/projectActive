@@ -1,13 +1,10 @@
 package Diagrams;
 
-import Controller.LoginVerifier;
-import Controller.Seller;
-import Controller.Task;
-import Database.DBHandlerLocation;
-import Database.DBHandlerSeller;
-import Database.DBHandlerTask;
+import Model.Seller;
+import Model.Task;
+import DatabaseController.DBHandlerLocation;
+import DatabaseController.DBHandlerTask;
 import GUI.HomeScreenBuyer;
-import GUI.HomeScreenSeller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -28,7 +25,6 @@ public class MatchesTableBuyer {
         TableColumn jobDescription = new TableColumn("Job Description");
         TableColumn firstName = new TableColumn("First Name");
         TableColumn lastName = new TableColumn("Last Name");
-        //TableColumn businessName = new TableColumn("Business Name");
         TableColumn emailCol = new TableColumn("Email");
         TableColumn ageCol = new TableColumn("Age");
         TableColumn locationCol = new TableColumn("Location");
@@ -71,7 +67,6 @@ public class MatchesTableBuyer {
         jobDescription.setPrefWidth(150);
         firstName.setPrefWidth(120);
         lastName.setPrefWidth(120);
-        //businessName.setPrefWidth(150);
         emailCol.setPrefWidth(150);
         ageCol.setPrefWidth(50);
         locationCol.setPrefWidth(70);
@@ -84,7 +79,6 @@ public class MatchesTableBuyer {
                 locationCol, cityCol, qualificationsCol, ratingCol, isRequested);
 
         jobDescription.setCellValueFactory(new PropertyValueFactory<Seller, String>("jobDescription"));
-        //businessName.setCellValueFactory(new PropertyValueFactory<Seller, String>("businessName"));
         firstName.setCellValueFactory(new PropertyValueFactory<Seller, String>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<Seller, String>("lastName"));
         emailCol.setCellValueFactory(new PropertyValueFactory<Seller, String>("email"));
@@ -106,7 +100,6 @@ public class MatchesTableBuyer {
                 Task task = new Task();
 
                 seller.setJobDescription(rs.getString("jobDescription"));
-                //seller.setBusinessName(rs.getString("businessName"));
                 seller.setFirstName(rs.getString("firstName"));
                 seller.setAge(rs.getInt("age"));
                 seller.setLastName(rs.getString("lastName"));
@@ -116,13 +109,6 @@ public class MatchesTableBuyer {
                 seller.setQualifications(rs.getString("requiredQualification"));
                 seller.setRating(rs.getDouble("rating"));
 
-
-                /*task.setBusinessEmail(rs.getString("businessEmail"));
-                task.setBuyerAccept(rs.getString("buyerAccept"));
-                task.setSellerRated(rs.getInt("sellerRated"));
-                if(task.getBuyerAccept().equals(task.getBusinessEmail()) && task.getSellerRated() == 0)*/
-
-                //task.setIsActive(rs.getInt("isActive"));
                 task.setSellerRated(rs.getInt("sellerRated"));
                 task.setBuyerRated(rs.getInt("buyerRated"));
                 task.setGetSellerRequest(rs.getString("sellerRequest"));
