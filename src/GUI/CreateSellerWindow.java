@@ -227,7 +227,7 @@ public class CreateSellerWindow
 
             else
             {
-                    //Call a method which saves information in TextFields etc. in a database table
+                    //Call a method which saves information in TextFields etc. in a database table.
                     int carpenterInt = DBHandlerSeller.checkSelected(carpenterCheck);
                     int janitorInt = DBHandlerSeller.checkSelected(janitorCheck);
                     int cleanerInt = DBHandlerSeller.checkSelected(cleanerCheck);
