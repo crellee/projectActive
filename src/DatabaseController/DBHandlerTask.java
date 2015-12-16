@@ -205,7 +205,6 @@ public class DBHandlerTask {
                     "AND s1.email = '"+ email +"' ";
             stmt.executeUpdate(sqlString2);
 
-
             String sqlString3 = "UPDATE sql499918.Tasks AS t1 JOIN sql499918.Sellers AS s1 SET t1.isActive = 0 " +
                     "WHERE t1.sellerRequest = s1.email " +
                     "AND t1.jobDescription = '"+jobDescription+"' " +

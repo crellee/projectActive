@@ -194,7 +194,6 @@ public class Login extends Application
         loginVBox.getChildren().addAll(vicarius, topHBox, loginHBox, errorMessageBox);
         topHBox.getChildren().addAll(userLabel, passLabel);
         loginHBox.getChildren().addAll(loginTextfield, passwordField, loginButton);
-        //usersHBox.getChildren().addAll(createBuyerButton, createSellerButton);
         usersVBox.getChildren().addAll(createBuyerButton, createSellerButton);
 
         window.show();

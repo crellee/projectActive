@@ -17,7 +17,7 @@ import java.sql.ResultSet;
  */
 public class BuyersTable implements TableViewCreator
 {
-
+   @Override
     public TableView getTable()
     {
         TableView<Buyer> buyersTable = new TableView();

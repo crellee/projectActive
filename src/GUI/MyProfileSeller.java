@@ -72,6 +72,24 @@ public class MyProfileSeller
             EditSellerProfile.openWindow();
         });
 
+        //signOutBtn
+        Button signOutBtn = new Button("Sign Out");
+        signOutBtn.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        signOutBtn.setTextFill(Color.WHITE);
+        signOutBtn.setStyle("-fx-background-color: linear-gradient(#cc0000, #b20000)");
+        signOutBtn.setOnMouseExited(e -> signOutBtn.setStyle("-fx-background-color: linear-gradient(#cc0000, #b20000)"));
+        signOutBtn.setOnMouseEntered(e ->signOutBtn.setStyle("-fx-background-color: linear-gradient(#990000, #7f0000)"));
+        signOutBtn.setOnAction(e ->
+        {
+            System.exit(0);
+        });
+
+        //Place in button in a vbox
+        VBox signOutVBox = new VBox();
+        signOutVBox.getChildren().add(signOutBtn);
+        signOutVBox.setAlignment(Pos.BOTTOM_RIGHT);
+        signOutVBox.setPadding(new Insets(0,10,10,0));
+
         Label firstName = new Label();
         firstName.setFont(Font.font("Calibri", FontWeight.BOLD, 35));
         firstName.setPadding(new Insets(20, 0, 0, 0));
@@ -168,6 +186,7 @@ public class MyProfileSeller
 
         rootMyProfileSeller.setCenter(profilHBox);
         rootMyProfileSeller.setLeft(profilVBox);
+        rootMyProfileSeller.setBottom(signOutVBox);
 
         ResultSet rs = DBHandlerSeller.getUserInformations();
         try {

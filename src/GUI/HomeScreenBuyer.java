@@ -93,7 +93,7 @@ public class HomeScreenBuyer
         {
             acceptSellerLbl.setVisible(false);
             sellersBtn.setStyle(("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)"));
-            matchesBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
+            matchesBtn.setStyle("-fx-background-coSor: linear-gradient(#fafdfe, #a7d9f5)");
             tasksBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             myProfileBtn.setStyle("-fx-background-color: linear-gradient(#fafdfe, #a7d9f5)");
             buyersBtn.setStyle("-fx-background-color: linear-gradient(#279dc4, #a7d9f5)");
@@ -168,27 +168,17 @@ public class HomeScreenBuyer
         accBox.getChildren().add(acceptSellerLbl);
         buttonBox.getChildren().add(accBox);
 
-        //signOutBtn
-        Button signOutBtn = new Button("Sign Out");
 
         //CreateTaskButton
         Button createTaskButton = new Button("Create Task");
+        createTaskButton.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         createTaskButton.setPrefHeight(40);
         createTaskButton.setPrefWidth(150);
         createTaskButton.setTextFill(Color.WHITE);
         createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
         createTaskButton.setOnMouseEntered(e -> createTaskButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)"));
         createTaskButton.setOnMouseExited(event -> createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)"));
-        /*
-        createTaskButton.setOnMousePressed(e ->
-        {
-            createTaskButton.setStyle("-fx-background-color: linear-gradient(#240e10, #006600)");
-        });
-        createTaskButton.setOnMouseReleased(e ->
-        {
-            createTaskButton.setStyle("-fx-background-color: linear-gradient(#00e500, #006600)");
-        });
-        */
+
         createTaskButton.setOnAction(e ->
         {
             CreateTaskWindow.openWindow();
